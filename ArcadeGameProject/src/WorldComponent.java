@@ -12,7 +12,7 @@ public class WorldComponent extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.setColor(Color.green);
-		g2.fillRect(0, 0, 500, 500);
+		g2.fillRect(0, 0, 1000, 750);
 
 	}
 }

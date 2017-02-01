@@ -1,8 +1,7 @@
-import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 public class World {
 	private final JFileChooser chooser;
@@ -17,26 +16,35 @@ public class World {
 	}
 
 	public void load() throws IOException {
-		File inputFile = new File(level);
-		Scanner inScanner = new Scanner(inputFile);
-		while (inScanner.hasNext()) {
-			String next = inScanner.next();
-			if (next == " ") {
-				return;
-			} else if (next == "w") {
-				return;
-			} else if (next == "h") {
-				return;
-			} else if (next == "e") {
-				return;
-			} else if (next == "b") {
-				return;
-			} else {
-				throw new RuntimeException("Invalid Character in World Text File");
 
-			}
-		}
-		inScanner.close();
+		JFrame myWindow = new JFrame();
+		myWindow.setSize(1000, 750);
+		myWindow.setTitle("BomberMan");
+		myWindow.add(new WorldComponent());
+
+		// File inputFile = new File(level);
+		// Scanner inScanner = new Scanner(inputFile);
+		// while (inScanner.hasNext()) {
+		// String next = inScanner.next();
+		// if (next == " ") {
+		// return;
+		// } else if (next == "w") {
+		// return;
+		// } else if (next == "h") {
+		// return;
+		// } else if (next == "e") {
+		// return;
+		// } else if (next == "b") {
+		// return;
+		// } else {
+		// throw new RuntimeException("Invalid Character in World Text File");
+		//
+		// }
+		// }
+
+		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myWindow.setVisible(true);
+		// inScanner.close();
 	}
 
 }
