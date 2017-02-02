@@ -11,8 +11,8 @@ public class Walls {
 	private Color rectColor = Color.GRAY;
 	
 	public Walls(int x, int y) {
-		rect.height = side;
-		rect.width = side;
+		rect.height = 50;
+		rect.width = 50;
 		rectCenterX = x * (side/2);
 		rectCenterY = 250 + (y + (side/2));
 	}
