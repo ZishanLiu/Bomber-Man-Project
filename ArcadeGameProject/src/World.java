@@ -37,15 +37,15 @@ public class World {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
 				for (int y = 0; y < 20; y++) {
-					if (line.charAt(x) == ' ') {
+					if (line.charAt(y) == ' ') {
 						return;
-					} else if (line.charAt(x) == 'w') {
+					} else if (line.charAt(y) == 'w') {
 						return;
-					} else if (line.charAt(x) == 'h') {
+					} else if (line.charAt(y) == 'h') {
 						return;
-					} else if (line.charAt(x) == 'e') {
+					} else if (line.charAt(y) == 'e') {
 						return;
-					} else if (line.charAt(x) == 'b') {
+					} else if (line.charAt(y) == 'b') {
 						return;
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
