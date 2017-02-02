@@ -1,3 +1,4 @@
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class World {
 	private int time;
 	ArrayList<Walls> WI = new ArrayList<Walls>();
 	ArrayList<Walls> WB = new ArrayList<Walls>();
+	private Hero myHero = new Hero();
 	// ArrayList<Enemy> E = new ArrayList<Enemy>();
 
 	public World(String level) {
@@ -30,9 +32,10 @@ public class World {
 		myWindow.setSize(1000, 1000);
 		myWindow.setTitle("BomberMan");
 
-		// Hero myHero = new Hero();
-		//
-		// myWindow.add(myHero);
+		WorldComponent myworld = new WorldComponent();
+		KeyListener mykey = new myListener(myHero);
+
+		myWindow.addKeyListener(mykey);
 
 		File inputFile = new File(level);
 		Scanner inScanner = new Scanner(inputFile);
@@ -59,8 +62,11 @@ public class World {
 			}
 		}
 
-		myWindow.add(new WorldComponent(this.WI));
-		WorldComponent myworld = new WorldComponent(this.WI);
+		myworld.sethero(myHero);
+		myworld.setWI(WI);
+
+		// WorldComponent myworld = new WorldComponent(this.WI);
+		myWindow.add(myworld);
 		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myWindow.setVisible(true);
 		inScanner.close();

@@ -8,9 +8,18 @@ import javax.swing.JComponent;
 public class WorldComponent extends JComponent {
 
 	private ArrayList<Walls> WI;
+	private Hero myhero;
 
-	public WorldComponent(ArrayList<Walls> WI) {
+	public void sethero(Hero myhero) {
+		this.myhero = myhero;
+	}
+
+	public void setWI(ArrayList<Walls> WI) {
 		this.WI = WI;
+	}
+
+	public WorldComponent() {
+
 	}
 
 	@Override
@@ -20,10 +29,12 @@ public class WorldComponent extends JComponent {
 
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1000, 1000);
+		myhero.drawOn(g2);
 
 		for (int i = 0; i < WI.size(); i++) {
 			WI.get(i).drawOn(g2);
 		}
+		repaint();
 
 	}
 }
