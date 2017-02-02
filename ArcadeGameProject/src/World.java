@@ -27,28 +27,31 @@ public class World {
 		myWindow.setTitle("BomberMan");
 		myWindow.add(new WorldComponent());
 
-//		Hero myHero = new Hero();
-//
-//		myWindow.add(myHero);
+		// Hero myHero = new Hero();
+		//
+		// myWindow.add(myHero);
 
 		File inputFile = new File(level);
 		Scanner inScanner = new Scanner(inputFile);
-		while (inScanner.hasNext()) {
-			String next = inScanner.next();
-			if (next == " ") {
-				return;
-			} else if (next == "w") {
-				return;
-			} else if (next == "h") {
-				return;
-			} else if (next == "e") {
-				return;
-			} else if (next == "b") {
-				return;
-			} else {
-				// throw new RuntimeException("Invalid Character in World Text
-				// File");
+		for (int x = 0; x < 15; x++) {
+			if (inScanner.hasNextLine()) {
+				String line = inScanner.nextLine();
+				for (int y = 0; y < 20; y++) {
+					if (line.charAt(x) == ' ') {
+						return;
+					} else if (line.charAt(x) == 'w') {
+						return;
+					} else if (line.charAt(x) == 'h') {
+						return;
+					} else if (line.charAt(x) == 'e') {
+						return;
+					} else if (line.charAt(x) == 'b') {
+						return;
+					} else {
+						throw new RuntimeException("Invalid Character in World Text File");
 
+					}
+				}
 			}
 		}
 
