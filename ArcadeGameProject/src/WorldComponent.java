@@ -14,5 +14,8 @@ public class WorldComponent extends JComponent {
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1000, 1000);
 
+		Hero myHero = new Hero();
+		myHero.drawOn(g2);
+
 	}
 }

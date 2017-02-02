@@ -1,6 +1,5 @@
 import java.applet.Applet;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -15,17 +14,6 @@ public class Hero extends Applet implements KeyListener {
 
 		rect = new Rectangle(0, 0, 50, 50);
 		rect2 = new Rectangle(0, 0, 20, 20);
-		this.addKeyListener(this);
-
-	}
-
-	public void paint(Graphics g) {
-
-		setSize(500, 500);
-
-		Graphics2D g2 = (Graphics2D) g;
-		g2.fill(rect);
-		g2.fill(rect2);
 
 	}
 

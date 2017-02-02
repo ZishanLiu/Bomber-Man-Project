@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class World {
 	private final JFileChooser chooser;
@@ -20,12 +21,15 @@ public class World {
 	public void load() throws IOException {
 
 		JFrame myWindow = new JFrame();
+		JPanel myPanel = new JPanel();
+
 		myWindow.setSize(1000, 1000);
 		myWindow.setTitle("BomberMan");
 		myWindow.add(new WorldComponent());
 
-		Hero myHero = new Hero();
-		myWindow.add(myHero);
+//		Hero myHero = new Hero();
+//
+//		myWindow.add(myHero);
 
 		File inputFile = new File(level);
 		Scanner inScanner = new Scanner(inputFile);
