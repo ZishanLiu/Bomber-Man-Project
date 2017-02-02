@@ -29,8 +29,6 @@ public class World {
 
 		myWindow.setSize(1000, 1000);
 		myWindow.setTitle("BomberMan");
-		myWindow.add(new WorldComponent());
-		WorldComponent myworld = new WorldComponent();
 
 		// Hero myHero = new Hero();
 		//
@@ -38,20 +36,20 @@ public class World {
 
 		File inputFile = new File(level);
 		Scanner inScanner = new Scanner(inputFile);
-		for (int x = 0; x < 15; x++) {
+		for (int y = 0; y < 15; y++) {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
-				for (int y = 0; y < 20; y++) {
-					if (line.charAt(y) == ' ') {
+				for (int x = 0; x < 20; x++) {
+					if (line.charAt(x) == ' ') {
 						continue;
-					} else if (line.charAt(y) == 'w') {
+					} else if (line.charAt(x) == 'w') {
 						Walls wall = new Walls(x, y);
-						WI.add(wall);
-					} else if (line.charAt(y) == 'h') {
+						this.WI.add(wall);
+					} else if (line.charAt(x) == 'h') {
+						Hero hero = new Hero();
+					} else if (line.charAt(x) == 'e') {
 						continue;
-					} else if (line.charAt(y) == 'e') {
-						continue;
-					} else if (line.charAt(y) == 'b') {
+					} else if (line.charAt(x) == 'b') {
 						continue;
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
@@ -61,6 +59,8 @@ public class World {
 			}
 		}
 
+		myWindow.add(new WorldComponent(this.WI));
+		WorldComponent myworld = new WorldComponent(this.WI);
 		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myWindow.setVisible(true);
 		inScanner.close();
