@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -10,6 +11,9 @@ public class World {
 	private final JFileChooser chooser;
 	private String level;
 	private int time;
+	ArrayList<Walls> WI = new ArrayList<Walls>();
+	ArrayList<Walls> WB = new ArrayList<Walls>();
+	// ArrayList<Enemy> E = new ArrayList<Enemy>();
 
 	public World(String level) {
 		this.level = level;
@@ -26,6 +30,7 @@ public class World {
 		myWindow.setSize(1000, 1000);
 		myWindow.setTitle("BomberMan");
 		myWindow.add(new WorldComponent());
+		WorldComponent myworld = new WorldComponent();
 
 		// Hero myHero = new Hero();
 		//
@@ -38,15 +43,16 @@ public class World {
 				String line = inScanner.nextLine();
 				for (int y = 0; y < 20; y++) {
 					if (line.charAt(y) == ' ') {
-						return;
+						continue;
 					} else if (line.charAt(y) == 'w') {
-						return;
+						Walls wall = new Walls(x, y);
+						WI.add(wall);
 					} else if (line.charAt(y) == 'h') {
-						return;
+						continue;
 					} else if (line.charAt(y) == 'e') {
-						return;
+						continue;
 					} else if (line.charAt(y) == 'b') {
-						return;
+						continue;
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
 
