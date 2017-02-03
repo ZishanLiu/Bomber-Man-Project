@@ -30,7 +30,7 @@ public class Hero extends JComponent {
 		g.fill(rect2);
 	}
 
-	public void moveRright() {
+	public void moveRight() {
 
 		x = x + 10;
 
