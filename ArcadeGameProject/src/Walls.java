@@ -49,15 +49,15 @@ public class Walls {
 		int heroCenterX = hero.getX();
 		int heroCenterY = hero.getY();
 		if(str.equals("Right")) {
-			heroCenterX += 10;
+			heroCenterX += .1;
 		} else if(str.equals("Left")) {
-			heroCenterX -= 10;
+			heroCenterX -= .1;
 		} else if(str.equals("Up")) {
-			heroCenterY -= 10;
+			heroCenterY -= .1;
 		} else {
-			heroCenterY += 10;
+			heroCenterY += .1;
 		}
-		return rect.getBounds2D().intersects(hero.getBounds());
+		return rect.getBounds2D().intersects(hero.getBounds2D());
 	}
 //			int heroCenterX = hero.getX();
 //			int heroCenterY = hero.getY();

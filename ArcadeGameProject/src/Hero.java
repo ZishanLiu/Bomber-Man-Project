@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
@@ -65,5 +66,7 @@ public class Hero extends JComponent {
 	public int getY() {
 		return (int) rect.getCenterY();
 	}
-
+	public Rectangle2D getBounds2D() {
+		return rect.getBounds2D();
+	}
 }
