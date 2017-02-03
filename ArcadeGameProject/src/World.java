@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class World {
 	private final JFileChooser chooser;
@@ -15,7 +14,7 @@ public class World {
 	ArrayList<Walls> WI = new ArrayList<Walls>();
 	ArrayList<Walls> WB = new ArrayList<Walls>();
 	private Hero myHero = new Hero();
-	// ArrayList<Enemy> E = new ArrayList<Enemy>();
+	private Bombs myBomb = new Bombs(myHero);
 
 	public World(String level) {
 		this.level = level;
@@ -27,15 +26,16 @@ public class World {
 	public void load() throws IOException {
 
 		JFrame myWindow = new JFrame();
-		JPanel myPanel = new JPanel();
 
 		myWindow.setSize(1000, 1000);
 		myWindow.setTitle("BomberMan");
 
 		WorldComponent myworld = new WorldComponent();
 		KeyListener mykey = new myListener(myHero);
+		KeyListener myBomb = new BombListener(this.myBomb);
 
 		myWindow.addKeyListener(mykey);
+		myWindow.addKeyListener(myBomb);
 
 		File inputFile = new File(level);
 		Scanner inScanner = new Scanner(inputFile);
@@ -64,6 +64,7 @@ public class World {
 
 		myworld.sethero(myHero);
 		myworld.setWI(WI);
+		myworld.setBombs(this.myBomb);
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
 		myWindow.add(myworld);

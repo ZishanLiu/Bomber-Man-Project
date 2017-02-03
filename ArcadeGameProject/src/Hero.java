@@ -13,9 +13,10 @@ public class Hero extends JComponent {
 	private Color color;
 
 	public Hero() {
+
 		this.color = Color.black;
-		rect = new Rectangle(0, 0, 50, 50);
-		rect2 = new Rectangle(0, 0, 20, 20);
+		rect = new Rectangle(0, 0, 30, 30);
+		rect2 = new Rectangle(0, 0, 15, 15);
 
 	}
 
@@ -23,7 +24,7 @@ public class Hero extends JComponent {
 
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.blue);
-		rect = new Rectangle(x, y, 50, 50);
+		rect = new Rectangle(x, y, 30, 30);
 		rect2 = new Rectangle(x, y, 20, 20);
 		g.fill(rect);
 		g.fill(rect2);
@@ -47,6 +48,14 @@ public class Hero extends JComponent {
 	public void moveDown() {
 		y = y + 10;
 
+	}
+
+	public int getX() {
+		return rect.x + 20;
+	}
+
+	public int getY() {
+		return rect.y + 20;
 	}
 
 }

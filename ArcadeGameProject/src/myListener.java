@@ -1,11 +1,8 @@
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class myListener implements KeyListener {
 
-	private Rectangle rect;
-	private Rectangle rect2;
 	private Hero myHero;
 
 	public myListener(Hero myHero) {
@@ -31,10 +28,6 @@ public class myListener implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 
 			myHero.moveUp();
-
-		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
-
-			rect2.setLocation(rect.getLocation());
 
 		}
 

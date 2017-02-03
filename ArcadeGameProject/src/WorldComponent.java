@@ -9,6 +9,7 @@ public class WorldComponent extends JComponent {
 
 	private ArrayList<Walls> WI;
 	private Hero myhero;
+	private Bombs myBomb;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -16,6 +17,10 @@ public class WorldComponent extends JComponent {
 
 	public void setWI(ArrayList<Walls> WI) {
 		this.WI = WI;
+	}
+
+	public void setBombs(Bombs myBomb) {
+		this.myBomb = myBomb;
 	}
 
 	public WorldComponent() {
@@ -30,6 +35,7 @@ public class WorldComponent extends JComponent {
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1000, 1000);
 		myhero.drawOn(g2);
+		myBomb.drawOn(g2);
 
 		for (int i = 0; i < WI.size(); i++) {
 			WI.get(i).drawOn(g2);
