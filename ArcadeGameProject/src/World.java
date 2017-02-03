@@ -24,13 +24,13 @@ public class World {
 		this.chooser = new JFileChooser();
 		this.time = 200;
 		change = new LevelListener(this, this.level);
-		this.myWindow.addKeyListener(change);
+		myWindow.addKeyListener(this.change);
 
 	}
 
 	public void load() throws IOException {
 
-		this.myWindow.removeKeyListener(change);
+		myWindow.removeKeyListener(this.change);
 
 		myWindow.setSize(1100, 900);
 		myWindow.setTitle("BomberMan");
@@ -70,7 +70,7 @@ public class World {
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
 		change = new LevelListener(this, this.level);
-		this.myWindow.addKeyListener(change);
+		myWindow.addKeyListener(change);
 		myWindow.add(myworld);
 		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myWindow.setVisible(true);
