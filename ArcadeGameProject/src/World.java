@@ -44,7 +44,7 @@ public class World {
 					} else if (line.charAt(x) == 'h') {
 						Hero hero = new Hero(x,y);
 						Bombs myBomb = new Bombs(hero);
-						KeyListener mykey = new myListener(hero);
+						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);

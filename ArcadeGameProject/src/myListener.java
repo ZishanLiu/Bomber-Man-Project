@@ -1,15 +1,16 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class myListener implements KeyListener {
 
 	private Hero myHero;
 	private World game;
+	
 
-	public myListener(Hero myHero) {
-		this.game = game;
+	public myListener(Hero myHero, World game) {
 		this.myHero = myHero;
-
+		this.game = game;
 	}
 
 	@Override
