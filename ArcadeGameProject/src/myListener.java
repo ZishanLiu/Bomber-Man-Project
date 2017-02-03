@@ -16,29 +16,40 @@ public class myListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			for(int i = 0; i < game.WI.size(); i++) {
-				game.WI.get(i).checkContact(myHero, "Right");
+				if(game.WI.get(i).checkContact(myHero, "Right")) {
+					myHero.moveRight();
+				} else {
+					continue;
+				}
 			}
-			myHero.moveRight();
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			for(int i = 0; i < game.WI.size(); i++) {
-				game.WI.get(i).checkContact(myHero, "Left");
+				if(game.WI.get(i).checkContact(myHero, "Left")) {
+					myHero.moveLeft();
+				} else {
+					continue;
+				}
 			}
-			myHero.moveLeft();
-
+			
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			for(int i = 0; i < game.WI.size(); i++) {
-				game.WI.get(i).checkContact(myHero, "");
+				if(game.WI.get(i).checkContact(myHero, "")) {
+					myHero.moveDown();
+				} else {
+					continue;
+				}
 			}
-			myHero.moveDown();
-
+			
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			for(int i = 0; i < game.WI.size(); i++) {
-				game.WI.get(i).checkContact(myHero, "Up");
+				if(game.WI.get(i).checkContact(myHero, "Up")) {
+					myHero.moveUp();
+				} else {
+					continue;
+				}
 			}
-			myHero.moveUp();
 		}
-
 	}
 
 	@Override
