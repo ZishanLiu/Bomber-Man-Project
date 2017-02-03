@@ -27,7 +27,6 @@ public class World {
 
 	public void load() throws IOException {
 
-
 		myWindow.setSize(1100, 900);
 		myWindow.setTitle("BomberMan");
 
@@ -72,6 +71,7 @@ public class World {
 		myWindow.setVisible(true);
 		inScanner.close();
 	}
+
 	public void ChangeLevel(String level) throws IOException {
 		WI.clear();
 		WB.clear();
