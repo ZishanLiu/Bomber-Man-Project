@@ -15,7 +15,7 @@ public class myListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			for(int i = 0; i < game.WI.size(); i++) {
+			for(int i = 0; i < game.WI.size() - 1; i++) {
 				if(game.WI.get(i).checkContact(myHero, "Right")) {
 					myHero.moveRight();
 				} else {
@@ -24,7 +24,7 @@ public class myListener implements KeyListener {
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			for(int i = 0; i < game.WI.size(); i++) {
+			for(int i = 0; i < game.WI.size() - 1; i++) {
 				if(game.WI.get(i).checkContact(myHero, "Left")) {
 					myHero.moveLeft();
 				} else {
@@ -33,7 +33,7 @@ public class myListener implements KeyListener {
 			}
 			
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			for(int i = 0; i < game.WI.size(); i++) {
+			for(int i = 0; i < game.WI.size() - 1; i++) {
 				if(game.WI.get(i).checkContact(myHero, "")) {
 					myHero.moveDown();
 				} else {
@@ -42,7 +42,7 @@ public class myListener implements KeyListener {
 			}
 			
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			for(int i = 0; i < game.WI.size(); i++) {
+			for(int i = 0; i < game.WI.size() - 1; i++) {
 				if(game.WI.get(i).checkContact(myHero, "Up")) {
 					myHero.moveUp();
 				} else {
