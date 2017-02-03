@@ -45,11 +45,20 @@ public class Walls {
 	 * 
 	 * @return - False if within the borders of the walls
 	 */
-	public boolean checkContact(Hero hero) {
+	public boolean checkContact(Hero hero, String str) {
 		while (true) {
 			int heroCenterX = hero.getX();
 			int heroCenterY = hero.getY();
 			int heroSide = hero.getWidth();
+			if(str.equals("Right")) {
+				heroCenterX += 10;
+			} else if(str.equals("Left")) {
+				heroCenterX -= 10;
+			} else if(str.equals("Up")) {
+				heroCenterY -= 10;
+			} else {
+				heroCenterY += 10;
+			}
 			if(heroCenterX + heroSide/2 > rectCenterX - side/2 || heroCenterX - heroSide/2 < rectCenterX + side/2) {
 				if(heroCenterY - heroSide/2 < rectCenterY + side/2 || heroCenterY + heroSide/2 > rectCenterY - side/2) {
 					return false;
