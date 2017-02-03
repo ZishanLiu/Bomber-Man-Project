@@ -6,17 +6,25 @@ import javax.swing.JComponent;
 
 public class Hero extends JComponent {
 
-	private int x = 0;
-	private int y = 0;
+	// private int x = 0;
+	// private int y = 0;
 	private Rectangle rect;
-	private Rectangle rect2;
-	private Color color;
+	private double RectX;
+	private double RectY;
+	private int grid = 50;
 
-	public Hero() {
+	private Color color;
+	private int side = 30;
+
+	public Hero(int x, int y) {
+		rect = new Rectangle();
+		rect.height = this.side;
+		rect.width = this.side;
+
+		this.RectX = (x * grid) + grid / 2;
+		this.RectY = (y * grid) + grid / 2;
 
 		this.color = Color.black;
-		rect = new Rectangle(0, 0, 30, 30);
-		rect2 = new Rectangle(0, 0, 15, 15);
 
 	}
 
@@ -24,29 +32,29 @@ public class Hero extends JComponent {
 
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.blue);
-		rect = new Rectangle(x, y, 30, 30);
-		rect2 = new Rectangle(x, y, 20, 20);
+		rect = new Rectangle((int) RectX + 10, (int) RectY + 10, side, side);
+
 		g.fill(rect);
-		g.fill(rect2);
+
 	}
 
 	public void moveRight() {
 
-		x = x + 10;
+		RectX = RectX + 10;
 
 	}
 
 	public void moveLeft() {
-		x = x - 10;
+		RectX = RectX - 10;
 	}
 
 	public void moveUp() {
-		y = y - 10;
+		RectY = RectY - 10;
 
 	}
 
 	public void moveDown() {
-		y = y + 10;
+		RectY = RectY + 10;
 
 	}
 

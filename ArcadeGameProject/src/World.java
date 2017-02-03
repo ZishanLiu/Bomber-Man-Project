@@ -13,8 +13,8 @@ public class World {
 	private int time;
 	ArrayList<Walls> WI = new ArrayList<Walls>();
 	ArrayList<Walls> WB = new ArrayList<Walls>();
-	private Hero myHero = new Hero();
-	private Bombs myBomb = new Bombs(myHero);
+	// private Hero myHero = new Hero(0, 0);
+	// private Bombs myBomb = new Bombs(myHero);
 	JFrame myWindow = new JFrame();
 	WorldComponent myworld = new WorldComponent();
 
@@ -30,12 +30,6 @@ public class World {
 		myWindow.setSize(1100, 900);
 		myWindow.setTitle("BomberMan");
 
-		KeyListener mykey = new myListener(myHero);
-		KeyListener myBomb = new BombListener(this.myBomb);
-
-		myWindow.addKeyListener(mykey);
-		myWindow.addKeyListener(myBomb);
-
 		File inputFile = new File(level);
 		Scanner inScanner = new Scanner(inputFile);
 		for (int y = 0; y < 15; y++) {
@@ -48,7 +42,15 @@ public class World {
 						Walls wall = new Walls(x, y);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						Hero hero = new Hero();
+						Hero hero = new Hero(x,y);
+						Bombs myBomb = new Bombs(hero);
+						KeyListener mykey = new myListener(hero);
+						KeyListener myBombs = new BombListener(myBomb);
+						myWindow.addKeyListener(mykey);
+						myWindow.addKeyListener(myBombs);
+						myworld.sethero(hero);
+						myworld.setWI(WI);
+						myworld.setBombs(myBomb);
 					} else if (line.charAt(x) == 'e') {
 						continue;
 					} else if (line.charAt(x) == 'b') {
@@ -60,10 +62,6 @@ public class World {
 				}
 			}
 		}
-
-		myworld.sethero(myHero);
-		myworld.setWI(WI);
-		myworld.setBombs(this.myBomb);
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
 		myWindow.add(myworld);
