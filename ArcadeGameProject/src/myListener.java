@@ -38,6 +38,7 @@ public class myListener implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			for(int i = 0; i < game.WI.size() - 1; i++) {
 				if(!game.WI.get(i).checkContact(myHero, "")) {
+					System.out.println("D");
 					myHero.moveDown();
 				} else {
 					continue;
@@ -47,6 +48,7 @@ public class myListener implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			for(int i = 0; i < game.WI.size() - 1; i++) {
 				if(!game.WI.get(i).checkContact(myHero, "Up")) {
+					System.out.println("U");
 					myHero.moveUp();
 				} else {
 					continue;
