@@ -40,21 +40,21 @@ public class Hero extends JComponent {
 
 	public void moveRight() {
 
-		RectX = RectX + .5;
+		RectX = RectX + .1;
 
 	}
 
 	public void moveLeft() {
-		RectX = RectX - .5;
+		RectX = RectX - .1;
 	}
 
 	public void moveUp() {
-		RectY = RectY - .5;
+		RectY = RectY - .1;
 
 	}
 
 	public void moveDown() {
-		RectY = RectY + .5;
+		RectY = RectY + .1;
 
 	}
 
