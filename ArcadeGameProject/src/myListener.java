@@ -14,7 +14,6 @@ public class myListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("ahh");
 			myHero.moveRright();
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {

@@ -15,6 +15,8 @@ public class World {
 	ArrayList<Walls> WB = new ArrayList<Walls>();
 	private Hero myHero = new Hero();
 	private Bombs myBomb = new Bombs(myHero);
+	JFrame myWindow = new JFrame();
+	WorldComponent myworld = new WorldComponent();
 
 	public World(String level) {
 		this.level = level;
@@ -25,12 +27,10 @@ public class World {
 
 	public void load() throws IOException {
 
-		JFrame myWindow = new JFrame();
 
-		myWindow.setSize(1000, 1000);
+		myWindow.setSize(1100, 900);
 		myWindow.setTitle("BomberMan");
 
-		WorldComponent myworld = new WorldComponent();
 		KeyListener mykey = new myListener(myHero);
 		KeyListener myBomb = new BombListener(this.myBomb);
 
@@ -42,7 +42,7 @@ public class World {
 		for (int y = 0; y < 15; y++) {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
-				for (int x = 0; x < 20; x++) {
+				for (int x = 0; x < 19; x++) {
 					if (line.charAt(x) == ' ') {
 						continue;
 					} else if (line.charAt(x) == 'w') {
@@ -71,6 +71,15 @@ public class World {
 		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myWindow.setVisible(true);
 		inScanner.close();
+	}
+	public void ChangeLevel(String level) throws IOException {
+		WI.clear();
+		WB.clear();
+		this.level = level;
+		this.time = 200;
+		this.load();
+		System.out.println(level + " has loaded!");
+
 	}
 
 }
