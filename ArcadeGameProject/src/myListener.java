@@ -17,7 +17,8 @@ public class myListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			for(int i = 0; i < game.WI.size() - 1; i++) {
-				if(game.WI.get(i).checkContact(myHero, "Right")) {
+				if(!game.WI.get(i).checkContact(myHero, "Right")) {
+					System.out.println("R");
 					myHero.moveRight();
 				} else {
 					continue;
@@ -26,7 +27,8 @@ public class myListener implements KeyListener {
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			for(int i = 0; i < game.WI.size() - 1; i++) {
-				if(game.WI.get(i).checkContact(myHero, "Left")) {
+				if(!game.WI.get(i).checkContact(myHero, "Left")) {
+					System.out.println("L");
 					myHero.moveLeft();
 				} else {
 					continue;
@@ -35,7 +37,7 @@ public class myListener implements KeyListener {
 			
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			for(int i = 0; i < game.WI.size() - 1; i++) {
-				if(game.WI.get(i).checkContact(myHero, "")) {
+				if(!game.WI.get(i).checkContact(myHero, "")) {
 					myHero.moveDown();
 				} else {
 					continue;
@@ -44,7 +46,7 @@ public class myListener implements KeyListener {
 			
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			for(int i = 0; i < game.WI.size() - 1; i++) {
-				if(game.WI.get(i).checkContact(myHero, "Up")) {
+				if(!game.WI.get(i).checkContact(myHero, "Up")) {
 					myHero.moveUp();
 				} else {
 					continue;
