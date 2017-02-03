@@ -14,8 +14,8 @@ public class Walls {
 		rect = new Rectangle();
 		rect.height = side;
 		rect.width = side;
-		rectCenterX = x * (side/2);
-		rectCenterY = 250 + (y + (side/2));
+		rectCenterX = (x * side) + side/2;
+		rectCenterY = (y * side) + side/2;
 	}
 	
 	public void drawOn(Graphics2D graphics2) {
