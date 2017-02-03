@@ -59,11 +59,11 @@ public class Hero extends JComponent {
 	}
 
 	public int getX() {
-		return rect.x + 20;
+		return (int) rect.getCenterX();
 	}
 
 	public int getY() {
-		return rect.y + 20;
+		return (int) rect.getCenterY();
 	}
 
 }
