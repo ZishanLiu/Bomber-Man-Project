@@ -10,6 +10,13 @@ public class Walls {
 	private int side = 50;
 	private Color rectColor = Color.GRAY;
 
+	/*
+	 * This is the constructor for the each individual wall
+	 * 
+	 * @param x and y - Sets the center of each wall based on our coded coordinate
+	 * 		system.
+	 * 		
+	 */
 	public Walls(int x, int y) {
 		rect = new Rectangle();
 		rect.height = side;
@@ -18,8 +25,41 @@ public class Walls {
 		rectCenterY = (y * side) + side / 2;
 	}
 
+	/*
+	 * This is the function that draws each wall as desired by each particular
+	 * level layout.
+	 * 
+	 * @param graphics2 - The graphics object on which to draw
+	 * 
+	 */
 	public void drawOn(Graphics2D graphics2) {
 		graphics2.setColor(rectColor);
 		graphics2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
+	}
+	
+	/*
+	 * This function is used to tell the hero whether he is able to move in the direction the 
+	 * user has requested.
+	 * 
+	 * @param hero - gives our hero and his positions and width
+	 * 
+	 * @return - False if within the borders of the walls
+	 */
+	public boolean checkContact(Hero hero) {
+		while (true) {
+			int heroCenterX = hero.getX();
+			int heroCenterY = hero.getY();
+			int heroSide = hero.getWidth();
+			if(heroCenterX + heroSide/2 > rectCenterX - side/2 || heroCenterX - heroSide/2 < rectCenterX + side/2) {
+				if(heroCenterY - heroSide/2 < rectCenterY + side/2 || heroCenterY + heroSide/2 > rectCenterY - side/2) {
+					return false;
+				}
+			}
+			if(heroCenterY - heroSide/2 < rectCenterY + side/2 || heroCenterY + heroSide/2 > rectCenterY - side/2) {
+				if(heroCenterX + heroSide/2 > rectCenterX - side/2 || heroCenterX - heroSide/2 < rectCenterX + side/2) {
+					return false;
+				}
+			}
+		}
 	}
 }
