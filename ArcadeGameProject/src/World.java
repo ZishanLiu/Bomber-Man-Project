@@ -17,15 +17,20 @@ public class World {
 	// private Bombs myBomb = new Bombs(myHero);
 	JFrame myWindow = new JFrame();
 	WorldComponent myworld = new WorldComponent();
+	KeyListener change;
 
 	public World(String level) {
 		this.level = level;
 		this.chooser = new JFileChooser();
 		this.time = 200;
+		change = new LevelListener(this, this.level);
+		this.myWindow.addKeyListener(change);
 
 	}
 
 	public void load() throws IOException {
+
+		this.myWindow.removeKeyListener(change);
 
 		myWindow.setSize(1100, 900);
 		myWindow.setTitle("BomberMan");
@@ -42,7 +47,7 @@ public class World {
 						Walls wall = new Walls(x, y);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						Hero hero = new Hero(x,y);
+						Hero hero = new Hero(x, y);
 						Bombs myBomb = new Bombs(hero);
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
@@ -64,6 +69,8 @@ public class World {
 		}
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
+		change = new LevelListener(this, this.level);
+		this.myWindow.addKeyListener(change);
 		myWindow.add(myworld);
 		myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myWindow.setVisible(true);
