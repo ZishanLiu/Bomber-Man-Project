@@ -55,6 +55,7 @@ public class World {
 						myWindow.addKeyListener(myBombs);
 						myworld.sethero(hero);
 						myworld.setWI(WI);
+						myworld.setWB(WB);
 						myworld.setBombs(myBomb);
 					} else if (line.charAt(x) == 'e') {
 						continue;
