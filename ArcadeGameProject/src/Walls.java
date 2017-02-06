@@ -18,7 +18,7 @@ public class Walls {
 	 * 		system.
 	 * 		
 	 */
-	public Walls(int x, int y, char b) {
+	public Walls(int x, int y) {
 		rect = new Rectangle();
 		rect.height = side;
 		rect.width = side;
