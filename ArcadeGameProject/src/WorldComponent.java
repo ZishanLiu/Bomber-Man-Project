@@ -10,6 +10,7 @@ public class WorldComponent extends JComponent {
 	private ArrayList<Walls> WI;
 	private Hero myhero;
 	private Bombs myBomb;
+	private ArrayList<Walls> WB;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -21,6 +22,10 @@ public class WorldComponent extends JComponent {
 
 	public void setBombs(Bombs myBomb) {
 		this.myBomb = myBomb;
+	}
+	
+	public void setWB(ArrayList<Walls> WB) {
+		this.WB = WB;
 	}
 
 	public WorldComponent() {
@@ -38,7 +43,10 @@ public class WorldComponent extends JComponent {
 		myBomb.drawOn(g2);
 
 		for (int i = 0; i < WI.size(); i++) {
-			WI.get(i).drawOn(g2);
+			WI.get(i).drawOn(g2, ' ');
+		}
+		for (int i = 0; i < WB.size(); i++) {
+			WB.get(i).drawOn(g2, 'b');
 		}
 		repaint();
 
