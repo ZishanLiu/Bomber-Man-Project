@@ -59,7 +59,8 @@ public class World {
 					} else if (line.charAt(x) == 'e') {
 						continue;
 					} else if (line.charAt(x) == 'b') {
-						continue;
+						Walls wall = new Walls(x, y);
+						this.WB.add(wall);
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
 
