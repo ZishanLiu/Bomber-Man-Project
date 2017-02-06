@@ -12,7 +12,6 @@ public class Bombs extends JComponent {
 	private Color color;
 	private Hero myHero;
 
-
 	public Bombs(Hero myHero) {
 
 		this.myBomb = new Rectangle(0, 0, 0, 0);
@@ -31,17 +30,16 @@ public class Bombs extends JComponent {
 
 	}
 
-	public void drop()  {
+	public void drop() {
 		x = myHero.getX();
 		y = myHero.getY();
 		this.explode();
-		
+
 	}
 
 	public boolean explode() {
-		this.myBomb.grow(3, 3);
-		this.myBomb.setSize(0, 0);	
-		this.repaint();
+		x = -10;
+		y = -10;
 		return true;
 	}
 
