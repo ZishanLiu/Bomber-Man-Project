@@ -8,7 +8,8 @@ public class Walls {
 	private double rectCenterX;
 	private double rectCenterY;
 	private int side = 50;
-	private Color rectColor = Color.GRAY;
+	private Color wallColor = Color.GRAY;
+	private Color brickColor = Color.ORANGE;
 
 	/*
 	 * This is the constructor for the each individual wall
@@ -17,7 +18,7 @@ public class Walls {
 	 * 		system.
 	 * 		
 	 */
-	public Walls(int x, int y) {
+	public Walls(int x, int y, char b) {
 		rect = new Rectangle();
 		rect.height = side;
 		rect.width = side;
@@ -30,10 +31,15 @@ public class Walls {
 	 * level layout.
 	 * 
 	 * @param graphics2 - The graphics object on which to draw
+	 * 		b - determines if the wall is brick or concrete
 	 * 
 	 */
-	public void drawOn(Graphics2D graphics2) {
-		graphics2.setColor(rectColor);
+	public void drawOn(Graphics2D graphics2, char b) {
+		if(b == 'b') {
+			graphics2.setColor(brickColor);
+		} else {
+			graphics2.setColor(wallColor);
+		}
 		graphics2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
 	}
 	
