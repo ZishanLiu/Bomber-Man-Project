@@ -34,13 +34,17 @@ public class Walls {
 	 * 		b - determines if the wall is brick or concrete
 	 * 
 	 */
-	public void drawOn(Graphics2D graphics2, char b) {
+	public void drawOn(Graphics2D g2, char b) {
 		if(b == 'b') {
-			graphics2.setColor(brickColor);
+			g2.setColor(brickColor);
 		} else {
-			graphics2.setColor(wallColor);
+			g2.setColor(wallColor);
 		}
-		graphics2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
+		g2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
+	}
+	
+	public void die(Walls wall) {
+		rect.setSize(0, 0);
 	}
 	
 	/*
