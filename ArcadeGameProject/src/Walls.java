@@ -10,6 +10,7 @@ public class Walls {
 	private int side = 50;
 	private Color wallColor = Color.GRAY;
 	private Color brickColor = Color.ORANGE;
+	private Hero myHero;
 
 	/*
 	 * This is the constructor for the each individual wall
@@ -55,19 +56,10 @@ public class Walls {
 	 * 
 	 * @return - False if within the borders of the walls
 	 */
-	public boolean checkContact(Hero hero, String str) {
-		int heroCenterX = hero.getX();
-		int heroCenterY = hero.getY();
-		if(str.equals("Right")) {
-			heroCenterX += .1;
-		} else if(str.equals("Left")) {
-			heroCenterX -= .1;
-		} else if(str.equals("Up")) {
-			heroCenterY -= .1;
-		} else {
-			heroCenterY += .1;
-		}
-		return rect.getBounds2D().intersects(hero.getBounds2D());
+	public boolean checkContact(int x, int y, String str) {
+		Hero myHero = new Hero(x, y);
+		System.out.println(rect.getBounds2D().intersects(myHero.getBounds2D()));
+		return rect.getBounds2D().intersects(myHero.getBounds2D());
 	}
 //			int heroCenterX = hero.getX();
 //			int heroCenterY = hero.getY();
