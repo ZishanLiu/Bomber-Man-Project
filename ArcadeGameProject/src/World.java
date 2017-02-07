@@ -41,6 +41,7 @@ public class World {
 		for (int y = 0; y < 15; y++) {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
+				hero = new Hero();
 				for (int x = 0; x < 19; x++) {
 					if (line.charAt(x) == ' ') {
 						continue;
@@ -48,7 +49,7 @@ public class World {
 						Walls wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						hero = new Hero(x, y);
+						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero);
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);

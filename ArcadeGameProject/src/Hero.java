@@ -17,10 +17,23 @@ public class Hero extends JComponent {
 	private Color color;
 	private int side = 30;
 
-	public Hero(int x, int y) {
+//	public Hero(int x, int y) {
+//		rect = new Rectangle();
+//		rect.height = this.side;
+//		rect.width = this.side;
+//
+//		this.RectX = (x * grid) + grid / 2;
+//		this.RectY = (y * grid) + grid / 2;
+//
+//		this.color = Color.black;
+//
+//	}
+	public Hero() {
 		rect = new Rectangle();
 		rect.height = this.side;
 		rect.width = this.side;
+		int x=-10;
+		int y=-10;
 
 		this.RectX = (x * grid) + grid / 2;
 		this.RectY = (y * grid) + grid / 2;
@@ -38,7 +51,12 @@ public class Hero extends JComponent {
 		g.fill(rect);
 
 	}
+	public void set(int x, int y) {
 
+		this.RectX = (x * grid) + grid / 2;
+		this.RectY = (y * grid) + grid / 2;
+
+	}
 	public void moveRight() {
 
 		RectX = RectX + .1;
