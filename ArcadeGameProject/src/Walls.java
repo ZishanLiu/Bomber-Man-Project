@@ -2,7 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class Walls {
+import javax.swing.JComponent;
+
+public class Walls extends JComponent {
 
 	private Rectangle rect;
 	private double rectCenterX;
@@ -10,7 +12,8 @@ public class Walls {
 	private int side = 50;
 	private Color wallColor = Color.GRAY;
 	private Color brickColor = Color.ORANGE;
-	private Hero myHero;
+	private World game;
+	private Hero hero;
 
 	/*
 	 * This is the constructor for the each individual wall
@@ -19,12 +22,14 @@ public class Walls {
 	 * 		system.
 	 * 		
 	 */
-	public Walls(int x, int y) {
+	public Walls(int x, int y, World game) {
 		rect = new Rectangle();
 		rect.height = side;
 		rect.width = side;
 		rectCenterX = (x * side) + side / 2;
 		rectCenterY = (y * side) + side / 2;
+		this.game = game;
+		this.hero = game.hero;
 	}
 
 	/*
@@ -54,12 +59,11 @@ public class Walls {
 	 * 
 	 * @param hero - gives our hero and his positions and width
 	 * 
-	 * @return - False if within the borders of the walls
+	 * @return - true if within the borders of the walls
 	 */
 	public boolean checkContact(int x, int y, String str) {
-		Hero myHero = new Hero(x, y);
-		System.out.println(rect.getBounds2D().intersects(myHero.getBounds2D()));
-		return rect.getBounds2D().intersects(myHero.getBounds2D());
+		System.out.println(rect.intersects(this.hero.getBounds2D()));
+		return rect.intersects(this.hero.getBounds2D());
 	}
 //			int heroCenterX = hero.getX();
 //			int heroCenterY = hero.getY();

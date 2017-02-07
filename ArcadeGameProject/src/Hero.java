@@ -67,6 +67,6 @@ public class Hero extends JComponent {
 		return (int) rect.getCenterY();
 	}
 	public Rectangle2D getBounds2D() {
-		return rect.getBounds2D();
+		return rect;
 	}
 }

@@ -18,6 +18,7 @@ public class World {
 	JFrame myWindow = new JFrame();
 	WorldComponent myworld = new WorldComponent();
 	KeyListener change;
+	Hero hero;
 
 	public World(String level) {
 		this.level = level;
@@ -44,10 +45,10 @@ public class World {
 					if (line.charAt(x) == ' ') {
 						continue;
 					} else if (line.charAt(x) == 'w') {
-						Walls wall = new Walls(x, y);
+						Walls wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						Hero hero = new Hero(x, y);
+						hero = new Hero(x, y);
 						Bombs myBomb = new Bombs(hero);
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
@@ -60,7 +61,7 @@ public class World {
 					} else if (line.charAt(x) == 'e') {
 						continue;
 					} else if (line.charAt(x) == 'b') {
-						Walls wall = new Walls(x, y);
+						Walls wall = new Walls(x, y, this);
 						this.WB.add(wall);
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
