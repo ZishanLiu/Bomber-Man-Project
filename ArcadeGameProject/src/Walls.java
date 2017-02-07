@@ -10,7 +10,6 @@ public class Walls {
 	private int side = 50;
 	private Color wallColor = Color.GRAY;
 	private Color brickColor = Color.ORANGE;
-	private Color color;
 
 	/*
 	 * This is the constructor for the each individual wall
@@ -25,17 +24,8 @@ public class Walls {
 		rect.width = side;
 		rectCenterX = (x * side) + side / 2;
 		rectCenterY = (y * side) + side / 2;
-		color = wallColor;
 	}
 
-	public Walls(int x, int y, char b) {
-		rect = new Rectangle();
-		rect.height = side;
-		rect.width = side;
-		rectCenterX = (x * side) + side / 2;
-		rectCenterY = (y * side) + side / 2;
-		color = brickColor;
-	}
 	/*
 	 * This is the function that draws each wall as desired by each particular
 	 * level layout.
@@ -44,8 +34,12 @@ public class Walls {
 	 * 		b - determines if the wall is brick or concrete
 	 * 
 	 */
-	public void drawOn(Graphics2D graphics2) {
-		graphics2.setColor(color);
+	public void drawOn(Graphics2D graphics2, char b) {
+		if(b == 'b') {
+			graphics2.setColor(brickColor);
+		} else {
+			graphics2.setColor(wallColor);
+		}
 		graphics2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
 	}
 	

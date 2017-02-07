@@ -43,10 +43,10 @@ public class WorldComponent extends JComponent {
 		myBomb.drawOn(g2);
 
 		for (int i = 0; i < WI.size(); i++) {
-			WI.get(i).drawOn(g2);
+			WI.get(i).drawOn(g2, ' ');
 		}
 		for (int i = 0; i < WB.size(); i++) {
-			WB.get(i).drawOn(g2);
+			WB.get(i).drawOn(g2, 'b');
 		}
 		repaint();
 
