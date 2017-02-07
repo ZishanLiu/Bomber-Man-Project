@@ -49,6 +49,7 @@ public class World {
 						Walls wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
+						System.out.println("found hero " + x + " " + y);
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero);
 						Monster monster = new Monster(hero,this);
@@ -64,9 +65,8 @@ public class World {
 						// myWindow.addKeyListener(myMonster);
 						myworld.setMonster(monster);
 					
-						Runnable r1 = new Monster(hero,this);
 
-						Thread t1 = new Thread(r1);
+						Thread t1 = new Thread(myworld);
 
 						t1.start();
 

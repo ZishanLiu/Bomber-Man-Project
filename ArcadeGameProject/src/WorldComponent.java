@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
-public class WorldComponent extends JComponent {
+public class WorldComponent extends JComponent implements Runnable {
 
 	private ArrayList<Walls> WI;
 	private Hero myhero;
@@ -24,15 +24,15 @@ public class WorldComponent extends JComponent {
 	public void setBombs(Bombs myBomb) {
 		this.myBomb = myBomb;
 	}
-	
+
 	public void setWB(ArrayList<Walls> WB) {
 		this.WB = WB;
 	}
-	
-	public void setMonster(Monster myMonster){
-		
+
+	public void setMonster(Monster myMonster) {
+
 		this.myMonster = myMonster;
-		
+
 	}
 
 	public WorldComponent() {
@@ -43,20 +43,37 @@ public class WorldComponent extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
+
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1100, 900);
 		myhero.drawOn(g2);
 		myBomb.drawOn(g2);
 		myMonster.drawOn(g2);
-		
+
 		for (int i = 0; i < WI.size(); i++) {
 			WI.get(i).drawOn(g2, ' ');
 		}
 		for (int i = 0; i < WB.size(); i++) {
 			WB.get(i).drawOn(g2, 'b');
 		}
-		repaint();
+		// repaint();
+
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (true) {
+
+				myMonster.moveUpandDown();
+				repaint();
+				Thread.sleep(100);
+
+			}
+		} catch (InterruptedException exception) {
+			// TODO Auto-generated catch-block stub.
+			throw new RuntimeException(exception.toString());
+		}
 
 	}
 }
