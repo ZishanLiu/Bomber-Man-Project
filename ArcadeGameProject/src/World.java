@@ -51,6 +51,7 @@ public class World {
 					} else if (line.charAt(x) == 'h') {
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero);
+						Monster monster = new Monster(hero,this);
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
@@ -59,6 +60,16 @@ public class World {
 						myworld.setWI(WI);
 						myworld.setWB(WB);
 						myworld.setBombs(myBomb);
+						// KeyListener myMonster = new MonsterListener(monster);
+						// myWindow.addKeyListener(myMonster);
+						myworld.setMonster(monster);
+					
+						Runnable r1 = new Monster(hero,this);
+
+						Thread t1 = new Thread(r1);
+
+						t1.start();
+
 					} else if (line.charAt(x) == 'e') {
 						continue;
 					} else if (line.charAt(x) == 'b') {
@@ -90,5 +101,12 @@ public class World {
 		System.out.println(level + " has loaded!");
 
 	}
+	
+	public void reDraw(){
+		
+		myworld.repaint();
+		
+	}
+	
 
 }
