@@ -44,6 +44,7 @@ public class Monster {
 
 	public void moveUpandDown() {
 
-		RectY = RectY + 20;
+		RectY -= 10;
+
 	}
 }

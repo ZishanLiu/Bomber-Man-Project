@@ -67,7 +67,7 @@ public class WorldComponent extends JComponent implements Runnable {
 
 				myMonster.moveUpandDown();
 				repaint();
-				Thread.sleep(100);
+				Thread.sleep(20);
 
 			}
 		} catch (InterruptedException exception) {
