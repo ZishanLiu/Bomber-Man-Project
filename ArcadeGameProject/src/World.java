@@ -51,7 +51,7 @@ public class World {
 						Walls wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						System.out.println("found hero " + x + " " + y);
+
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero);
 						KeyListener mykey = new myListener(hero, this);
