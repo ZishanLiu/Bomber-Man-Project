@@ -17,12 +17,7 @@ public class BombListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_Z) {
-
-			try {
-				myBomb.drop();
-			} catch (InterruptedException exception) {
-				throw new RuntimeException("Failed bomb drop");
-			}
+			myBomb.drop();
 
 		}
 
