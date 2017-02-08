@@ -19,6 +19,7 @@ public class World {
 	WorldComponent myworld = new WorldComponent();
 	KeyListener change;
 	Hero hero;
+	Monster myMonster;
 
 	public World(String level) {
 		this.level = level;
@@ -42,6 +43,7 @@ public class World {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
 				hero = new Hero();
+				myMonster = new Monster(hero, this);
 				for (int x = 0; x < 19; x++) {
 					if (line.charAt(x) == ' ') {
 						continue;
@@ -52,7 +54,6 @@ public class World {
 						System.out.println("found hero " + x + " " + y);
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero);
-						Monster monster = new Monster(hero,this);
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
@@ -63,15 +64,15 @@ public class World {
 						myworld.setBombs(myBomb);
 						// KeyListener myMonster = new MonsterListener(monster);
 						// myWindow.addKeyListener(myMonster);
-						myworld.setMonster(monster);
-					
-
-						Thread t1 = new Thread(myworld);
-
-						t1.start();
 
 					} else if (line.charAt(x) == 'e') {
-						continue;
+
+						myMonster.set(x, y);
+						myworld.setMonster(myMonster);
+
+						Thread t1 = new Thread(myworld);
+						t1.start();
+
 					} else if (line.charAt(x) == 'b') {
 						Walls wall = new Walls(x, y, this);
 						this.WB.add(wall);
@@ -101,12 +102,11 @@ public class World {
 		System.out.println(level + " has loaded!");
 
 	}
-	
-	public void reDraw(){
-		
+
+	public void reDraw() {
+
 		myworld.repaint();
-		
+
 	}
-	
 
 }
