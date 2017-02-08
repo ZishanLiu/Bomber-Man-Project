@@ -68,7 +68,22 @@ public class WorldComponent extends JComponent implements Runnable {
 		try {
 			while (true) {
 				for (int i = 0; i < Monsters.size(); i++) {
-					Monsters.get(i).moveUpandDown();
+					if (i == 0) {
+
+						Monsters.get(i).moveLeftandRight();
+
+					}
+					if (i == 1) {
+
+						Monsters.get(i).moveUpandDown();
+
+					}
+					if (i == 2) {
+
+						Monsters.get(i).moveForMonster3();
+
+					}
+
 				}
 				repaint();
 				Thread.sleep(20);

@@ -42,9 +42,26 @@ public class Monster {
 
 	}
 
-	public void moveUpandDown() {
+	public void stop() {
 
-		RectY -= 10;
+		;
 
 	}
+
+	public void moveUpandDown() {
+		RectY -= 1;
+
+	}
+
+	public void moveLeftandRight() {
+		RectX += 1;
+
+	}
+
+	public void moveForMonster3() {
+
+		RectY -= 1;
+
+	}
+
 }
