@@ -52,40 +52,5 @@ public class Walls extends JComponent {
 	public void die(Walls wall) {
 		rect.setSize(0, 0);
 	}
-	
-	/*
-	 * This function is used to tell the hero whether he is able to move in the direction the 
-	 * user has requested.
-	 * 
-	 * @param hero - gives our hero and his positions and width
-	 * 
-	 * @return - true if within the borders of the walls
-	 */
-	public boolean checkContact(int x, int y, String str) {
-		System.out.println(rect.intersects(this.hero.getBounds2D()));
-		return rect.intersects(this.hero.getBounds2D());
-	}
-//			int heroCenterX = hero.getX();
-//			int heroCenterY = hero.getY();
-//			int heroSide = hero.getWidth();
-//			if(str.equals("Right")) {
-//				heroCenterX += 10;
-//			} else if(str.equals("Left")) {
-//				heroCenterX -= 10;
-//			} else if(str.equals("Up")) {
-//				heroCenterY -= 10;
-//			} else {
-//				heroCenterY += 10;
-//			}
-//			if(heroCenterX + heroSide/2 > rectCenterX - side/2 || heroCenterX - heroSide/2 < rectCenterX + side/2) {
-//				if(heroCenterY - heroSide/2 < rectCenterY + side/2 || heroCenterY + heroSide/2 > rectCenterY - side/2) {
-//					return false;
-//				}
-//			}
-//			if(heroCenterY - heroSide/2 < rectCenterY + side/2 || heroCenterY + heroSide/2 > rectCenterY - side/2) {
-//				if(heroCenterX + heroSide/2 > rectCenterX - side/2 || heroCenterX - heroSide/2 < rectCenterX + side/2) {
-//					return false;
-//				}
-//			}
 }
 
