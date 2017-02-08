@@ -10,6 +10,7 @@ public class Monster {
 	private World myWorld;
 	private int grid = 50;
 	private int side = 30;
+	private int counter = 0;
 
 	public Monster(Hero myhero, World myWorld) {
 		rect = new Rectangle();
@@ -54,7 +55,17 @@ public class Monster {
 	}
 
 	public void moveLeftandRight() {
+		counter++;
+		
 		RectX += 1;
+		if (counter == 350) {
+			counter--;
+			RectX -= 1;
+			// if (counter == 0) {
+			// counter++;
+			// RectX += 1;
+			// }
+		}
 
 	}
 
