@@ -12,6 +12,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private Bombs myBomb;
 	private ArrayList<Monster> Monsters;
 	private ArrayList<Walls> WB;
+	private int count = 0;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -32,6 +33,12 @@ public class WorldComponent extends JComponent implements Runnable {
 	public void setMonster(ArrayList<Monster> myMonster) {
 
 		this.Monsters = myMonster;
+
+	}
+
+	public int getCount() {
+
+		return count;
 
 	}
 
@@ -83,8 +90,12 @@ public class WorldComponent extends JComponent implements Runnable {
 						Monsters.get(i).moveForMonster3();
 
 					}
+					if(myBomb.explode(count)){
+						myBomb.move();
+					}
 
 				}
+				count++;
 				repaint();
 				Thread.sleep(20);
 
