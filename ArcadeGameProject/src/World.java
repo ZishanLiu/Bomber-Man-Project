@@ -21,6 +21,7 @@ public class World {
 	KeyListener change;
 	Hero hero;
 	Monster myMonster;
+	Thread t1;
 
 	public World(String level) {
 		this.level = level;
@@ -81,7 +82,7 @@ public class World {
 		}
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
-		Thread t1 = new Thread(myworld);
+		t1 = new Thread(myworld);
 		t1.start();
 		myworld.setMonster(Monsters);
 		myworld.setWI(WI);
@@ -95,6 +96,7 @@ public class World {
 	}
 
 	public void ChangeLevel(String level) throws IOException {
+		t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
