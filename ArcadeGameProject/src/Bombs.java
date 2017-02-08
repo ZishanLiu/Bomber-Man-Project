@@ -30,14 +30,15 @@ public class Bombs extends JComponent {
 
 	}
 
-	public void drop() {
+	public void drop() throws InterruptedException {
 		x = myHero.getX();
 		y = myHero.getY();
 		this.explode();
 
 	}
 
-	public boolean explode() {
+	public boolean explode() throws InterruptedException {
+		wait(3000);
 		x = -10;
 		y = -10;
 		return true;

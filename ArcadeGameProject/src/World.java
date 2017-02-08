@@ -13,6 +13,7 @@ public class World {
 	private int time;
 	ArrayList<Walls> WI = new ArrayList<Walls>();
 	ArrayList<Walls> WB = new ArrayList<Walls>();
+	ArrayList<Monster> Monsters = new ArrayList<Monster>();
 	// private Hero myHero = new Hero(0, 0);
 	// private Bombs myBomb = new Bombs(myHero);
 	JFrame myWindow = new JFrame();
@@ -43,7 +44,6 @@ public class World {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
 				hero = new Hero();
-				myMonster = new Monster(hero, this);
 				for (int x = 0; x < 19; x++) {
 					if (line.charAt(x) == ' ') {
 						continue;
@@ -58,20 +58,16 @@ public class World {
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
-						myworld.sethero(hero);
-						myworld.setWI(WI);
-						myworld.setWB(WB);
 						myworld.setBombs(myBomb);
+						myworld.sethero(hero);
 						// KeyListener myMonster = new MonsterListener(monster);
 						// myWindow.addKeyListener(myMonster);
 
 					} else if (line.charAt(x) == 'e') {
 
+						myMonster = new Monster(hero, this);
 						myMonster.set(x, y);
-						myworld.setMonster(myMonster);
-
-						Thread t1 = new Thread(myworld);
-						t1.start();
+						Monsters.add(myMonster);
 
 					} else if (line.charAt(x) == 'b') {
 						Walls wall = new Walls(x, y, this);
@@ -85,6 +81,11 @@ public class World {
 		}
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
+		Thread t1 = new Thread(myworld);
+		t1.start();
+		myworld.setMonster(Monsters);
+		myworld.setWI(WI);
+		myworld.setWB(WB);
 		change = new LevelListener(this, this.level);
 		myWindow.addKeyListener(change);
 		myWindow.add(myworld);
@@ -94,6 +95,7 @@ public class World {
 	}
 
 	public void ChangeLevel(String level) throws IOException {
+		Monsters.clear();
 		WI.clear();
 		WB.clear();
 		this.level = level;

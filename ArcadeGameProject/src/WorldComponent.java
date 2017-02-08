@@ -10,7 +10,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private ArrayList<Walls> WI;
 	private Hero myhero;
 	private Bombs myBomb;
-	private Monster myMonster;
+	private ArrayList<Monster> Monsters;
 	private ArrayList<Walls> WB;
 
 	public void sethero(Hero myhero) {
@@ -29,9 +29,9 @@ public class WorldComponent extends JComponent implements Runnable {
 		this.WB = WB;
 	}
 
-	public void setMonster(Monster myMonster) {
+	public void setMonster(ArrayList<Monster> myMonster) {
 
-		this.myMonster = myMonster;
+		this.Monsters = myMonster;
 
 	}
 
@@ -48,7 +48,10 @@ public class WorldComponent extends JComponent implements Runnable {
 		g2.fillRect(0, 0, 1100, 900);
 		myhero.drawOn(g2);
 		myBomb.drawOn(g2);
-		myMonster.drawOn(g2);
+
+		for (int i = 0; i < Monsters.size(); i++) {
+			Monsters.get(i).drawOn(g2);
+		}
 
 		for (int i = 0; i < WI.size(); i++) {
 			WI.get(i).drawOn(g2, ' ');
@@ -64,8 +67,9 @@ public class WorldComponent extends JComponent implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-
-				myMonster.moveUpandDown();
+				for (int i = 0; i < Monsters.size(); i++) {
+					Monsters.get(i).moveUpandDown();
+				}
 				repaint();
 				Thread.sleep(20);
 
