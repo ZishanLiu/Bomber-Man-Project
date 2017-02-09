@@ -22,6 +22,7 @@ public class World {
 	Hero hero;
 	Monster myMonster;
 	Thread t1;
+	Walls wall;
 
 	public World(String level) {
 		this.level = level;
@@ -44,15 +45,14 @@ public class World {
 		for (int y = 0; y < 15; y++) {
 			if (inScanner.hasNextLine()) {
 				String line = inScanner.nextLine();
-				hero = new Hero();
 				for (int x = 0; x < 19; x++) {
 					if (line.charAt(x) == ' ') {
 						continue;
 					} else if (line.charAt(x) == 'w') {
-						Walls wall = new Walls(x, y, this);
+						wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-
+						hero = new Hero(WI,WB);
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero, this);
 						KeyListener mykey = new myListener(hero, this);
@@ -71,7 +71,7 @@ public class World {
 						Monsters.add(myMonster);
 
 					} else if (line.charAt(x) == 'b') {
-						Walls wall = new Walls(x, y, this);
+						wall = new Walls(x, y, this);
 						this.WB.add(wall);
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");

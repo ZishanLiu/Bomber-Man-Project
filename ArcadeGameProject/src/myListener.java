@@ -1,12 +1,10 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 public class myListener implements KeyListener {
 
 	private Hero myHero;
 	private World game;
-	
 
 	public myListener(Hero myHero, World game) {
 		this.myHero = myHero;
@@ -16,16 +14,25 @@ public class myListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			myHero.moveRight();
+			System.out.println(game.hero.checkContact());
+			if (!game.hero.checkContact()) {
+				myHero.moveRight();
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			myHero.moveLeft();
-			
+			if (!game.hero.checkContact()) {
+				myHero.moveLeft();
+			}
+
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			myHero.moveDown();
-			
+			if (!game.hero.checkContact()) {
+				myHero.moveDown();
+			}
+
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			myHero.moveUp();
+			if (!game.hero.checkContact()) {
+				myHero.moveUp();
+			}
 		}
 	}
 

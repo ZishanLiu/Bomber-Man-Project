@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
@@ -16,29 +17,34 @@ public class Hero extends JComponent {
 
 	private Color color;
 	private int side = 30;
+	private ArrayList<Walls> WI;
+	private ArrayList<Walls> WB;
 
-//	public Hero(int x, int y) {
-//		rect = new Rectangle();
-//		rect.height = this.side;
-//		rect.width = this.side;
-//
-//		this.RectX = (x * grid) + grid / 2;
-//		this.RectY = (y * grid) + grid / 2;
-//
-//		this.color = Color.black;
-//
-//	}
-	public Hero() {
+	// public Hero(int x, int y) {
+	// rect = new Rectangle();
+	// rect.height = this.side;
+	// rect.width = this.side;
+	//
+	// this.RectX = (x * grid) + grid / 2;
+	// this.RectY = (y * grid) + grid / 2;
+	//
+	// this.color = Color.black;
+	//
+	// }
+	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB) {
 		rect = new Rectangle();
 		rect.height = this.side;
 		rect.width = this.side;
-		int x=-10;
-		int y=-10;
+		int x = -10;
+		int y = -10;
 
 		this.RectX = (x * grid) + grid / 2;
 		this.RectY = (y * grid) + grid / 2;
 
 		this.color = Color.black;
+
+		this.WI = WI;
+		this.WB = WB;
 
 	}
 
@@ -51,12 +57,14 @@ public class Hero extends JComponent {
 		g.fill(rect);
 
 	}
+
 	public void set(int x, int y) {
 
 		this.RectX = (x * grid) + grid / 2;
 		this.RectY = (y * grid) + grid / 2;
 
 	}
+
 	public void moveRight() {
 
 		RectX = RectX + 2;
@@ -84,7 +92,20 @@ public class Hero extends JComponent {
 	public int getY() {
 		return (int) rect.getCenterY();
 	}
+
 	public Rectangle2D getBounds2D() {
 		return rect;
+	}
+
+	public boolean checkContact() {
+		for (Walls wall : WI) {
+			if (wall.getRect().intersects(this.getBounds2D())) {
+				//System.out.println(WI.get(.getRect().getMinX());
+				//System.out.println(this.getBounds2D().getMaxX());
+				return true;
+			}
+
+		}
+		return false;
 	}
 }

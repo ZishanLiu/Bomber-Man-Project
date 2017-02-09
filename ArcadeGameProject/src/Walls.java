@@ -18,9 +18,9 @@ public class Walls extends JComponent {
 	/*
 	 * This is the constructor for the each individual wall
 	 * 
-	 * @param x and y - Sets the center of each wall based on our coded coordinate
-	 * 		system.
-	 * 		
+	 * @param x and y - Sets the center of each wall based on our coded
+	 * coordinate system.
+	 * 
 	 */
 	public Walls(int x, int y, World game) {
 		rect = new Rectangle();
@@ -30,27 +30,33 @@ public class Walls extends JComponent {
 		rectCenterY = (y * side) + side / 2;
 		this.game = game;
 		this.hero = game.hero;
+		rect = new Rectangle((int)rectCenterX,(int)rectCenterY,side,side);
 	}
 
 	/*
 	 * This is the function that draws each wall as desired by each particular
 	 * level layout.
 	 * 
-	 * @param graphics2 - The graphics object on which to draw
-	 * 		b - determines if the wall is brick or concrete
+	 * @param graphics2 - The graphics object on which to draw b - determines if
+	 * the wall is brick or concrete
 	 * 
 	 */
 	public void drawOn(Graphics2D g2, char b) {
-		if(b == 'b') {
+		if (b == 'b') {
 			g2.setColor(brickColor);
 		} else {
 			g2.setColor(wallColor);
 		}
 		g2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
 	}
-	
+
 	public void die(Walls wall) {
 		rect.setSize(0, 0);
 	}
-}
 
+	public Rectangle getRect() {
+		return this.rect;
+	}
+
+	
+}
