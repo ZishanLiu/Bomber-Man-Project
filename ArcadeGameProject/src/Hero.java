@@ -45,6 +45,8 @@ public class Hero extends JComponent {
 
 		this.WI = WI;
 		this.WB = WB;
+		
+		rect = new Rectangle((int)this.RectX,(int)this.RectY,side,side);
 
 	}
 
@@ -62,6 +64,13 @@ public class Hero extends JComponent {
 
 		this.RectX = (x * grid) + grid / 2;
 		this.RectY = (y * grid) + grid / 2;
+
+	}
+
+	public void stuck(int x, int y) {
+
+		this.RectX = x;
+		this.RectY = y;
 
 	}
 
@@ -86,11 +95,11 @@ public class Hero extends JComponent {
 	}
 
 	public int getX() {
-		return (int) rect.getCenterX();
+		return (int) rect.getX();
 	}
 
 	public int getY() {
-		return (int) rect.getCenterY();
+		return (int) rect.getY();
 	}
 
 	public Rectangle2D getBounds2D() {
@@ -98,10 +107,13 @@ public class Hero extends JComponent {
 	}
 
 	public boolean checkContact() {
-		for (Walls wall : WI) {
-			if (wall.getRect().intersects(this.getBounds2D())) {
-				//System.out.println(WI.get(.getRect().getMinX());
-				//System.out.println(this.getBounds2D().getMaxX());
+		for (Walls walli : WI) {
+			if (walli.getRect().intersects(this.getBounds2D())) {
+				return true;
+			}
+		}
+		for (Walls wallb : WB) {
+			if (wallb.getRect().intersects(this.getBounds2D())) {
 				return true;
 			}
 
