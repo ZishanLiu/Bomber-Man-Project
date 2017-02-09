@@ -11,8 +11,8 @@ public class Hero extends JComponent {
 	// private int x = 0;
 	// private int y = 0;
 	private Rectangle rect;
-	private double RectX;
-	private double RectY;
+	private int RectX;
+	private int RectY;
 	private int grid = 50;
 
 	private Color color;
@@ -45,8 +45,8 @@ public class Hero extends JComponent {
 
 		this.WI = WI;
 		this.WB = WB;
-		
-		rect = new Rectangle((int)this.RectX,(int)this.RectY,side,side);
+
+		rect = new Rectangle(this.RectX, this.RectY, side, side);
 
 	}
 
@@ -54,7 +54,7 @@ public class Hero extends JComponent {
 
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.blue);
-		rect = new Rectangle((int) RectX + 10, (int) RectY + 10, side, side);
+		rect = new Rectangle(RectX, RectY, side, side);
 
 		g.fill(rect);
 
@@ -95,15 +95,15 @@ public class Hero extends JComponent {
 	}
 
 	public int getX() {
-		return (int) rect.getX();
+		return RectX;
 	}
 
 	public int getY() {
-		return (int) rect.getY();
+		return RectY;
 	}
 
 	public Rectangle2D getBounds2D() {
-		return rect;
+		return new Rectangle(RectX , RectY , side, side);
 	}
 
 	public boolean checkContact() {

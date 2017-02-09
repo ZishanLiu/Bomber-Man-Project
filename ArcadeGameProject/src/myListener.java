@@ -19,9 +19,9 @@ public class myListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			myHero.moveRight();
 			System.out.println(game.hero.checkContact());
 			if (!game.hero.checkContact()) {
-				myHero.moveRight();
 				startX = myHero.getX();
 				startY = myHero.getY();
 
@@ -33,8 +33,8 @@ public class myListener implements KeyListener {
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			myHero.moveLeft();
 			if (!game.hero.checkContact()) {
-				myHero.moveLeft();
 				startX = myHero.getX();
 				startY = myHero.getY();
 
@@ -46,8 +46,8 @@ public class myListener implements KeyListener {
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			myHero.moveDown();
 			if (!game.hero.checkContact()) {
-				myHero.moveDown();
 				startX = myHero.getX();
 				startY = myHero.getY();
 
@@ -59,8 +59,8 @@ public class myListener implements KeyListener {
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			myHero.moveUp();
 			if (!game.hero.checkContact()) {
-				myHero.moveUp();
 				startX = myHero.getX();
 				startY = myHero.getY();
 
