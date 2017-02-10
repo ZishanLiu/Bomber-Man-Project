@@ -16,6 +16,7 @@ public class Bombs extends JComponent {
 	private int start;
 	private int end;
 	private ArrayList<Walls> WB;
+	private ArrayList<Monster> Monsters;
 
 	public Bombs(Hero myHero, World game) {
 
@@ -23,6 +24,7 @@ public class Bombs extends JComponent {
 		this.myHero = myHero;
 		this.game = game;
 		this.WB = game.WB;
+		this.Monsters = game.Monsters;
 	}
 
 	public void drawOn(Graphics2D g2) {
@@ -77,6 +79,14 @@ public class Bombs extends JComponent {
 				wallb.die(wallb);
 			}
 		}
+		for (Monster monster : Monsters) {
+			if (monster.getRect().intersects(this.getBounds())) {
+				monster.die();
+			}
+		}
+//		if (myHero.getRect().intersects(this.getBounds())) {
+//			myHero.die();
+//		}
 	}
 
 }
