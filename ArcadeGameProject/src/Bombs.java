@@ -8,6 +8,7 @@ public class Bombs extends JComponent {
 
 	private int x = 0;
 	private int y = 0;
+	private int radius = 10;
 	private Color color;
 	private Hero myHero;
 	private World game;
@@ -26,7 +27,7 @@ public class Bombs extends JComponent {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.black);
 
-		Rectangle myBomb = new Rectangle(x, y, 10, 10);
+		Rectangle myBomb = new Rectangle(x, y, radius, radius);
 
 		g.fill(myBomb);
 
@@ -62,6 +63,12 @@ public class Bombs extends JComponent {
 	public void move() {
 		x = -10;
 		y = -10;
+		radius = 10;
+
+	}
+
+	public void grow() {
+		radius = 100;
 
 	}
 
