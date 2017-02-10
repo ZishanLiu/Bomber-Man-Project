@@ -14,6 +14,7 @@ public class Walls extends JComponent {
 	private Color brickColor = Color.ORANGE;
 	private World game;
 	private Hero hero;
+	private Bombs bomb;
 
 	/*
 	 * This is the constructor for the each individual wall
@@ -30,6 +31,7 @@ public class Walls extends JComponent {
 		rectCenterY = (y * side) + side / 2;
 		this.game = game;
 		this.hero = game.hero;
+		this.bomb = bomb;
 		rect = new Rectangle((int)rectCenterX,(int)rectCenterY,side,side);
 	}
 

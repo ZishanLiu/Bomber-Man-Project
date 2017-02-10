@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
@@ -14,12 +15,14 @@ public class Bombs extends JComponent {
 	private World game;
 	private int start;
 	private int end;
+	private ArrayList<Walls> WB;
 
 	public Bombs(Hero myHero, World game) {
 
 		this.color = Color.black;
 		this.myHero = myHero;
 		this.game = game;
+		this.WB = game.WB;
 	}
 
 	public void drawOn(Graphics2D g2) {
@@ -69,7 +72,11 @@ public class Bombs extends JComponent {
 
 	public void grow() {
 		radius = 100;
-
+		for (Walls wallb : WB) {
+			if (wallb.getRect().intersects(this.getBounds())) {
+				wallb.die(wallb);
+			}
+		}
 	}
 
 }
