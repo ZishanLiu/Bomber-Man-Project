@@ -9,7 +9,7 @@ public class Bombs extends JComponent {
 
 	private int x = 0;
 	private int y = 0;
-	private int radius = 10;
+	private int side = 10;
 	private Color color;
 	private Hero myHero;
 	private World game;
@@ -24,6 +24,7 @@ public class Bombs extends JComponent {
 		this.myHero = myHero;
 		this.game = game;
 		this.WB = game.WB;
+		this.side = side;
 		this.Monsters = game.Monsters;
 	}
 
@@ -32,7 +33,7 @@ public class Bombs extends JComponent {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.black);
 
-		Rectangle myBomb = new Rectangle(x, y, radius, radius);
+		Rectangle myBomb = new Rectangle(x, y, side, side);
 
 		g.fill(myBomb);
 
@@ -68,12 +69,12 @@ public class Bombs extends JComponent {
 	public void move() {
 		x = -10;
 		y = -10;
-		radius = 10;
+		side = 10;
 
 	}
 
 	public void grow() {
-		radius = 100;
+		side = 100;
 		for (Walls wallb : WB) {
 			if (wallb.getRect().intersects(this.getBounds())) {
 				wallb.die(wallb);
