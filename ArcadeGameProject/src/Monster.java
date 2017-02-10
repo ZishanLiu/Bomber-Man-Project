@@ -13,8 +13,8 @@ public class Monster {
 	private int grid = 50;
 	private int side = 30;
 	private int counter = 0;
-	private int moveXby = 5;
-	private int moveYby = 5;
+	private int moveXby;
+	private int moveYby;
 
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
@@ -33,6 +33,8 @@ public class Monster {
 		this.RectX = (x * grid) + grid / 2;
 		this.RectY = (y * grid) + grid / 2;
 
+		moveXby = 5;
+		moveYby = 5;
 	}
 
 	public void drawOn(Graphics2D g2) {
@@ -61,7 +63,7 @@ public class Monster {
 	public void moveUpandDown() {
 		if (!myWorld.myMonster.checkContact()) {
 
-			RectY = RectY + moveXby;
+			RectY = RectY + moveYby;
 
 		} else if (myWorld.myMonster.checkContact()) {
 			moveYby = moveYby * -1;
@@ -82,9 +84,15 @@ public class Monster {
 		}
 	}
 
-	public void moveForMonster3() {
+	public void move3() {
+		if (!myWorld.myMonster.checkContact()) {
 
-		RectY -= 1;
+			RectX = RectX + moveXby;
+
+		} else if (myWorld.myMonster.checkContact()) {
+			moveXby = moveXby * -1;
+			RectX = RectX + moveXby;
+		}
 
 	}
 
