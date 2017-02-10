@@ -13,6 +13,8 @@ public class Monster {
 	private int grid = 50;
 	private int side = 30;
 	private int counter = 0;
+	private int moveXby = 5;
+	private int moveYby = 5;
 
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
@@ -57,20 +59,26 @@ public class Monster {
 	}
 
 	public void moveUpandDown() {
-		RectY -= 1;
+		if (!myWorld.myMonster.checkContact()) {
+
+			RectY = RectY + moveXby;
+
+		} else if (myWorld.myMonster.checkContact()) {
+			moveYby = moveYby * -1;
+			RectY = RectY + moveYby;
+		}
 
 	}
 
 	public void moveLeftandRight() {
-
-		System.out.println(myWorld.myMonster.checkContact());
 		counter = 0;
 		if (!myWorld.myMonster.checkContact()) {
-			RectX += 5;
+
+			RectX = RectX + moveXby;
 
 		} else if (myWorld.myMonster.checkContact()) {
-			this.hit();
-
+			moveXby = moveXby * -1;
+			RectX = RectX + moveXby;
 		}
 	}
 
