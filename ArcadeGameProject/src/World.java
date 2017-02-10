@@ -52,7 +52,7 @@ public class World {
 						wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						hero = new Hero(WI,WB);
+						hero = new Hero(WI, WB);
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero, this);
 						KeyListener mykey = new myListener(hero, this);
@@ -66,7 +66,7 @@ public class World {
 
 					} else if (line.charAt(x) == 'e') {
 
-						myMonster = new Monster(hero, this);
+						myMonster = new Monster(hero, this, WI, WB);
 						myMonster.set(x, y);
 						Monsters.add(myMonster);
 
