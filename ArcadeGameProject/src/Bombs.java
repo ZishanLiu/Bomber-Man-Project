@@ -79,11 +79,11 @@ public class Bombs extends JComponent {
 			if (wallb.getRect().intersects(this.getBounds())) {
 				wallb.die(wallb);
 			}
-		}
-		for (Monster monster : Monsters) {
-			if (monster.getRect().intersects(this.getBounds())) {
-				monster.die();
-			}
+//		}
+//		for (Monster monster : Monsters) {
+//			if (monster.getRect().intersects(this.getBounds())) {
+//				monster.die();
+//			}
 		}
 //		if (myHero.getRect().intersects(this.getBounds())) {
 //			myHero.die();

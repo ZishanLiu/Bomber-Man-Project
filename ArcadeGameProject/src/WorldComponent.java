@@ -79,17 +79,23 @@ public class WorldComponent extends JComponent implements Runnable {
 
 						Monsters.get(i).moveLeftandRight();
 
-					} else if (i == 1) {
+					}
+					if (i == 1) {
 
 						Monsters.get(i).moveUpandDown();
 
-					} else if (i == 2) {
+					}
+					if (i == 2) {
 
-						Monsters.get(i).moveUpandDown();
+						Monsters.get(i).moveForMonster3();
 
-					} else if (myBomb.explode(count)) {
+					}
+					if (myBomb.explode(count)) {
 						myBomb.grow();
 						myBomb.move();
+						
+//					} else if (Monsters.size() == 0) {
+//						myhero.
 					}
 
 				}

@@ -106,6 +106,16 @@ public class World {
 		System.out.println(level + " has loaded!");
 
 	}
+	public void retry() throws IOException {
+		t1.stop();
+		Monsters.clear();
+		WI.clear();
+		WB.clear();
+		this.time = 200;
+		this.load();
+		System.out.println("You have");
+
+	}
 
 	public void reDraw() {
 
