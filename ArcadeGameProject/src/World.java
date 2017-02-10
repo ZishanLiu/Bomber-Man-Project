@@ -23,8 +23,10 @@ public class World {
 	Monster myMonster;
 	Thread t1;
 	Walls wall;
+	int Lives;
 
 	public World(String level) {
+		this.Lives = 3;
 		this.level = level;
 		this.chooser = new JFileChooser();
 		this.time = 200;
@@ -61,6 +63,7 @@ public class World {
 						myWindow.addKeyListener(myBombs);
 						myworld.setBombs(myBomb);
 						myworld.sethero(hero);
+						myworld.setworld(this);
 						// KeyListener myMonster = new MonsterListener(monster);
 						// myWindow.addKeyListener(myMonster);
 
@@ -106,21 +109,38 @@ public class World {
 		System.out.println(level + " has loaded!");
 
 	}
+
 	public void retry() throws IOException {
+		Lives -= 1;
 		t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
 		this.time = 200;
 		this.load();
-		System.out.println("You have");
+		System.out.println("You died! You have " + Lives + "left!");
 
 	}
 
-	public void reDraw() {
-
-		myworld.repaint();
+	public void win() throws IOException {
+		t1.stop();
+		Monsters.clear();
+		WI.clear();
+		WB.clear();
+		this.time = 200;
+		this.level = next();
+		this.load();
+		System.out.println("Congradulations! You have " + Lives + "left!");
 
 	}
 
+	public String next() {
+		if (this.level == "Level1") {
+			return "Level2";
+		} else {
+			return "Level3";
+
+		}
+
+	}
 }

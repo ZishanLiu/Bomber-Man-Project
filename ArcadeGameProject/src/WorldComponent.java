@@ -13,6 +13,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private ArrayList<Monster> Monsters;
 	private ArrayList<Walls> WB;
 	private int count = 0;
+	private World myworld;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -40,6 +41,9 @@ public class WorldComponent extends JComponent implements Runnable {
 
 		return count;
 
+	}
+	public void setworld(World myworld) {
+		this.myworld = myworld;
 	}
 
 	public WorldComponent() {
@@ -96,8 +100,8 @@ public class WorldComponent extends JComponent implements Runnable {
 						myBomb.move();
 						System.out.println("move started");
 						
-//					} else if (Monsters.size() == 0) {
-//						myhero.
+					} else if (Monsters.size() == 0) {
+						myworld.next();
 					}
 
 				}
