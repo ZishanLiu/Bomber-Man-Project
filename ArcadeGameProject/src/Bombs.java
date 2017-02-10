@@ -9,7 +9,7 @@ public class Bombs extends JComponent {
 
 	private int x = 0;
 	private int y = 0;
-	private int side = 10;
+	private int side;
 	private Color color;
 	private Hero myHero;
 	private World game;
@@ -24,7 +24,7 @@ public class Bombs extends JComponent {
 		this.myHero = myHero;
 		this.game = game;
 		this.WB = game.WB;
-		this.side = side;
+		this.side = 10;
 		this.Monsters = game.Monsters;
 	}
 
@@ -75,9 +75,13 @@ public class Bombs extends JComponent {
 
 	public void grow() {
 		side = 100;
+		System.out.println("looking");
 		for (Walls wallb : WB) {
+			System.out.println("scanning" + wallb);
 			if (wallb.getRect().intersects(this.getBounds())) {
+				System.out.println("found!" + wallb);
 				wallb.die(wallb);
+				System.out.println("killed wall" + wallb);
 			}
 //		}
 //		for (Monster monster : Monsters) {

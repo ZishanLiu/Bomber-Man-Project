@@ -92,7 +92,9 @@ public class WorldComponent extends JComponent implements Runnable {
 					}
 					if (myBomb.explode(count)) {
 						myBomb.grow();
+						System.out.println("growing started");
 						myBomb.move();
+						System.out.println("move started");
 						
 //					} else if (Monsters.size() == 0) {
 //						myhero.

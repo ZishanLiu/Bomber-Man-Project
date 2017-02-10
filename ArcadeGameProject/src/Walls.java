@@ -53,6 +53,7 @@ public class Walls extends JComponent {
 	}
 
 	public void die(Walls wall) {
+		rect.setLocation(-10, -10);
 		rect.setSize(0, 0);
 	}
 
