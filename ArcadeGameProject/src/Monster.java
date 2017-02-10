@@ -110,4 +110,11 @@ public class Monster {
 
 	}
 
+	public void die() {
+
+		this.RectX = -50;
+		this.RectY = -50;
+
+	}
+
 }
