@@ -42,6 +42,7 @@ public class WorldComponent extends JComponent implements Runnable {
 		return count;
 
 	}
+
 	public void setworld(World myworld) {
 		this.myworld = myworld;
 	}
@@ -57,6 +58,7 @@ public class WorldComponent extends JComponent implements Runnable {
 
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1100, 900);
+		myworld.myMonster.checkHero();
 		myhero.drawOn(g2);
 		myBomb.drawOn(g2);
 
@@ -80,30 +82,74 @@ public class WorldComponent extends JComponent implements Runnable {
 			while (true) {
 				for (int i = 0; i < Monsters.size(); i++) {
 					if (i == 0) {
+						int startX = Monsters.get(i).getX();
+						int startY = Monsters.get(i).getY();
+						if (!Monsters.get(i).checkContact()) {
 
-						Monsters.get(i).moveLeftandRight();
+							Monsters.get(i).move(1, 0, 1);
 
+							if (Monsters.get(i).checkContact()) {
+								Monsters.get(i).stuck(startX, startY);
+								Monsters.get(i).move(1, 0, -1);
+							}
+							// Monsters.get(i).moveLeftandRight();
+
+						}
 					}
 					if (i == 1) {
+						int startX = Monsters.get(i).getX();
+						int startY = Monsters.get(i).getY();
+						if (!Monsters.get(i).checkContact()) {
 
-						Monsters.get(i).moveUpandDown();
+							Monsters.get(i).move(0, 1, 1);
+
+							if (Monsters.get(i).checkContact()) {
+								Monsters.get(i).stuck(startX, startY);
+								Monsters.get(i).move(0, 1, -1);
+							}
+						}
+						// Monsters.get(i).moveUpandDown();
 
 					}
 					if (i == 2) {
+						int startX = Monsters.get(i).getX();
+						int startY = Monsters.get(i).getY();
+						int k = (int) (Math.round((Math.random())));
+						if (!Monsters.get(i).checkContact()) {
 
-						Monsters.get(i).moveForMonster3();
+							Monsters.get(i).move(k, 1 - k, 1);
+							if (Monsters.get(i).checkContact()) {
+								Monsters.get(i).stuck(startX, startY);
+								Monsters.get(i).move(k, 1 - k, -1);
+							}
+						}
+						if (!Monsters.get(i).checkContact()) {
+
+							Monsters.get(i).move(k, 1 - k, 1);
+							if (Monsters.get(i).checkContact()) {
+								Monsters.get(i).stuck(startX, startY);
+								Monsters.get(i).move(k, 1 - k, -1);
+							}
+						}
+						if (!Monsters.get(i).checkContact()) {
+
+							Monsters.get(i).move(k, 1 - k, 1);
+							if (Monsters.get(i).checkContact()) {
+								Monsters.get(i).stuck(startX, startY);
+								Monsters.get(i).move(k, 1 - k, -1);
+							}
+						}
 
 					}
-					if (myBomb.explode(count)) {
-						myBomb.grow();
-						System.out.println("growing started");
-						myBomb.move();
-						System.out.println("move started");
-						
-					} else if (Monsters.size() == 0) {
-						myworld.next();
-					}
+				}
+				if (myBomb.explode(count)) {
+					myBomb.grow();
+					System.out.println("growing started");
+					myBomb.move();
+					System.out.println("move started");
 
+				} else if (Monsters.size() == 0) {
+					myworld.next();
 				}
 				count++;
 				repaint();

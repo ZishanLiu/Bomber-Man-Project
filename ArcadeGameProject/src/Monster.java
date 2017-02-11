@@ -39,58 +39,69 @@ public class Monster {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.RED);
 
-		Rectangle myMonster = new Rectangle((int) RectX + 10, (int) RectY + 10, 20, 30);
+		Rectangle myMonster = new Rectangle((int) RectX, (int) RectY, 20, 30);
 
 		g.fill(myMonster);
 	}
 
 	public void set(int x, int y) {
 
-		this.RectX = (x * grid) + grid / 2;
-		this.RectY = (y * grid) + grid / 2;
+		this.RectX = (x * grid) + grid / 2+10;
+		this.RectY = (y * grid) + grid / 2+10;
 
 	}
-
-	public void stop() {
-
-		;
-
+	
+	public int getX() {
+		return RectX;
 	}
 
-	public void moveUpandDown() {
-		if (!myWorld.myMonster.checkContact()) {
+	public int getY() {
+		return RectY;
+	}
+	
+	public void stuck(int x, int y) {
 
-			RectY = RectY + moveXby;
-
-		} else if (myWorld.myMonster.checkContact()) {
-			moveYby = moveYby * -1;
-			RectY = RectY + moveYby;
-		}
+		this.RectX = x;
+		this.RectY = y;
 
 	}
-
-	public void moveLeftandRight() {
-		counter = 0;
-		if (!myWorld.myMonster.checkContact()) {
-
-			RectX = RectX + moveXby;
-
-		} else if (myWorld.myMonster.checkContact()) {
-			moveXby = moveXby * -1;
-			RectX = RectX + moveXby;
-		}
+	
+	public void move(int x, int y, int direction){
+		moveYby = moveYby * direction;
+		moveXby = moveXby * direction;
+		RectY = RectY + moveYby*y;
+		RectX = RectX + moveXby*x;
 	}
 
-	public void moveForMonster3() {
-
-		RectY -= 1;
-
-	}
-
-	public void hit() {
-		this.RectX -= 5;
-
-	}
+//	public void moveUpandDown() {
+//		if (!myWorld.myMonster.checkContact()) {
+//
+//			RectY = RectY + moveYby;
+//
+//		} else if (myWorld.myMonster.checkContact()) {
+//			moveYby = moveYby * -1;
+//			RectY = RectY + moveYby;
+//		}
+//
+//	}
+//
+//	public void moveLeftandRight() {
+//		counter = 0;
+//		if (!myWorld.myMonster.checkContact()) {
+//
+//			RectX = RectX + moveXby;
+//
+//		} else if (myWorld.myMonster.checkContact()) {
+//			moveXby = moveXby * -1;
+//			RectX = RectX + moveXby;
+//		}
+//	}
+//
+//	public void moveForMonster3() {
+//
+//		RectY -= 1;
+//
+//	}
 
 	public Rectangle2D getBounds2D() {
 		return new Rectangle(RectX, RectY, side, side);

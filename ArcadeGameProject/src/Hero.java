@@ -49,8 +49,8 @@ public class Hero extends JComponent {
 
 	public void set(int x, int y) {
 
-		this.RectX = (x * grid) + grid / 2;
-		this.RectY = (y * grid) + grid / 2;
+		this.RectX = (x * grid) + grid / 2+10;
+		this.RectY = (y * grid) + grid / 2+10;
 
 	}
 
@@ -63,21 +63,21 @@ public class Hero extends JComponent {
 
 	public void moveRight() {
 
-		RectX = RectX + 2;
+		RectX = RectX + 5;
 
 	}
 
 	public void moveLeft() {
-		RectX = RectX - 2;
+		RectX = RectX - 5;
 	}
 
 	public void moveUp() {
-		RectY = RectY - 2;
+		RectY = RectY - 5;
 
 	}
 
 	public void moveDown() {
-		RectY = RectY + 2;
+		RectY = RectY + 5;
 
 	}
 
