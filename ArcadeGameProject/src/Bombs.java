@@ -77,17 +77,19 @@ public class Bombs extends JComponent {
 		side = 100;
 		System.out.println("looking");
 		for (Walls wallb : WB) {
-			System.out.println("scanning" + wallb);
+			System.out.println("scanning walls " + wallb);
 			if (wallb.getRect().intersects(this.getBounds())) {
 				System.out.println("found!" + wallb);
 				wallb.die(wallb);
 				System.out.println("killed wall" + wallb);
 			}
-//		}
-//		for (Monster monster : Monsters) {
-//			if (monster.getRect().intersects(this.getBounds())) {
-//				monster.die();
-//			}
+		}
+		for (Monster monster : Monsters) {
+			System.out.println("scanning monster " + monster);
+			if (monster.getRect().intersects(this.getBounds())) {
+				System.out.println("killed monster" + monster);
+				monster.die();
+			}
 		}
 //		if (myHero.getRect().intersects(this.getBounds())) {
 //			myHero.die();
