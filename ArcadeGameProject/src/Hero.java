@@ -8,8 +8,6 @@ import javax.swing.JComponent;
 
 public class Hero extends JComponent {
 
-	// private int x = 0;
-	// private int y = 0;
 	private Rectangle rect;
 	private int RectX;
 	private int RectY;
@@ -20,17 +18,6 @@ public class Hero extends JComponent {
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
 
-	// public Hero(int x, int y) {
-	// rect = new Rectangle();
-	// rect.height = this.side;
-	// rect.width = this.side;
-	//
-	// this.RectX = (x * grid) + grid / 2;
-	// this.RectY = (y * grid) + grid / 2;
-	//
-	// this.color = Color.black;
-	//
-	// }
 	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB) {
 		rect = new Rectangle();
 		rect.height = this.side;
@@ -103,7 +90,7 @@ public class Hero extends JComponent {
 	}
 
 	public Rectangle2D getBounds2D() {
-		return new Rectangle(RectX , RectY , side, side);
+		return new Rectangle(RectX, RectY, side, side);
 	}
 
 	public boolean checkContact() {
@@ -120,4 +107,5 @@ public class Hero extends JComponent {
 		}
 		return false;
 	}
+
 }

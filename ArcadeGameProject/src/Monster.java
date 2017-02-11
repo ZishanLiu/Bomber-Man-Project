@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Monster {
@@ -22,8 +23,6 @@ public class Monster {
 	public Monster(Hero myhero, World myWorld, ArrayList<Walls> WI, ArrayList<Walls> WB) {
 		this.myhero = myhero;
 		this.myWorld = myWorld;
-		// rect.height = this.side;
-		// rect.width = this.side;
 		int x = -10;
 		int y = -10;
 
@@ -122,6 +121,25 @@ public class Monster {
 
 		this.RectX = -50;
 		this.RectY = -50;
+
+	}
+
+	public boolean checkHero() {
+
+		try {
+			if (myhero.getBounds2D().intersects(this.getRect())) {
+				System.out.println("die");
+				myWorld.retry();
+				return true;
+			}
+		} catch (IOException exception) {
+			throw new RuntimeException("failed checking hero vs monster");
+		}
+
+		return false;
+	}
+
+	{
 
 	}
 

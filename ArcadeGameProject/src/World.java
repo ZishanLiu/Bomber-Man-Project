@@ -57,7 +57,7 @@ public class World {
 						hero = new Hero(WI, WB);
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero, this);
-						KeyListener mykey = new myListener(hero, this);
+						KeyListener mykey = new myListener(hero, this, myMonster);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
@@ -118,7 +118,7 @@ public class World {
 		WB.clear();
 		this.time = 200;
 		this.load();
-		System.out.println("You died! You have " + Lives + "left!");
+		System.out.println("You died! You have " + Lives + " left! Press any key to restart");
 
 	}
 

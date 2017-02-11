@@ -20,7 +20,7 @@ public class Main {
 
 		World game = new World("Level1");
 		game.load();
-	
+
 	}
 
 }

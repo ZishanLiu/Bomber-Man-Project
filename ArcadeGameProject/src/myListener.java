@@ -7,21 +7,21 @@ public class myListener implements KeyListener {
 	private World game;
 	int startX;
 	int startY;
+	private Monster myMonster;
 
-	public myListener(Hero myHero, World game) {
+	public myListener(Hero myHero, World game, Monster myMonster) {
 		this.myHero = myHero;
 		this.game = game;
 		startX = myHero.getX();
 		startY = myHero.getY();
-
+		this.myMonster = myMonster;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			myHero.moveRight();
-			System.out.println(game.hero.checkContact());
-			if (!game.hero.checkContact()) {
+			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
 				startX = myHero.getX();
 				startY = myHero.getY();
 
@@ -34,7 +34,7 @@ public class myListener implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			myHero.moveLeft();
-			if (!game.hero.checkContact()) {
+			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
 				startX = myHero.getX();
 				startY = myHero.getY();
 
@@ -47,7 +47,7 @@ public class myListener implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			myHero.moveDown();
-			if (!game.hero.checkContact()) {
+			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
 				startX = myHero.getX();
 				startY = myHero.getY();
 
@@ -60,7 +60,7 @@ public class myListener implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			myHero.moveUp();
-			if (!game.hero.checkContact()) {
+			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
 				startX = myHero.getX();
 				startY = myHero.getY();
 
