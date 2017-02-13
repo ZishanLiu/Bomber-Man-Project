@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -148,7 +149,7 @@ public class WorldComponent extends JComponent implements Runnable {
 					myBomb.move();
 					System.out.println("move started");
 
-				} 
+				}
 				if (Monsters.size() == 0) {
 					myworld.next();
 				}
@@ -160,7 +161,7 @@ public class WorldComponent extends JComponent implements Runnable {
 				Thread.sleep(20);
 
 			}
-		} catch (InterruptedException exception) {
+		} catch (InterruptedException | IOException exception) {
 			// TODO Auto-generated catch-block stub.
 			throw new RuntimeException(exception.toString());
 		}
