@@ -4,9 +4,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
-
-public class Hero extends JComponent {
+public class Hero  {
 
 	private Rectangle rect;
 	private int RectX;
