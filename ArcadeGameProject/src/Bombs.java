@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Bombs {
@@ -18,7 +19,7 @@ public class Bombs {
 	private Rectangle myBomb;
 
 	public Bombs(Hero myHero, World game) {
-		
+
 		this.myBomb = new Rectangle(-10, -10, 10, 10);
 		this.color = Color.black;
 		this.myHero = myHero;
@@ -73,27 +74,27 @@ public class Bombs {
 
 	}
 
-	public void grow() {
-		myBomb = new Rectangle((int)myBomb.getX(), (int)myBomb.getY(), 100, 100);
-		
+	public void grow() throws IOException {
+		myBomb = new Rectangle((int) myBomb.getX(), (int) myBomb.getY(), 40, 40);
+
 		System.out.println("looking");
-		for (int w=0; w<WB.size();w++) {
+		for (int w = 0; w < WB.size(); w++) {
 			System.out.println("scanning walls ");
 			if (WB.get(w).getRect().intersects(myBomb)) {
 				System.out.println("found!" + WB.get(w));
 				WB.remove(w);
 			}
 		}
-		for (int m=0; m<Monsters.size();m++) {
+		for (int m = 0; m < Monsters.size(); m++) {
 			System.out.println("scanning monster ");
 			if (Monsters.get(m).getRect().intersects(myBomb)) {
 				System.out.println("killed monster" + Monsters.get(m));
 				this.Monsters.remove(m);
 			}
 		}
-//		if (myHero.getRect().intersects(this.getBounds())) {
-//			myHero.die();
-//		}
+		if (myHero.getBounds2D().intersects(myBomb)) {
+			game.retry();
+		}
 	}
 
 }
