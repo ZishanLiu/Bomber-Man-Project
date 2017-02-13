@@ -10,7 +10,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private ArrayList<Walls> WI;
 	private Hero myhero;
 	private Bombs myBomb;
-	private ArrayList<Monster> Monsters;
+	ArrayList<Monster> Monsters;
 	private ArrayList<Walls> WB;
 	private int count = 0;
 	private World myworld;
@@ -70,6 +70,7 @@ public class WorldComponent extends JComponent implements Runnable {
 
 		}
 
+		myworld.CheckWin();
 		myBomb.checkHero();
 		myhero.drawOn(g2);
 		myBomb.drawOn(g2);
@@ -163,9 +164,6 @@ public class WorldComponent extends JComponent implements Runnable {
 					System.out.println("move started");
 			
 
-				}
-				if (Monsters.size() == 0) {
-					myworld.next();
 				}
 				if (myworld.Lives == 0) {
 					System.exit(0);

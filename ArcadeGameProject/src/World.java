@@ -19,7 +19,7 @@ public class World {
 	WorldComponent myworld = new WorldComponent();
 	KeyListener change;
 	Hero hero;
-	Monster myMonster;
+	//Monster myMonster;
 	Thread t1;
 	Walls wall;
 	int Lives;
@@ -33,6 +33,7 @@ public class World {
 		this.time = 200;
 		change = new LevelListener(this, this.level);
 		myWindow.addKeyListener(this.change);
+		t1 = new Thread(myworld);
 
 	}
 
@@ -60,7 +61,7 @@ public class World {
 						myBomb = new Bombs(hero, this);
 						LargerRangeBomb rangeBomb = new LargerRangeBomb(hero);
 
-						KeyListener mykey = new myListener(hero, this, myMonster);
+						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
@@ -71,7 +72,7 @@ public class World {
 
 					} else if (line.charAt(x) == 'e') {
 
-						myMonster = new Monster(hero, this, WI, WB);
+						Monster myMonster = new Monster(hero, this, WI, WB);
 						myMonster.set(x, y);
 						Monsters.add(myMonster);
 
@@ -87,7 +88,6 @@ public class World {
 		}
 
 		// WorldComponent myworld = new WorldComponent(this.WI);
-		t1 = new Thread(myworld);
 		t1.start();
 		myworld.setMonster(Monsters);
 		myworld.setWI(WI);
@@ -101,7 +101,7 @@ public class World {
 	}
 
 	public void ChangeLevel(String level) throws IOException {
-		t1.stop();
+		//t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -115,7 +115,7 @@ public class World {
 
 	public void retry() throws IOException {
 		Lives -= 1;
-		t1.stop();
+		//t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -126,7 +126,7 @@ public class World {
 	}
 
 	public void win() throws IOException {
-		t1.stop();
+		//t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -143,6 +143,16 @@ public class World {
 		} else {
 			return "Level3";
 
+		}
+
+	}
+	public void CheckWin() {
+		if (this.Monsters.size() == 0) {
+			try {
+				this.win();
+			} catch (IOException exception) {
+	
+			}
 		}
 
 	}

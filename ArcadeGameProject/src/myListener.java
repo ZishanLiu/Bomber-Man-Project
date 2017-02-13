@@ -7,67 +7,48 @@ public class myListener implements KeyListener {
 	private World game;
 	int startX;
 	int startY;
-	private Monster myMonster;
+	// private Monster myMonster;
 
-	public myListener(Hero myHero, World game, Monster myMonster) {
+	public myListener(Hero myHero, World game) {
 		this.myHero = myHero;
 		this.game = game;
 		startX = myHero.getX();
 		startY = myHero.getY();
-		this.myMonster = myMonster;
+		// this.myMonster = myMonster;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			myHero.moveRight();
-			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
-				startX = myHero.getX();
-				startY = myHero.getY();
-
-			} else if (game.hero.checkContact()) {
-				myHero.stuck(startX, startY);
-
-			}
 
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			myHero.moveLeft();
-			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
-				startX = myHero.getX();
-				startY = myHero.getY();
-
-			} else if (game.hero.checkContact()) {
-				myHero.stuck(startX, startY);
-
-			}
 
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			myHero.moveDown();
-			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
-				startX = myHero.getX();
-				startY = myHero.getY();
-
-			} else if (game.hero.checkContact()) {
-				myHero.stuck(startX, startY);
-
-			}
 
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			myHero.moveUp();
-			if (!game.hero.checkContact() && (!game.myMonster.checkHero())) {
-				startX = myHero.getX();
-				startY = myHero.getY();
 
-			} else if (game.hero.checkContact()) {
-				myHero.stuck(startX, startY);
+		}
+		for (int i = 0; i < game.Monsters.size(); i++) {
+			game.Monsters.get(i).checkHero();
+		}
 
-			}
+		if (!game.hero.checkContact()) {
+			startX = myHero.getX();
+			startY = myHero.getY();
+
+		} else {
+			myHero.stuck(startX, startY);
+
 		}
 
 	}

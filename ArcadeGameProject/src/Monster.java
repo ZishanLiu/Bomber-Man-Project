@@ -46,11 +46,11 @@ public class Monster {
 
 	public void set(int x, int y) {
 
-		this.RectX = (x * grid) + grid / 2+10;
-		this.RectY = (y * grid) + grid / 2+10;
+		this.RectX = (x * grid) + grid / 2 + 10;
+		this.RectY = (y * grid) + grid / 2 + 10;
 
 	}
-	
+
 	public int getX() {
 		return RectX;
 	}
@@ -58,50 +58,50 @@ public class Monster {
 	public int getY() {
 		return RectY;
 	}
-	
+
 	public void stuck(int x, int y) {
 
 		this.RectX = x;
 		this.RectY = y;
 
 	}
-	
-	public void move(int x, int y, int direction){
+
+	public void move(int x, int y, int direction) {
 		moveYby = moveYby * direction;
 		moveXby = moveXby * direction;
-		RectY = RectY + moveYby*y;
-		RectX = RectX + moveXby*x;
+		RectY = RectY + moveYby * y;
+		RectX = RectX + moveXby * x;
 	}
 
-//	public void moveUpandDown() {
-//		if (!myWorld.myMonster.checkContact()) {
-//
-//			RectY = RectY + moveYby;
-//
-//		} else if (myWorld.myMonster.checkContact()) {
-//			moveYby = moveYby * -1;
-//			RectY = RectY + moveYby;
-//		}
-//
-//	}
-//
-//	public void moveLeftandRight() {
-//		counter = 0;
-//		if (!myWorld.myMonster.checkContact()) {
-//
-//			RectX = RectX + moveXby;
-//
-//		} else if (myWorld.myMonster.checkContact()) {
-//			moveXby = moveXby * -1;
-//			RectX = RectX + moveXby;
-//		}
-//	}
-//
-//	public void moveForMonster3() {
-//
-//		RectY -= 1;
-//
-//	}
+	// public void moveUpandDown() {
+	// if (!myWorld.myMonster.checkContact()) {
+	//
+	// RectY = RectY + moveYby;
+	//
+	// } else if (myWorld.myMonster.checkContact()) {
+	// moveYby = moveYby * -1;
+	// RectY = RectY + moveYby;
+	// }
+	//
+	// }
+	//
+	// public void moveLeftandRight() {
+	// counter = 0;
+	// if (!myWorld.myMonster.checkContact()) {
+	//
+	// RectX = RectX + moveXby;
+	//
+	// } else if (myWorld.myMonster.checkContact()) {
+	// moveXby = moveXby * -1;
+	// RectX = RectX + moveXby;
+	// }
+	// }
+	//
+	// public void moveForMonster3() {
+	//
+	// RectY -= 1;
+	//
+	// }
 
 	public Rectangle2D getBounds2D() {
 		return new Rectangle(RectX, RectY, side, side);

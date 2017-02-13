@@ -105,6 +105,9 @@ public class Hero {
 	}
 
 	public boolean checkContact() {
+//		if (myBomb.getRectangle().intersects(this.getBounds2D())) {
+//			return true;
+//		}
 		for (Walls walli : WI) {
 			if (walli.getRect().intersects(this.getBounds2D())) {
 				return true;
@@ -119,5 +122,6 @@ public class Hero {
 
 		return false;
 	}
+	
 
 }

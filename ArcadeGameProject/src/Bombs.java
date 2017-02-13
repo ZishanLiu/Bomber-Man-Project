@@ -46,14 +46,14 @@ public class Bombs {
 		if (this.CanReplace()) {
 			if (this.myHero.whereToPlaceBomb() == 'u') {
 				this.x = HeroCenterX;
-				this.y = HeroCenterY - 40;
+				this.y = HeroCenterY - 30;
 			}
 			if (this.myHero.whereToPlaceBomb() == 'd') {
 				this.x = HeroCenterX;
 				this.y = HeroCenterY + 30;
 			}
 			if (this.myHero.whereToPlaceBomb() == 'l') {
-				this.x = HeroCenterX - 40;
+				this.x = HeroCenterX - 30;
 				this.y = HeroCenterY;
 			}
 			if (this.myHero.whereToPlaceBomb() == 'r') {
@@ -110,7 +110,7 @@ public class Bombs {
 	}
 
 	public void grow() {
-		this.myBomb = new Rectangle((int) this.myBomb.getX(), (int) this.myBomb.getY(), 40, 40);
+		this.myBomb = new Rectangle((int) this.myBomb.getX()-40, (int) this.myBomb.getY()-40, 90, 90);
 
 	}
 
