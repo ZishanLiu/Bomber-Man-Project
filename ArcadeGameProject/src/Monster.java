@@ -124,7 +124,7 @@ public class Monster {
 
 	public Rectangle getRect() {
 
-		return new Rectangle(RectX + 10, RectY + 10, 20, 30);
+		return new Rectangle(RectX, RectY, 20, 30);
 
 	}
 

@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-public class Hero  {
+public class Hero {
 
 	private Rectangle rect;
 	private int RectX;
@@ -15,8 +15,10 @@ public class Hero  {
 	private int side = 30;
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
+	private Bombs myBomb;
+	private char bombPlacement;
 
-	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB) {
+	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, Bombs myBomb) {
 		rect = new Rectangle();
 		rect.height = this.side;
 		rect.width = this.side;
@@ -30,6 +32,8 @@ public class Hero  {
 
 		this.WI = WI;
 		this.WB = WB;
+		this.myBomb = myBomb;
+		this.bombPlacement = 'u';
 
 		rect = new Rectangle(this.RectX, this.RectY, side, side);
 
@@ -47,8 +51,8 @@ public class Hero  {
 
 	public void set(int x, int y) {
 
-		this.RectX = (x * grid) + grid / 2+10;
-		this.RectY = (y * grid) + grid / 2+10;
+		this.RectX = (x * grid) + grid / 2 + 10;
+		this.RectY = (y * grid) + grid / 2 + 10;
 
 	}
 
@@ -59,23 +63,32 @@ public class Hero  {
 
 	}
 
+	public char whereToPlaceBomb() {
+
+		return bombPlacement;
+	}
+
 	public void moveRight() {
 
 		RectX = RectX + 5;
+		bombPlacement = 'r';
 
 	}
 
 	public void moveLeft() {
 		RectX = RectX - 5;
+		bombPlacement = 'l';
 	}
 
 	public void moveUp() {
 		RectY = RectY - 5;
+		bombPlacement = 'u';
 
 	}
 
 	public void moveDown() {
 		RectY = RectY + 5;
+		bombPlacement = 'd';
 
 	}
 
@@ -103,6 +116,7 @@ public class Hero  {
 			}
 
 		}
+
 		return false;
 	}
 

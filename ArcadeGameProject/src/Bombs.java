@@ -34,24 +34,40 @@ public class Bombs {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.black);
 
-		myBomb = new Rectangle(x, y, side, side);
+		this.myBomb = new Rectangle(this.x, this.y, this.side, this.side);
 
-		g.fill(myBomb);
+		g.fill(this.myBomb);
 
 	}
 
 	public void drop() {
+		int HeroCenterX = this.myHero.getX() + 10;
+		int HeroCenterY = this.myHero.getY() + 10;
 		if (this.CanReplace()) {
-			x = myHero.getX();
-			y = myHero.getY();
-			start = this.game.myworld.getCount();
-			end = start + 100;
+			if (this.myHero.whereToPlaceBomb() == 'u') {
+				this.x = HeroCenterX;
+				this.y = HeroCenterY - 40;
+			}
+			if (this.myHero.whereToPlaceBomb() == 'd') {
+				this.x = HeroCenterX;
+				this.y = HeroCenterY + 30;
+			}
+			if (this.myHero.whereToPlaceBomb() == 'l') {
+				this.x = HeroCenterX - 40;
+				this.y = HeroCenterY;
+			}
+			if (this.myHero.whereToPlaceBomb() == 'r') {
+				this.x = HeroCenterX + 30;
+				this.y = HeroCenterY;
+			}
+			this.start = this.game.myworld.getCount();
+			this.end = this.start + 100;
 		}
 
 	}
 
 	public boolean explode(int current) {
-		if (end == current) {
+		if (this.end == current) {
 			return true;
 		} else
 			return false;
@@ -59,7 +75,7 @@ public class Bombs {
 	}
 
 	public boolean CanReplace() {
-		if (this.game.myworld.getCount() > end) {
+		if (this.game.myworld.getCount() > this.end) {
 			return true;
 		} else {
 			return false;
@@ -68,33 +84,51 @@ public class Bombs {
 	}
 
 	public void move() {
-		x = -10;
-		y = -10;
-		side = 10;
+		this.x = -10;
+		this.y = -10;
+		this.side = 10;
 
 	}
 
-	public void grow() throws IOException {
-		myBomb = new Rectangle((int) myBomb.getX(), (int) myBomb.getY(), 40, 40);
+	public Rectangle getRectangle() {
+		this.myBomb = new Rectangle((int) this.myBomb.getX(), (int) this.myBomb.getY(), 40, 40);
+		return this.myBomb;
+	}
 
+	public boolean checkHero() {
+		try {
+			if (this.myHero.getBounds2D().intersects(this.myBomb)) {
+				System.out.println("die");
+				this.game.retry();
+				return true;
+			}
+		} catch (IOException exception) {
+			throw new RuntimeException("failed checking hero vs bomb");
+		}
+
+		return false;
+	}
+
+	public void grow() {
+		this.myBomb = new Rectangle((int) this.myBomb.getX(), (int) this.myBomb.getY(), 40, 40);
+
+	}
+
+	public void check() {
 		System.out.println("looking");
-		for (int w = 0; w < WB.size(); w++) {
+		for (int w = 0; w < this.WB.size(); w++) {
 			System.out.println("scanning walls ");
-			if (WB.get(w).getRect().intersects(myBomb)) {
-				System.out.println("found!" + WB.get(w));
-				WB.remove(w);
+			if (this.WB.get(w).getRect().intersects(this.myBomb)) {
+				System.out.println("found!" + this.WB.get(w));
+				this.WB.remove(w);
 			}
 		}
-		for (int m = 0; m < Monsters.size(); m++) {
+		for (int m = 0; m < this.Monsters.size(); m++) {
 			System.out.println("scanning monster ");
-			if (Monsters.get(m).getRect().intersects(myBomb)) {
-				System.out.println("killed monster" + Monsters.get(m));
+			if (this.Monsters.get(m).getRect().intersects(this.myBomb)) {
+				System.out.println("killed monster" + this.Monsters.get(m));
 				this.Monsters.remove(m);
 			}
 		}
-		if (myHero.getBounds2D().intersects(myBomb)) {
-			game.retry();
-		}
 	}
-
 }

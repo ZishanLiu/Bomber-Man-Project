@@ -24,6 +24,7 @@ public class World {
 	Walls wall;
 	int Lives;
 	LargerRangeBomb rangeBomb;
+	Bombs myBomb;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -54,9 +55,9 @@ public class World {
 						wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						hero = new Hero(WI, WB);
+						hero = new Hero(WI, WB, myBomb);
 						hero.set(x, y);
-						Bombs myBomb = new Bombs(hero, this);
+						myBomb = new Bombs(hero, this);
 						LargerRangeBomb rangeBomb = new LargerRangeBomb(hero);
 
 						KeyListener mykey = new myListener(hero, this, myMonster);
