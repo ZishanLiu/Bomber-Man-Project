@@ -3,9 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
-
-public class Bombs extends JComponent {
+public class Bombs {
 
 	private int x = 0;
 	private int y = 0;
@@ -17,9 +15,11 @@ public class Bombs extends JComponent {
 	private int end;
 	private ArrayList<Walls> WB;
 	private ArrayList<Monster> Monsters;
+	private Rectangle myBomb;
 
 	public Bombs(Hero myHero, World game) {
-
+		
+		this.myBomb = new Rectangle(-10, -10, 10, 10);
 		this.color = Color.black;
 		this.myHero = myHero;
 		this.game = game;
@@ -33,7 +33,7 @@ public class Bombs extends JComponent {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.black);
 
-		Rectangle myBomb = new Rectangle(x, y, side, side);
+		myBomb = new Rectangle(x, y, side, side);
 
 		g.fill(myBomb);
 
@@ -74,11 +74,12 @@ public class Bombs extends JComponent {
 	}
 
 	public void grow() {
-		side = 100;
+		myBomb = new Rectangle((int)myBomb.getX(), (int)myBomb.getY(), 100, 100);
+		
 		System.out.println("looking");
 		for (Walls wallb : WB) {
 			System.out.println("scanning walls " + wallb);
-			if (wallb.getRect().intersects(this.getBounds())) {
+			if (wallb.getRect().intersects(myBomb)) {
 				System.out.println("found!" + wallb);
 				wallb.die(wallb);
 				System.out.println("killed wall" + wallb);
@@ -86,7 +87,7 @@ public class Bombs extends JComponent {
 		}
 		for (Monster monster : Monsters) {
 			System.out.println("scanning monster " + monster);
-			if (monster.getRect().intersects(this.getBounds())) {
+			if (monster.getRect().intersects(myBomb)) {
 				System.out.println("killed monster" + monster);
 				monster.die();
 			}
