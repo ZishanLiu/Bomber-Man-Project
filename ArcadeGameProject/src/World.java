@@ -14,8 +14,7 @@ public class World {
 	ArrayList<Walls> WI = new ArrayList<Walls>();
 	ArrayList<Walls> WB = new ArrayList<Walls>();
 	ArrayList<Monster> Monsters = new ArrayList<Monster>();
-	// private Hero myHero = new Hero(0, 0);
-	// private Bombs myBomb = new Bombs(myHero);
+
 	JFrame myWindow = new JFrame();
 	WorldComponent myworld = new WorldComponent();
 	KeyListener change;
@@ -24,6 +23,7 @@ public class World {
 	Thread t1;
 	Walls wall;
 	int Lives;
+	LargerRangeBomb rangeBomb;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -57,6 +57,8 @@ public class World {
 						hero = new Hero(WI, WB);
 						hero.set(x, y);
 						Bombs myBomb = new Bombs(hero, this);
+						LargerRangeBomb rangeBomb = new LargerRangeBomb(hero);
+
 						KeyListener mykey = new myListener(hero, this, myMonster);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
@@ -64,8 +66,7 @@ public class World {
 						myworld.setBombs(myBomb);
 						myworld.sethero(hero);
 						myworld.setworld(this);
-						// KeyListener myMonster = new MonsterListener(monster);
-						// myWindow.addKeyListener(myMonster);
+						myworld.setLargerRangeBomb(rangeBomb);
 
 					} else if (line.charAt(x) == 'e') {
 
@@ -103,6 +104,7 @@ public class World {
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
+
 		this.level = level;
 		this.time = 200;
 		this.load();

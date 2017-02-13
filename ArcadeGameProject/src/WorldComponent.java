@@ -15,6 +15,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private ArrayList<Walls> WB;
 	private int count = 0;
 	private World myworld;
+	private LargerRangeBomb rangeBomb;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -35,6 +36,12 @@ public class WorldComponent extends JComponent implements Runnable {
 	public void setMonster(ArrayList<Monster> myMonster) {
 
 		this.Monsters = myMonster;
+
+	}
+
+	public void setLargerRangeBomb(LargerRangeBomb rangeBomb) {
+
+		this.rangeBomb = rangeBomb;
 
 	}
 
@@ -59,9 +66,14 @@ public class WorldComponent extends JComponent implements Runnable {
 
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1100, 900);
-		myworld.myMonster.checkHero();
+		for (int i = 0; i < Monsters.size(); i++) {
+			this.myworld.Monsters.get(i).checkHero();
+
+		}
+
 		myhero.drawOn(g2);
 		myBomb.drawOn(g2);
+		rangeBomb.drawOn(g2);
 
 		for (int i = 0; i < Monsters.size(); i++) {
 			Monsters.get(i).drawOn(g2);
@@ -73,7 +85,6 @@ public class WorldComponent extends JComponent implements Runnable {
 		for (int i = 0; i < WB.size(); i++) {
 			WB.get(i).drawOn(g2, 'b');
 		}
-		// repaint();
 
 	}
 
