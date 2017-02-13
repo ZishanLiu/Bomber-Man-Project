@@ -77,19 +77,18 @@ public class Bombs {
 		myBomb = new Rectangle((int)myBomb.getX(), (int)myBomb.getY(), 100, 100);
 		
 		System.out.println("looking");
-		for (Walls wallb : WB) {
-			System.out.println("scanning walls " + wallb);
-			if (wallb.getRect().intersects(myBomb)) {
-				System.out.println("found!" + wallb);
-				wallb.die(wallb);
-				System.out.println("killed wall" + wallb);
+		for (int w=0; w<WB.size();w++) {
+			System.out.println("scanning walls ");
+			if (WB.get(w).getRect().intersects(myBomb)) {
+				System.out.println("found!" + WB.get(w));
+				WB.remove(w);
 			}
 		}
-		for (Monster monster : Monsters) {
-			System.out.println("scanning monster " + monster);
-			if (monster.getRect().intersects(myBomb)) {
-				System.out.println("killed monster" + monster);
-				monster.die();
+		for (int m=0; m<Monsters.size();m++) {
+			System.out.println("scanning monster ");
+			if (Monsters.get(m).getRect().intersects(myBomb)) {
+				System.out.println("killed monster" + Monsters.get(m));
+				this.Monsters.remove(m);
 			}
 		}
 //		if (myHero.getRect().intersects(this.getBounds())) {
