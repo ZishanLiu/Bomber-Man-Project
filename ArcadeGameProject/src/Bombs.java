@@ -17,8 +17,9 @@ public class Bombs {
 	private ArrayList<Walls> WB;
 	private ArrayList<Monster> Monsters;
 	private Rectangle myBomb;
+	private int range;
 
-	public Bombs(Hero myHero, World game) {
+	public Bombs(Hero myHero, World game, int range) {
 
 		this.myBomb = new Rectangle(-10, -10, 10, 10);
 		this.color = Color.black;
@@ -27,6 +28,7 @@ public class Bombs {
 		this.WB = game.WB;
 		this.side = 10;
 		this.Monsters = game.Monsters;
+		this.range = 80;
 	}
 
 	public void drawOn(Graphics2D g2) {
@@ -110,7 +112,7 @@ public class Bombs {
 	}
 
 	public void grow() {
-		this.myBomb = new Rectangle((int) this.myBomb.getX()-40, (int) this.myBomb.getY()-40, 90, 90);
+		this.myBomb = new Rectangle((int) this.myBomb.getX() - 40, (int) this.myBomb.getY() - 40, range, range);
 
 	}
 
@@ -131,4 +133,12 @@ public class Bombs {
 			}
 		}
 	}
+
+	public void largerRange() {
+
+		this.range = 500;
+		System.out.println(range);
+
+	}
+
 }

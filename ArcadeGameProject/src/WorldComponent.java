@@ -16,6 +16,8 @@ public class WorldComponent extends JComponent implements Runnable {
 	private World myworld;
 	private LargerRangeBomb rangeBomb;
 
+	private int range;
+
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
 	}
@@ -47,6 +49,13 @@ public class WorldComponent extends JComponent implements Runnable {
 	public int getCount() {
 
 		return count;
+
+	}
+
+	public void increaseRange() {
+
+		range = 200;
+		this.myBomb.largerRange();
 
 	}
 
@@ -105,7 +114,6 @@ public class WorldComponent extends JComponent implements Runnable {
 								Monsters.get(i).stuck(startX, startY);
 								Monsters.get(i).move(1, 0, -1);
 							}
-							// Monsters.get(i).moveLeftandRight();
 
 						}
 					}
@@ -121,7 +129,6 @@ public class WorldComponent extends JComponent implements Runnable {
 								Monsters.get(i).move(0, 1, -1);
 							}
 						}
-						// Monsters.get(i).moveUpandDown();
 
 					}
 					if (i == 2) {
@@ -158,11 +165,10 @@ public class WorldComponent extends JComponent implements Runnable {
 				if (myBomb.explode(count)) {
 					myBomb.grow();
 					System.out.println("growing started");
-					//myBomb.checkHero();
+					// myBomb.checkHero();
 					myBomb.check();
 					myBomb.move();
 					System.out.println("move started");
-			
 
 				}
 				if (myworld.Lives == 0) {

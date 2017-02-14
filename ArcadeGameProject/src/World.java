@@ -19,12 +19,13 @@ public class World {
 	WorldComponent myworld = new WorldComponent();
 	KeyListener change;
 	Hero hero;
-	//Monster myMonster;
 	Thread t1;
 	Walls wall;
 	int Lives;
 	LargerRangeBomb rangeBomb;
 	Bombs myBomb;
+
+	int range = 80;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -57,9 +58,9 @@ public class World {
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
 						hero = new Hero(WI, WB, myBomb);
+						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
-						myBomb = new Bombs(hero, this);
-						LargerRangeBomb rangeBomb = new LargerRangeBomb(hero);
+						myBomb = new Bombs(hero, this, range);
 
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
@@ -68,7 +69,6 @@ public class World {
 						myworld.setBombs(myBomb);
 						myworld.sethero(hero);
 						myworld.setworld(this);
-						myworld.setLargerRangeBomb(rangeBomb);
 
 					} else if (line.charAt(x) == 'e') {
 
@@ -79,6 +79,7 @@ public class World {
 					} else if (line.charAt(x) == 'b') {
 						wall = new Walls(x, y, this);
 						this.WB.add(wall);
+
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
 
@@ -87,9 +88,9 @@ public class World {
 			}
 		}
 
-		// WorldComponent myworld = new WorldComponent(this.WI);
 		t1.start();
 		myworld.setMonster(Monsters);
+		myworld.setLargerRangeBomb(rangeBomb);
 		myworld.setWI(WI);
 		myworld.setWB(WB);
 		change = new LevelListener(this, this.level);
@@ -101,7 +102,7 @@ public class World {
 	}
 
 	public void ChangeLevel(String level) throws IOException {
-		//t1.stop();
+		// t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -115,7 +116,7 @@ public class World {
 
 	public void retry() throws IOException {
 		Lives -= 1;
-		//t1.stop();
+		// t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -126,7 +127,7 @@ public class World {
 	}
 
 	public void win() throws IOException {
-		//t1.stop();
+		// t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -146,12 +147,13 @@ public class World {
 		}
 
 	}
+
 	public void CheckWin() {
 		if (this.Monsters.size() == 0) {
 			try {
 				this.win();
 			} catch (IOException exception) {
-	
+
 			}
 		}
 
