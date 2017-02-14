@@ -17,6 +17,7 @@ public class Hero {
 	private ArrayList<Walls> WB;
 	private Bombs myBomb;
 	private char bombPlacement;
+	private ArrayList<PowerUps> myPowerUps;
 
 	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, Bombs myBomb) {
 		rect = new Rectangle();
@@ -33,6 +34,7 @@ public class Hero {
 		this.WI = WI;
 		this.WB = WB;
 		this.myBomb = myBomb;
+		this.myPowerUps = new ArrayList<PowerUps>();
 		this.bombPlacement = 'u';
 
 		rect = new Rectangle(this.RectX, this.RectY, side, side);
@@ -123,5 +125,8 @@ public class Hero {
 		return false;
 	}
 	
+	public void addPowerUp(PowerUps pu) {
+		myPowerUps.add(pu);
+	}
 
 }

@@ -49,7 +49,7 @@ public class Walls extends JComponent {
 		} else {
 			g2.setColor(wallColor);
 		}
-		g2.fillRect((int) rectCenterX, (int) rectCenterY, side, side);
+		g2.fill(rect);
 	}
 
 	public void die(Walls wall) {
@@ -60,6 +60,4 @@ public class Walls extends JComponent {
 	public Rectangle getRect() {
 		return this.rect;
 	}
-
-	
 }
