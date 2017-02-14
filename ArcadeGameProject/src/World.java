@@ -87,8 +87,9 @@ public class World {
 				}
 			}
 		}
-
-		t1.start();
+		if (myworld.getCount() < 1){
+			t1.start();			
+		}
 		myworld.setMonster(Monsters);
 		myworld.setLargerRangeBomb(rangeBomb);
 		myworld.setWI(WI);
@@ -102,11 +103,9 @@ public class World {
 	}
 
 	public void ChangeLevel(String level) throws IOException {
-		// t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
-
 		this.level = level;
 		this.time = 200;
 		this.load();
@@ -116,7 +115,6 @@ public class World {
 
 	public void retry() throws IOException {
 		Lives -= 1;
-		// t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
@@ -127,7 +125,6 @@ public class World {
 	}
 
 	public void win() throws IOException {
-		// t1.stop();
 		Monsters.clear();
 		WI.clear();
 		WB.clear();
