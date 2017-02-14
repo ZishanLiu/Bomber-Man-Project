@@ -17,7 +17,7 @@ public class BombListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_Z) {
-			
+
 			myBomb.drop();
 
 		}

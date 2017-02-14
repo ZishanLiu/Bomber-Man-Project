@@ -29,19 +29,26 @@ public class Bombs {
 		this.WB = game.WB;
 		this.side = 10;
 		this.Monsters = game.Monsters;
-		this.range = 90;
+		this.range = 40;
 		this.status = false;
 	}
 
 	public void drawOn(Graphics2D g2) {
 
 		Graphics2D g = (Graphics2D) g2;
-		g.setColor(Color.black);
+		if (this.status) {
+			g.setColor(new Color(204, 81, 0));
+		} else {
+			g.setColor(Color.black);
+		}
 
 		this.myBomb = new Rectangle(this.x, this.y, this.side, this.side);
 
 		g.fill(this.myBomb);
 
+		if (this.status) {
+			g.fill(new Rectangle(this.x - range, this.y - range, (range * 2) + side, (range * 2) + side));
+		}
 	}
 
 	public void drop() {
@@ -73,8 +80,8 @@ public class Bombs {
 	public boolean explode(int current) {
 		if (this.end == current) {
 			return true;
-		} else
-			return false;
+		}
+		return false;
 
 	}
 
@@ -119,31 +126,29 @@ public class Bombs {
 
 	public void grow() {
 		this.status = true;
-		this.myBomb = new Rectangle((int) this.myBomb.getX() - 40, (int) this.myBomb.getY() - 40, range, range);
+		this.myBomb = new Rectangle((int) this.myBomb.getX() - range, (int) this.myBomb.getY() - range,
+				(range * 2) + side, (range * 2) + side);
 
 	}
 
 	public void check() {
-		System.out.println("looking");
 		for (int w = 0; w < this.WB.size(); w++) {
-			System.out.println("scanning walls ");
 			if (this.WB.get(w).getRect().intersects(this.myBomb)) {
-				System.out.println("found!" + this.WB.get(w));
 				this.WB.remove(w);
+				w--;
 			}
 		}
 		for (int m = 0; m < this.Monsters.size(); m++) {
-			System.out.println("scanning monster ");
 			if (this.Monsters.get(m).getRect().intersects(this.myBomb)) {
-				System.out.println("killed monster" + this.Monsters.get(m));
 				this.Monsters.remove(m);
+				m--;
 			}
 		}
 	}
 
 	public void largerRange() {
 
-		this.range = 500;
+		this.range = 250;
 		System.out.println(range);
 
 	}

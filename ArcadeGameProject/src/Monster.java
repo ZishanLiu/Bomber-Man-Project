@@ -140,7 +140,6 @@ public class Monster {
 	}
 
 	public boolean checkHero() {
-		System.out.println(myhero);
 		try {
 			if (myhero.getBounds2D().intersects(this.getRect())) {
 				System.out.println("die");
