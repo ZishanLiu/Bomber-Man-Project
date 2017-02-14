@@ -102,14 +102,19 @@ public class Hero {
 		return RectY;
 	}
 
+	public void setBomb(Bombs mybomb) {
+		this.myBomb = mybomb;
+
+	}
+
 	public Rectangle2D getBounds2D() {
 		return new Rectangle(RectX, RectY, side, side);
 	}
 
 	public boolean checkContact() {
-//		if (myBomb.getRectangle().intersects(this.getBounds2D())) {
-//			return true;
-//		}
+		if (myBomb.getRectangle().intersects(this.getBounds2D())) {
+			return true;
+		}
 		for (Walls walli : WI) {
 			if (walli.getRect().intersects(this.getBounds2D())) {
 				return true;
@@ -124,7 +129,7 @@ public class Hero {
 
 		return false;
 	}
-	
+
 	public void addPowerUp(PowerUps pu) {
 		myPowerUps.add(pu);
 	}

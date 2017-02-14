@@ -17,6 +17,7 @@ public class Bombs {
 	private ArrayList<Walls> WB;
 	private ArrayList<Monster> Monsters;
 	private Rectangle myBomb;
+	private boolean status;
 	private int range;
 
 	public Bombs(Hero myHero, World game, int range) {
@@ -28,7 +29,8 @@ public class Bombs {
 		this.WB = game.WB;
 		this.side = 10;
 		this.Monsters = game.Monsters;
-		this.range = 80;
+		this.range = 90;
+		this.status = false;
 	}
 
 	public void drawOn(Graphics2D g2) {
@@ -86,6 +88,7 @@ public class Bombs {
 	}
 
 	public void move() {
+		this.status = false;
 		this.x = -10;
 		this.y = -10;
 		this.side = 10;
@@ -93,25 +96,29 @@ public class Bombs {
 	}
 
 	public Rectangle getRectangle() {
-		this.myBomb = new Rectangle((int) this.myBomb.getX(), (int) this.myBomb.getY(), 40, 40);
+		this.myBomb = new Rectangle((int) this.myBomb.getX(), (int) this.myBomb.getY(), side, side);
 		return this.myBomb;
 	}
 
 	public boolean checkHero() {
-		try {
-			if (this.myHero.getBounds2D().intersects(this.myBomb)) {
-				System.out.println("die");
-				this.game.retry();
-				return true;
+		if (this.status == true) {
+			System.out.println(this.status);
+			try {
+				if (this.myHero.getBounds2D().intersects(this.myBomb)) {
+					System.out.println("die");
+					this.game.retry();
+					return true;
+				}
+			} catch (IOException exception) {
+				throw new RuntimeException("failed checking hero vs bomb");
 			}
-		} catch (IOException exception) {
-			throw new RuntimeException("failed checking hero vs bomb");
 		}
 
 		return false;
 	}
 
 	public void grow() {
+		this.status = true;
 		this.myBomb = new Rectangle((int) this.myBomb.getX() - 40, (int) this.myBomb.getY() - 40, range, range);
 
 	}

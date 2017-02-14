@@ -61,6 +61,7 @@ public class World {
 						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
 						myBomb = new Bombs(hero, this, range);
+						hero.setBomb(myBomb);
 
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
@@ -87,8 +88,11 @@ public class World {
 				}
 			}
 		}
-		if (myworld.getCount() < 1){
-			t1.start();			
+		if (myworld.getCount() < 1) {
+			t1.start();
+		}
+		for (int m = 0; m < Monsters.size(); m++) {
+			Monsters.get(m).setHero(hero);
 		}
 		myworld.setMonster(Monsters);
 		myworld.setLargerRangeBomb(rangeBomb);

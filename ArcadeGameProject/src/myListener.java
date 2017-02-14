@@ -50,11 +50,11 @@ public class myListener implements KeyListener {
 			myHero.stuck(startX, startY);
 
 		}
-		
-		if(game.rangeBomb.getPowerup()){
-			
+
+		if (game.rangeBomb.getPowerup()) {
+
 			System.out.println("get");
-			
+
 		}
 
 	}

@@ -32,7 +32,7 @@ public class Walls extends JComponent {
 		this.game = game;
 		this.hero = game.hero;
 		this.bomb = bomb;
-		rect = new Rectangle((int)rectCenterX,(int)rectCenterY,side,side);
+		rect = new Rectangle((int) rectCenterX, (int) rectCenterY, side, side);
 	}
 
 	/*
