@@ -165,7 +165,7 @@ public class WorldComponent extends JComponent implements Runnable {
 				if (myBomb.explode(count)) {
 					myBomb.grow();
 					System.out.println("growing started");
-					// myBomb.checkHero();
+					myBomb.checkHero();
 					myBomb.check();
 					myBomb.move();
 					System.out.println("move started");
