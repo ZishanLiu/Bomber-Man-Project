@@ -17,7 +17,6 @@ public class Hero {
 	private ArrayList<Walls> WB;
 	private Bombs myBomb;
 	private char bombPlacement;
-	private ArrayList<PowerUps> myPowerUps;
 	private World game;
 
 	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, Bombs myBomb, World mygame) {
@@ -35,7 +34,6 @@ public class Hero {
 		this.WI = WI;
 		this.WB = WB;
 		this.myBomb = myBomb;
-		this.myPowerUps = new ArrayList<PowerUps>();
 		this.bombPlacement = 'u';
 		this.game = mygame;
 
@@ -137,8 +135,5 @@ public class Hero {
 		return false;
 	}
 
-	public void addPowerUp(PowerUps pu) {
-		myPowerUps.add(pu);
-	}
 
 }
