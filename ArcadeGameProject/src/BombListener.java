@@ -1,15 +1,16 @@
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class BombListener implements KeyListener {
 
-	private Bombs myBomb;
+	private ArrayList<Bombs> Bombs;
 	private Hero myHero;
 
-	public BombListener(Bombs myBomb) {
+	public BombListener(ArrayList<Bombs> Bombs) {
 
-		this.myBomb = myBomb;
+		this.Bombs = Bombs;
 
 	}
 
@@ -17,8 +18,12 @@ public class BombListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_Z) {
-
-			myBomb.drop();
+			for (int i = 0; i < Bombs.size(); i++) {
+				if (Bombs.get(i).CanReplace()) {
+					Bombs.get(i).drop();
+					break;
+				}
+			}
 
 		}
 

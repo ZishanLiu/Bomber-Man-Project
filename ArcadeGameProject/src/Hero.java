@@ -118,6 +118,7 @@ public class Hero {
 
 	public boolean checkContact() {
 		for (Bombs Bomb : Bombs) {
+			System.out.println(Bomb);
 			if (Bomb.getRectangle().intersects(this.getBounds2D())) {
 				return true;
 			}

@@ -69,7 +69,7 @@ public class World {
 						moreBomb = new BombIncrease(hero, myworld);
 
 						KeyListener mykey = new myListener(hero, this);
-						KeyListener myBombs = new BombListener(myBomb);
+						KeyListener myBombs = new BombListener(Bombs);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
 						myworld.setBombs(Bombs);
