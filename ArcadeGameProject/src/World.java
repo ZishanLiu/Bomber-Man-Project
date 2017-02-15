@@ -24,7 +24,7 @@ public class World {
 	int Lives;
 	LargerRangeBomb rangeBomb;
 	Bombs myBomb;
-
+	Boolean isPaused;
 	int range = 80;
 
 	public World(String level) {
@@ -32,6 +32,7 @@ public class World {
 		this.level = level;
 		this.chooser = new JFileChooser();
 		this.time = 200;
+		this.isPaused = false;
 		change = new LevelListener(this, this.level);
 		myWindow.addKeyListener(this.change);
 		t1 = new Thread(myworld);
@@ -57,7 +58,7 @@ public class World {
 						wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						hero = new Hero(WI, WB, myBomb);
+						hero = new Hero(WI, WB, myBomb, this);
 						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
 						myBomb = new Bombs(hero, this, range);
@@ -147,6 +148,14 @@ public class World {
 
 		}
 
+	}
+
+	public void pause() {
+		if (this.isPaused == false) {
+			this.isPaused = true;
+		} else {
+			this.isPaused = false;
+		}
 	}
 
 	public void CheckWin() {

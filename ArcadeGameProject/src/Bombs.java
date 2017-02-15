@@ -52,33 +52,35 @@ public class Bombs {
 	}
 
 	public void drop() {
-		int HeroCenterX = this.myHero.getX() + 10;
-		int HeroCenterY = this.myHero.getY() + 10;
-		if (this.CanReplace()) {
-			if (this.myHero.whereToPlaceBomb() == 'u') {
-				this.x = HeroCenterX;
-				this.y = HeroCenterY - 30;
+		if (!game.isPaused) {
+			int HeroCenterX = this.myHero.getX() + 10;
+			int HeroCenterY = this.myHero.getY() + 10;
+			if (this.CanReplace()) {
+				if (this.myHero.whereToPlaceBomb() == 'u') {
+					this.x = HeroCenterX;
+					this.y = HeroCenterY - 30;
+				}
+				if (this.myHero.whereToPlaceBomb() == 'd') {
+					this.x = HeroCenterX;
+					this.y = HeroCenterY + 30;
+				}
+				if (this.myHero.whereToPlaceBomb() == 'l') {
+					this.x = HeroCenterX - 30;
+					this.y = HeroCenterY;
+				}
+				if (this.myHero.whereToPlaceBomb() == 'r') {
+					this.x = HeroCenterX + 30;
+					this.y = HeroCenterY;
+				}
+				this.start = this.game.myworld.getCount();
+				this.end = this.start + 100;
 			}
-			if (this.myHero.whereToPlaceBomb() == 'd') {
-				this.x = HeroCenterX;
-				this.y = HeroCenterY + 30;
-			}
-			if (this.myHero.whereToPlaceBomb() == 'l') {
-				this.x = HeroCenterX - 30;
-				this.y = HeroCenterY;
-			}
-			if (this.myHero.whereToPlaceBomb() == 'r') {
-				this.x = HeroCenterX + 30;
-				this.y = HeroCenterY;
-			}
-			this.start = this.game.myworld.getCount();
-			this.end = this.start + 100;
 		}
 
 	}
 
 	public boolean explode(int current) {
-		if (this.end == current) {
+		if (this.end == current && !game.isPaused) {
 			return true;
 		}
 		return false;
@@ -148,8 +150,7 @@ public class Bombs {
 
 	public void largerRange() {
 
-		this.range = 250;
-		System.out.println(range);
+		this.range = 80;
 
 	}
 

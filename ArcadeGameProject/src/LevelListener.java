@@ -44,6 +44,9 @@ public class LevelListener implements KeyListener {
 				}
 			}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			game.pause();
+		}
 
 	}
 

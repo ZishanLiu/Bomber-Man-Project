@@ -18,8 +18,9 @@ public class Hero {
 	private Bombs myBomb;
 	private char bombPlacement;
 	private ArrayList<PowerUps> myPowerUps;
+	private World game;
 
-	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, Bombs myBomb) {
+	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, Bombs myBomb, World mygame) {
 		rect = new Rectangle();
 		rect.height = this.side;
 		rect.width = this.side;
@@ -36,6 +37,7 @@ public class Hero {
 		this.myBomb = myBomb;
 		this.myPowerUps = new ArrayList<PowerUps>();
 		this.bombPlacement = 'u';
+		this.game = mygame;
 
 		rect = new Rectangle(this.RectX, this.RectY, side, side);
 
@@ -71,26 +73,31 @@ public class Hero {
 	}
 
 	public void moveRight() {
-
-		RectX = RectX + 5;
-		bombPlacement = 'r';
-
+		if (!game.isPaused) {
+			RectX = RectX + 5;
+			bombPlacement = 'r';
+		}
 	}
 
 	public void moveLeft() {
-		RectX = RectX - 5;
-		bombPlacement = 'l';
+		if (!game.isPaused) {
+			RectX = RectX - 5;
+			bombPlacement = 'l';
+		}
 	}
 
 	public void moveUp() {
-		RectY = RectY - 5;
-		bombPlacement = 'u';
-
+		if (!game.isPaused) {
+			RectY = RectY - 5;
+			bombPlacement = 'u';
+		}
 	}
 
 	public void moveDown() {
-		RectY = RectY + 5;
-		bombPlacement = 'd';
+		if (!game.isPaused) {
+			RectY = RectY + 5;
+			bombPlacement = 'd';
+		}
 
 	}
 

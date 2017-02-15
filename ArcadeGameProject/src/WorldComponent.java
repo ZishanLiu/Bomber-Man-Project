@@ -100,63 +100,66 @@ public class WorldComponent extends JComponent implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println(myworld.isPaused);
 		try {
 			while (true) {
 				for (int i = 0; i < Monsters.size(); i++) {
-					if (i == 0) {
-						int startX = Monsters.get(i).getX();
-						int startY = Monsters.get(i).getY();
-						if (!Monsters.get(i).checkContact()) {
+					if (!myworld.isPaused) {
+						if (i == 0) {
+							int startX = Monsters.get(i).getX();
+							int startY = Monsters.get(i).getY();
+							if (!Monsters.get(i).checkContact()) {
 
-							Monsters.get(i).move(1, 0, 1);
+								Monsters.get(i).move(1, 0, 1);
 
-							if (Monsters.get(i).checkContact()) {
-								Monsters.get(i).stuck(startX, startY);
-								Monsters.get(i).move(1, 0, -1);
+								if (Monsters.get(i).checkContact()) {
+									Monsters.get(i).stuck(startX, startY);
+									Monsters.get(i).move(1, 0, -1);
+								}
+
+							}
+						}
+						if (i == 1) {
+							int startX = Monsters.get(i).getX();
+							int startY = Monsters.get(i).getY();
+							if (!Monsters.get(i).checkContact()) {
+
+								Monsters.get(i).move(0, 1, 1);
+
+								if (Monsters.get(i).checkContact()) {
+									Monsters.get(i).stuck(startX, startY);
+									Monsters.get(i).move(0, 1, -1);
+								}
 							}
 
 						}
-					}
-					if (i == 1) {
-						int startX = Monsters.get(i).getX();
-						int startY = Monsters.get(i).getY();
-						if (!Monsters.get(i).checkContact()) {
+						if (i == 2) {
+							int startX = Monsters.get(i).getX();
+							int startY = Monsters.get(i).getY();
+							int k = (int) (Math.round((Math.random())));
+							if (!Monsters.get(i).checkContact()) {
 
-							Monsters.get(i).move(0, 1, 1);
-
-							if (Monsters.get(i).checkContact()) {
-								Monsters.get(i).stuck(startX, startY);
-								Monsters.get(i).move(0, 1, -1);
+								Monsters.get(i).move(k, 1 - k, 1);
+								if (Monsters.get(i).checkContact()) {
+									Monsters.get(i).stuck(startX, startY);
+									Monsters.get(i).move(k, 1 - k, -1);
+								}
 							}
-						}
+							if (!Monsters.get(i).checkContact()) {
 
-					}
-					if (i == 2) {
-						int startX = Monsters.get(i).getX();
-						int startY = Monsters.get(i).getY();
-						int k = (int) (Math.round((Math.random())));
-						if (!Monsters.get(i).checkContact()) {
-
-							Monsters.get(i).move(k, 1 - k, 1);
-							if (Monsters.get(i).checkContact()) {
-								Monsters.get(i).stuck(startX, startY);
-								Monsters.get(i).move(k, 1 - k, -1);
+								Monsters.get(i).move(k, 1 - k, 1);
+								if (Monsters.get(i).checkContact()) {
+									Monsters.get(i).stuck(startX, startY);
+									Monsters.get(i).move(k, 1 - k, -1);
+								}
 							}
-						}
-						if (!Monsters.get(i).checkContact()) {
+							if (!Monsters.get(i).checkContact()) {
 
-							Monsters.get(i).move(k, 1 - k, 1);
-							if (Monsters.get(i).checkContact()) {
-								Monsters.get(i).stuck(startX, startY);
-								Monsters.get(i).move(k, 1 - k, -1);
-							}
-						}
-						if (!Monsters.get(i).checkContact()) {
-
-							Monsters.get(i).move(k, 1 - k, 1);
-							if (Monsters.get(i).checkContact()) {
-								Monsters.get(i).stuck(startX, startY);
-								Monsters.get(i).move(k, 1 - k, -1);
+								Monsters.get(i).move(k, 1 - k, 1);
+								if (Monsters.get(i).checkContact()) {
+									Monsters.get(i).stuck(startX, startY);
+									Monsters.get(i).move(k, 1 - k, -1);
+								}
 							}
 						}
 
@@ -185,6 +188,6 @@ public class WorldComponent extends JComponent implements Runnable {
 			// TODO Auto-generated catch-block stub.
 			throw new RuntimeException(exception.toString());
 		}
-
 	}
+
 }
