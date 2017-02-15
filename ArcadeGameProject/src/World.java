@@ -13,6 +13,7 @@ public class World {
 	private int time;
 	ArrayList<Walls> WI = new ArrayList<Walls>();
 	ArrayList<Walls> WB = new ArrayList<Walls>();
+	ArrayList<Bombs> Bombs = new ArrayList<Bombs>();
 	ArrayList<Monster> Monsters = new ArrayList<Monster>();
 
 	JFrame myWindow = new JFrame();
@@ -26,6 +27,7 @@ public class World {
 	Bombs myBomb;
 	Boolean isPaused;
 	int range = 80;
+	private BombIncrease moreBomb;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -58,19 +60,22 @@ public class World {
 						wall = new Walls(x, y, this);
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
-						hero = new Hero(WI, WB, myBomb, this);
+						hero = new Hero(WI, WB, Bombs, this);
 						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
 						myBomb = new Bombs(hero, this, range);
-						hero.setBomb(myBomb);
+						Bombs.add(myBomb);
+						hero.setBomb(Bombs);
+						moreBomb = new BombIncrease(hero, myworld);
 
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(myBomb);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
-						myworld.setBombs(myBomb);
+						myworld.setBombs(Bombs);
 						myworld.sethero(hero);
 						myworld.setworld(this);
+						myworld.setBombIncrease(moreBomb);
 
 					} else if (line.charAt(x) == 'e') {
 
@@ -109,6 +114,7 @@ public class World {
 
 	public void ChangeLevel(String level) throws IOException {
 		Monsters.clear();
+		Bombs.clear();
 		WI.clear();
 		WB.clear();
 		this.level = level;
@@ -121,6 +127,7 @@ public class World {
 	public void retry() throws IOException {
 		Lives -= 1;
 		Monsters.clear();
+		Bombs.clear();
 		WI.clear();
 		WB.clear();
 		this.time = 200;
@@ -131,6 +138,7 @@ public class World {
 
 	public void win() throws IOException {
 		Monsters.clear();
+		Bombs.clear();
 		WI.clear();
 		WB.clear();
 		this.time = 200;

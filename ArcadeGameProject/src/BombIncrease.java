@@ -2,11 +2,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class BombIncrease {
+public class BombIncrease implements PowerUps {
 	private Rectangle moreBomb;
 	private Hero myHero;
 
-	private int RectX = 240;
+	private int RectX = 400;
 	private int RectY = 287;
 	private int grid = 50;
 	private int side = 25;
@@ -17,10 +17,11 @@ public class BombIncrease {
 		this.myHero = myHero;
 		this.myComponent = myComponent;
 	}
+
 	public void drawOn(Graphics2D g2) {
 
 		Graphics2D g = (Graphics2D) g2;
-		g.setColor(Color.WHITE);
+		g.setColor(Color.pink);
 
 		moreBomb = new Rectangle(RectX, RectY, side, side);
 
@@ -43,8 +44,9 @@ public class BombIncrease {
 	public boolean getPowerup() {
 
 		if (myHero.getBounds2D().intersects(this.getRect())) {
+			myComponent.newBomb();
 			side = 0;
-			System.out.println("big");
+			System.out.println("More!");
 			return true;
 
 		}

@@ -9,7 +9,7 @@ public class WorldComponent extends JComponent implements Runnable {
 
 	private ArrayList<Walls> WI;
 	private Hero myhero;
-	private Bombs myBomb;
+	private ArrayList<Bombs> Bombs;
 	ArrayList<Monster> Monsters;
 	private ArrayList<Walls> WB;
 	private int count = 0;
@@ -17,6 +17,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private LargerRangeBomb rangeBomb;
 	private double prob = Math.random();
 	private int range;
+	private BombIncrease moreBomb;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -26,8 +27,8 @@ public class WorldComponent extends JComponent implements Runnable {
 		this.WI = WI;
 	}
 
-	public void setBombs(Bombs myBomb) {
-		this.myBomb = myBomb;
+	public void setBombs(ArrayList<Bombs> Bombs) {
+		this.Bombs = Bombs;
 	}
 
 	public void setWB(ArrayList<Walls> WB) {
@@ -46,16 +47,29 @@ public class WorldComponent extends JComponent implements Runnable {
 
 	}
 
+	public void setBombIncrease(BombIncrease moreBomb) {
+
+		this.moreBomb = moreBomb;
+
+	}
+
 	public int getCount() {
 
 		return count;
 
 	}
 
+	public void newBomb() {
+		Bombs myBomb = new Bombs(myhero, myworld, range);
+		Bombs.add(myBomb);
+	}
+
 	public void increaseRange() {
 
 		range = 200;
-		this.myBomb.largerRange();
+		for (int i = 0; i < Bombs.size(); i++) {
+			this.Bombs.get(i).largerRange();
+		}
 
 	}
 
@@ -80,10 +94,14 @@ public class WorldComponent extends JComponent implements Runnable {
 		}
 
 		myworld.CheckWin();
-		myBomb.checkHero();
+		for (int i = 0; i < Bombs.size(); i++) {
+			Bombs.get(i).checkHero();
+			Bombs.get(i).drawOn(g2);
+		}
 		myhero.drawOn(g2);
-		myBomb.drawOn(g2);
 		rangeBomb.drawOn(g2);
+		moreBomb.drawOn(g2);
+		moreBomb.getPowerup();
 
 		for (int i = 0; i < Monsters.size(); i++) {
 			Monsters.get(i).drawOn(g2);
@@ -165,16 +183,18 @@ public class WorldComponent extends JComponent implements Runnable {
 
 					}
 				}
-				if (myBomb.explode(count)) {
-					myBomb.grow();
-					System.out.println("growing started");
-					myBomb.checkHero();
-					myBomb.check();
-				}
-				if (myBomb.explode(count - 5)) {
-					System.out.println("move started");
-					myBomb.move();
+				for (int i = 0; i < Bombs.size(); i++) {
+					if (Bombs.get(i).explode(count)) {
+						Bombs.get(i).grow();
+						System.out.println("growing started");
+						Bombs.get(i).checkHero();
+						Bombs.get(i).check();
+					}
+					if (Bombs.get(i).explode(count - 5)) {
+						System.out.println("move started");
+						Bombs.get(i).move();
 
+					}
 				}
 				if (myworld.Lives == 0) {
 					System.exit(0);

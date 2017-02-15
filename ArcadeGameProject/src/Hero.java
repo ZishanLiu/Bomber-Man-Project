@@ -15,11 +15,11 @@ public class Hero {
 	private int side = 30;
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
-	private Bombs myBomb;
+	private ArrayList<Bombs> Bombs;
 	private char bombPlacement;
 	private World game;
 
-	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, Bombs myBomb, World mygame) {
+	public Hero(ArrayList<Walls> WI, ArrayList<Walls> WB, ArrayList<Bombs> Bombs, World mygame) {
 		rect = new Rectangle();
 		rect.height = this.side;
 		rect.width = this.side;
@@ -33,7 +33,7 @@ public class Hero {
 
 		this.WI = WI;
 		this.WB = WB;
-		this.myBomb = myBomb;
+		this.Bombs = Bombs;
 		this.bombPlacement = 'u';
 		this.game = mygame;
 
@@ -107,8 +107,8 @@ public class Hero {
 		return RectY;
 	}
 
-	public void setBomb(Bombs mybomb) {
-		this.myBomb = mybomb;
+	public void setBomb(ArrayList<Bombs> Bombs) {
+		this.Bombs = Bombs;
 
 	}
 
@@ -117,8 +117,10 @@ public class Hero {
 	}
 
 	public boolean checkContact() {
-		if (myBomb.getRectangle().intersects(this.getBounds2D())) {
-			return true;
+		for (Bombs Bomb : Bombs) {
+			if (Bomb.getRectangle().intersects(this.getBounds2D())) {
+				return true;
+			}
 		}
 		for (Walls walli : WI) {
 			if (walli.getRect().intersects(this.getBounds2D())) {
@@ -134,6 +136,5 @@ public class Hero {
 
 		return false;
 	}
-
 
 }
