@@ -15,7 +15,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private int count = 0;
 	private World myworld;
 	private LargerRangeBomb rangeBomb;
-
+	private double prob = Math.random();
 	private int range;
 
 	public void sethero(Hero myhero) {
@@ -105,7 +105,7 @@ public class WorldComponent extends JComponent implements Runnable {
 			while (true) {
 				for (int i = 0; i < Monsters.size(); i++) {
 					if (!myworld.isPaused) {
-						if (i == 0) {
+						if (Monsters.get(i).getType() == 0) {
 							int startX = Monsters.get(i).getX();
 							int startY = Monsters.get(i).getY();
 							if (!Monsters.get(i).checkContact()) {
@@ -119,7 +119,7 @@ public class WorldComponent extends JComponent implements Runnable {
 
 							}
 						}
-						if (i == 1) {
+						if (Monsters.get(i).getType() == 1) {
 							int startX = Monsters.get(i).getX();
 							int startY = Monsters.get(i).getY();
 							if (!Monsters.get(i).checkContact()) {
@@ -133,7 +133,7 @@ public class WorldComponent extends JComponent implements Runnable {
 							}
 
 						}
-						if (i == 2) {
+						if (Monsters.get(i).getType() == 2) {
 							int startX = Monsters.get(i).getX();
 							int startY = Monsters.get(i).getY();
 							int k = (int) (Math.round((Math.random())));

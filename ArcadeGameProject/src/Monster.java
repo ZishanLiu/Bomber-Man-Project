@@ -17,15 +17,17 @@ public class Monster {
 	private int moveXby = 5;
 	private int moveYby = 5;
 
+	private int type;
+
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
 
-	public Monster(Hero myhero, World myWorld, ArrayList<Walls> WI, ArrayList<Walls> WB) {
+	public Monster(Hero myhero, World myWorld, ArrayList<Walls> WI, ArrayList<Walls> WB, int type) {
 		this.myhero = myhero;
 		this.myWorld = myWorld;
 		int x = -10;
 		int y = -10;
-
+		this.type = type;
 		this.WI = WI;
 		this.WB = WB;
 
@@ -72,36 +74,6 @@ public class Monster {
 		RectY = RectY + moveYby * y;
 		RectX = RectX + moveXby * x;
 	}
-
-	// public void moveUpandDown() {
-	// if (!myWorld.myMonster.checkContact()) {
-	//
-	// RectY = RectY + moveYby;
-	//
-	// } else if (myWorld.myMonster.checkContact()) {
-	// moveYby = moveYby * -1;
-	// RectY = RectY + moveYby;
-	// }
-	//
-	// }
-	//
-	// public void moveLeftandRight() {
-	// counter = 0;
-	// if (!myWorld.myMonster.checkContact()) {
-	//
-	// RectX = RectX + moveXby;
-	//
-	// } else if (myWorld.myMonster.checkContact()) {
-	// moveXby = moveXby * -1;
-	// RectX = RectX + moveXby;
-	// }
-	// }
-	//
-	// public void moveForMonster3() {
-	//
-	// RectY -= 1;
-	//
-	// }
 
 	public Rectangle2D getBounds2D() {
 		return new Rectangle(RectX, RectY, side, side);
@@ -151,6 +123,18 @@ public class Monster {
 		}
 
 		return false;
+	}
+
+	public void disappear() {
+
+		this.side = 0;
+
+	}
+
+	public int getType() {
+
+		return this.type;
+
 	}
 
 }

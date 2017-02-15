@@ -74,7 +74,7 @@ public class World {
 
 					} else if (line.charAt(x) == 'e') {
 
-						Monster myMonster = new Monster(hero, this, WI, WB);
+						Monster myMonster = new Monster(hero, this, WI, WB, Monsters.size());
 						myMonster.set(x, y);
 						Monsters.add(myMonster);
 

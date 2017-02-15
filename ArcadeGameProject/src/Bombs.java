@@ -142,6 +142,7 @@ public class Bombs {
 		}
 		for (int m = 0; m < this.Monsters.size(); m++) {
 			if (this.Monsters.get(m).getRect().intersects(this.myBomb)) {
+
 				this.Monsters.remove(m);
 				m--;
 			}
