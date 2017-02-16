@@ -30,6 +30,9 @@ public class World {
 	private BombIncrease moreBomb;
 	private RemoteBomb remotebomb;
 	private realRemote realRemote;
+	private RemoteBombListener myRemote;
+	private myListener mykey;
+	private BombListener myBombs;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -46,6 +49,9 @@ public class World {
 	public void load() throws IOException {
 
 		myWindow.removeKeyListener(this.change);
+		myWindow.removeKeyListener(mykey);
+		myWindow.removeKeyListener(myBombs);
+		myWindow.removeKeyListener(myRemote);
 
 		myWindow.setSize(1100, 900);
 		myWindow.setTitle("BomberMan");
@@ -66,16 +72,16 @@ public class World {
 						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
 						myBomb = new Bombs(hero, this, range);
-						realRemote = new realRemote(hero,this,range);
-						
+						realRemote = new realRemote(hero, this, range);
+
+						moreBomb = new BombIncrease(hero, myworld);
 						Bombs.add(myBomb);
 						hero.setBomb(Bombs);
-						moreBomb = new BombIncrease(hero, myworld);
-						remotebomb = new RemoteBomb(hero,this,realRemote);
-						
-						KeyListener myRemote = new RemoteBombListener(remotebomb,realRemote);
-						KeyListener mykey = new myListener(hero, this);
-						KeyListener myBombs = new BombListener(Bombs);
+						remotebomb = new RemoteBomb(hero, this, realRemote);
+
+						myRemote = new RemoteBombListener(remotebomb, realRemote);
+						mykey = new myListener(hero, this);
+						myBombs = new BombListener(Bombs);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
 						myWindow.addKeyListener(myRemote);
@@ -85,8 +91,6 @@ public class World {
 						myworld.setworld(this);
 						myworld.setBombIncrease(moreBomb);
 						myworld.setRemoteBomb(remotebomb);
-						
-						
 
 					} else if (line.charAt(x) == 'e') {
 
@@ -97,6 +101,13 @@ public class World {
 					} else if (line.charAt(x) == 'b') {
 						wall = new Walls(x, y, this);
 						this.WB.add(wall);
+
+					} else if (line.charAt(x) == '2') {
+						continue;
+						// moreBomb = new BombIncrease(hero, myworld);
+						// moreBomb.set(x, y);
+						// wall = new Walls(x, y, this);
+						// this.WB.add(wall);
 
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
