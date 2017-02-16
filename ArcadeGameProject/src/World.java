@@ -146,6 +146,7 @@ public class World {
 	public void ChangeLevel(String level) throws IOException {
 		Monsters.clear();
 		Bombs.clear();
+		Powerups.clear();
 		WI.clear();
 		WB.clear();
 		this.level = level;
@@ -159,6 +160,7 @@ public class World {
 		Lives -= 1;
 		Monsters.clear();
 		Bombs.clear();
+		Powerups.clear();
 		WI.clear();
 		WB.clear();
 		this.time = 200;
@@ -170,6 +172,7 @@ public class World {
 	public void win() throws IOException {
 		Monsters.clear();
 		Bombs.clear();
+		Powerups.clear();
 		WI.clear();
 		WB.clear();
 		this.time = 200;
