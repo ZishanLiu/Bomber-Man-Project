@@ -51,7 +51,13 @@ public class Walls extends JComponent {
 		}
 		g2.fill(rect);
 	}
-
+	
+	/*
+	 * This function controls when a breakable wall explodes.
+	 * 
+	 * @param wall - The wall that is to be destroyed by the bomb
+	 * 
+	 */
 	public void die(Walls wall) {
 		rect.setLocation(-10, -10);
 		rect.setSize(0, 0);
