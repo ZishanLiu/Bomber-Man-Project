@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class LargerRangeBomb {
+public class LargerRangeBomb implements PowerUps{
 
 	private Rectangle RangeBomb;
 	private Hero myHero;
@@ -54,6 +54,11 @@ public class LargerRangeBomb {
 		}
 
 		return false;
+	}
+
+	public void setHero(Hero hero) {
+		this.myHero = hero;
+		
 	}
 
 }

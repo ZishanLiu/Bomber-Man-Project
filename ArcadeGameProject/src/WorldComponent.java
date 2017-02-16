@@ -233,6 +233,21 @@ public class WorldComponent extends JComponent implements Runnable {
 						Bombs.get(i).move();
 
 					}
+//					ex: for (int i = 0; i < Bombs.size(); i++) {
+//						if (Bombs.get(i).explode(count)) {
+//							Bombs.get(i).grow();
+//							System.out.println("growing started");
+//							if (!Bombs.get(i).checkHero()) {
+//								Bombs.get(i).check();
+//							} else {
+//								break ex;
+//							}
+//						}
+//						if (Bombs.get(i).explode(count - 5)) {
+//							System.out.println("move started");
+//							Bombs.get(i).move();
+//
+//						}
 				}
 				if (myworld.Lives == 0) {
 					System.exit(0);

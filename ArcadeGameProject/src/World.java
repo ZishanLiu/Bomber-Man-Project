@@ -71,28 +71,19 @@ public class World {
 						this.WI.add(wall);
 					} else if (line.charAt(x) == 'h') {
 						hero = new Hero(WI, WB, Bombs, this);
-						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
 						myBomb = new Bombs(hero, this, range);
-						realRemote = new realRemote(hero, this, range);
 
-						moreBomb = new BombIncrease(hero, myworld);
 						Bombs.add(myBomb);
 						hero.setBomb(Bombs);
-						remotebomb = new RemoteBomb(hero, this, realRemote);
 
-						myRemote = new RemoteBombListener(remotebomb, realRemote);
 						mykey = new myListener(hero, this);
 						myBombs = new BombListener(Bombs);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
-						myWindow.addKeyListener(myRemote);
 						myworld.setBombs(Bombs);
-						myworld.setRealRemote(realRemote);
 						myworld.sethero(hero);
 						myworld.setworld(this);
-						myworld.setBombIncrease(moreBomb);
-						myworld.setRemoteBomb(remotebomb);
 
 						info = new information(Lives, time, this);
 						myworld.setInfo(info);
@@ -107,12 +98,31 @@ public class World {
 						wall = new Walls(x, y, this);
 						this.WB.add(wall);
 
+					} else if (line.charAt(x) == '1') {
+						realRemote = new realRemote(hero, this, range);
+						remotebomb = new RemoteBomb(hero, this, realRemote);
+						myRemote = new RemoteBombListener(remotebomb, realRemote);
+						myworld.setRealRemote(realRemote);
+						myWindow.addKeyListener(myRemote);
+						myworld.setBombIncrease(moreBomb);
+						myworld.setRemoteBomb(remotebomb);
+						remotebomb.set(x, y);
+						Powerups.add(remotebomb);
+						wall = new Walls(x, y, this);
+						this.WB.add(wall);
 					} else if (line.charAt(x) == '2') {
 						moreBomb = new BombIncrease(hero, myworld);
 						moreBomb.set(x, y);
 						Powerups.add(moreBomb);
 						wall = new Walls(x, y, this);
 						this.WB.add(wall);
+					} else if (line.charAt(x) == '3') {
+						rangeBomb = new LargerRangeBomb(hero, myworld);
+						rangeBomb.set(x, y);
+						Powerups.add(rangeBomb);
+						wall = new Walls(x, y, this);
+						this.WB.add(wall);
+
 
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
