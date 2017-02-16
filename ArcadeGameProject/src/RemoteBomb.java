@@ -1,8 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
-public class RemoteBomb implements PowerUps{
+public class RemoteBomb implements PowerUps {
 	private Rectangle remoteBomb;
 	private Hero myHero;
 
@@ -10,12 +11,22 @@ public class RemoteBomb implements PowerUps{
 	private int RectY = 287;
 	private int grid = 50;
 	private int side = 25;
-	private WorldComponent myComponent;
-
-	public RemoteBomb(Hero myHero, WorldComponent myComponent){
+	
+	private realRemote realRemote;
+	
+	private ArrayList<Walls> WB;
+	private ArrayList<Monster> Monsters;
+	
+	private int range = 80;
+	
+	private World game;
+	
+	
+	public RemoteBomb(Hero myHero,World game, realRemote realRemote){
 		
 		this.myHero = myHero;
-		this.myComponent = myComponent;
+		this.game = game;
+		this.realRemote = realRemote;
 		this.remoteBomb = remoteBomb;
 		
 	}
@@ -23,11 +34,9 @@ public class RemoteBomb implements PowerUps{
 	@Override
 	public boolean getPowerup() {
 		if (myHero.getBounds2D().intersects(this.getRect())) {
-			myComponent.newBomb();
 			side = 0;
 			System.out.println("Remote");
 			return true;
-
 		}
 
 		return false;
@@ -56,5 +65,7 @@ public class RemoteBomb implements PowerUps{
 		g.fill(remoteBomb);
 		
 	}
+	
+
 
 }

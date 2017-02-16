@@ -19,6 +19,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private int range;
 	private BombIncrease moreBomb;
 	private RemoteBomb remoteBomb;
+	private realRemote realRemote;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -58,6 +59,12 @@ public class WorldComponent extends JComponent implements Runnable {
 		
 		this.remoteBomb = remoteBomb;
 		
+	}
+	
+	public void setRealRemote(realRemote myReal){
+		
+		
+		this.realRemote = myReal;
 	}
 	
 	public int getCount() {
@@ -111,6 +118,9 @@ public class WorldComponent extends JComponent implements Runnable {
 		moreBomb.getPowerup();
 		remoteBomb.drawOn(g2);
 		remoteBomb.getPowerup();
+		
+		realRemote.checkHero();
+		realRemote.drawOn(g2);
 
 		for (int i = 0; i < Monsters.size(); i++) {
 			Monsters.get(i).drawOn(g2);

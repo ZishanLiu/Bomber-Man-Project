@@ -29,6 +29,7 @@ public class World {
 	int range = 80;
 	private BombIncrease moreBomb;
 	private RemoteBomb remotebomb;
+	private realRemote realRemote;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -65,20 +66,27 @@ public class World {
 						rangeBomb = new LargerRangeBomb(hero, myworld);
 						hero.set(x, y);
 						myBomb = new Bombs(hero, this, range);
+						realRemote = new realRemote(hero,this,range);
+						
 						Bombs.add(myBomb);
 						hero.setBomb(Bombs);
 						moreBomb = new BombIncrease(hero, myworld);
-						remotebomb = new RemoteBomb(hero,myworld);
+						remotebomb = new RemoteBomb(hero,this,realRemote);
 						
+						KeyListener myRemote = new RemoteBombListener(remotebomb,realRemote);
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(Bombs);
 						myWindow.addKeyListener(mykey);
 						myWindow.addKeyListener(myBombs);
+						myWindow.addKeyListener(myRemote);
 						myworld.setBombs(Bombs);
+						myworld.setRealRemote(realRemote);
 						myworld.sethero(hero);
 						myworld.setworld(this);
 						myworld.setBombIncrease(moreBomb);
 						myworld.setRemoteBomb(remotebomb);
+						
+						
 
 					} else if (line.charAt(x) == 'e') {
 
