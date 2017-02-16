@@ -15,6 +15,7 @@ public class BombIncrease implements PowerUps {
 	public BombIncrease(Hero myHero, WorldComponent myComponent) {
 		this.moreBomb = moreBomb;
 		this.myHero = myHero;
+		System.out.println("constructor" + myHero);
 		this.myComponent = myComponent;
 	}
 
@@ -34,6 +35,12 @@ public class BombIncrease implements PowerUps {
 
 	}
 
+	public void setHero(Hero myHero) {
+
+		this.myHero = myHero;
+
+	}
+
 	public void set(int x, int y) {
 
 		this.RectX = (x * grid) + grid / 2 + 10;
@@ -42,7 +49,7 @@ public class BombIncrease implements PowerUps {
 	}
 
 	public boolean getPowerup() {
-
+		System.out.println(myHero);
 		if (myHero.getBounds2D().intersects(this.getRect())) {
 			myComponent.newBomb();
 			side = 0;

@@ -11,24 +11,23 @@ public class RemoteBomb implements PowerUps {
 	private int RectY = 287;
 	private int grid = 50;
 	private int side = 25;
-	
+
 	private realRemote realRemote;
-	
+
 	private ArrayList<Walls> WB;
 	private ArrayList<Monster> Monsters;
-	
+
 	private int range = 80;
-	
+
 	private World game;
-	
-	
-	public RemoteBomb(Hero myHero,World game, realRemote realRemote){
-		
+
+	public RemoteBomb(Hero myHero, World game, realRemote realRemote) {
+
 		this.myHero = myHero;
 		this.game = game;
 		this.realRemote = realRemote;
 		this.remoteBomb = remoteBomb;
-		
+
 	}
 
 	@Override
@@ -42,16 +41,22 @@ public class RemoteBomb implements PowerUps {
 		return false;
 	}
 
+	public void setHero(Hero myHero) {
+
+		this.myHero = myHero;
+
+	}
+
 	@Override
 	public void set(int x, int y) {
 		this.RectX = (x * grid) + grid / 2 + 10;
 		this.RectY = (y * grid) + grid / 2 + 10;
-		
+
 	}
 
 	@Override
 	public Rectangle getRect() {
-		
+
 		return new Rectangle(RectX, RectY, side, side);
 	}
 
@@ -63,9 +68,7 @@ public class RemoteBomb implements PowerUps {
 		remoteBomb = new Rectangle(RectX, RectY, side, side);
 
 		g.fill(remoteBomb);
-		
-	}
-	
 
+	}
 
 }

@@ -15,6 +15,7 @@ public class World {
 	ArrayList<Walls> WB = new ArrayList<Walls>();
 	ArrayList<Bombs> Bombs = new ArrayList<Bombs>();
 	ArrayList<Monster> Monsters = new ArrayList<Monster>();
+	ArrayList<PowerUps> Powerups = new ArrayList<PowerUps>();
 
 	JFrame myWindow = new JFrame();
 	WorldComponent myworld = new WorldComponent();
@@ -103,11 +104,11 @@ public class World {
 						this.WB.add(wall);
 
 					} else if (line.charAt(x) == '2') {
-						continue;
-						// moreBomb = new BombIncrease(hero, myworld);
-						// moreBomb.set(x, y);
-						// wall = new Walls(x, y, this);
-						// this.WB.add(wall);
+						 moreBomb = new BombIncrease(hero, myworld);
+						 moreBomb.set(x, y);
+						 Powerups.add(moreBomb);
+						 wall = new Walls(x, y, this);
+						 this.WB.add(wall);
 
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
@@ -122,6 +123,10 @@ public class World {
 		for (int m = 0; m < Monsters.size(); m++) {
 			Monsters.get(m).setHero(hero);
 		}
+		for (int m = 0; m < Powerups.size(); m++) {
+			Powerups.get(m).setHero(hero);
+		}
+		myworld.setPowerUps(Powerups);
 		myworld.setMonster(Monsters);
 		myworld.setLargerRangeBomb(rangeBomb);
 		myworld.setWI(WI);

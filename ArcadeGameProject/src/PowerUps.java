@@ -10,4 +10,6 @@ public interface PowerUps {
 
 	public void drawOn(Graphics2D g2);
 
+	public void setHero(Hero hero);
+
 }

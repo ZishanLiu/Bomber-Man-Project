@@ -20,6 +20,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private BombIncrease moreBomb;
 	private RemoteBomb remoteBomb;
 	private realRemote realRemote;
+	private ArrayList<PowerUps> powerup;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -55,18 +56,23 @@ public class WorldComponent extends JComponent implements Runnable {
 
 	}
 
-	public void setRemoteBomb(RemoteBomb remoteBomb){
-		
-		this.remoteBomb = remoteBomb;
-		
+	public void setPowerUps(ArrayList<PowerUps> power) {
+
+		this.powerup = power;
+
 	}
-	
-	public void setRealRemote(realRemote myReal){
-		
-		
+
+	public void setRemoteBomb(RemoteBomb remoteBomb) {
+
+		this.remoteBomb = remoteBomb;
+
+	}
+
+	public void setRealRemote(realRemote myReal) {
+
 		this.realRemote = myReal;
 	}
-	
+
 	public int getCount() {
 
 		return count;
@@ -113,17 +119,21 @@ public class WorldComponent extends JComponent implements Runnable {
 			Bombs.get(i).drawOn(g2);
 		}
 		myhero.drawOn(g2);
-		rangeBomb.drawOn(g2);
-		moreBomb.drawOn(g2);
-		moreBomb.getPowerup();
-		remoteBomb.drawOn(g2);
-		remoteBomb.getPowerup();
-		
+		// rangeBomb.drawOn(g2);
+		// moreBomb.drawOn(g2);
+		// moreBomb.getPowerup();
+		// remoteBomb.drawOn(g2);
+		// remoteBomb.getPowerup();
+		//
 		realRemote.checkHero();
-		realRemote.drawOn(g2);
+		// realRemote.drawOn(g2);
 
 		for (int i = 0; i < Monsters.size(); i++) {
 			Monsters.get(i).drawOn(g2);
+		}
+		for (int i = 0; i < this.powerup.size(); i++) {
+			this.powerup.get(i).drawOn(g2);
+			this.powerup.get(i).getPowerup();
 		}
 
 		for (int i = 0; i < WI.size(); i++) {
@@ -202,12 +212,15 @@ public class WorldComponent extends JComponent implements Runnable {
 
 					}
 				}
-				for (int i = 0; i < Bombs.size(); i++) {
+				explode: for (int i = 0; i < Bombs.size(); i++) {
 					if (Bombs.get(i).explode(count)) {
 						Bombs.get(i).grow();
 						System.out.println("growing started");
-						Bombs.get(i).checkHero();
-						Bombs.get(i).check();
+						if (!Bombs.get(i).checkHero()) {
+							Bombs.get(i).check();
+						} else {
+							break explode;
+						}
 					}
 					if (Bombs.get(i).explode(count - 5)) {
 						System.out.println("move started");
