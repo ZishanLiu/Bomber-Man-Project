@@ -9,4 +9,5 @@ public interface PowerUps {
 	public Rectangle getRect();
 
 	public void drawOn(Graphics2D g2);
+
 }

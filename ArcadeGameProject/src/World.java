@@ -28,6 +28,7 @@ public class World {
 	Boolean isPaused;
 	int range = 80;
 	private BombIncrease moreBomb;
+	private RemoteBomb remotebomb;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -67,7 +68,8 @@ public class World {
 						Bombs.add(myBomb);
 						hero.setBomb(Bombs);
 						moreBomb = new BombIncrease(hero, myworld);
-
+						remotebomb = new RemoteBomb(hero,myworld);
+						
 						KeyListener mykey = new myListener(hero, this);
 						KeyListener myBombs = new BombListener(Bombs);
 						myWindow.addKeyListener(mykey);
@@ -76,6 +78,7 @@ public class World {
 						myworld.sethero(hero);
 						myworld.setworld(this);
 						myworld.setBombIncrease(moreBomb);
+						myworld.setRemoteBomb(remotebomb);
 
 					} else if (line.charAt(x) == 'e') {
 
