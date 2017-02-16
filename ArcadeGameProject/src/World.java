@@ -34,6 +34,7 @@ public class World {
 	private RemoteBombListener myRemote;
 	private myListener mykey;
 	private BombListener myBombs;
+	private information info;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -93,6 +94,9 @@ public class World {
 						myworld.setBombIncrease(moreBomb);
 						myworld.setRemoteBomb(remotebomb);
 
+						info = new information(Lives, time, this);
+						myworld.setInfo(info);
+
 					} else if (line.charAt(x) == 'e') {
 
 						Monster myMonster = new Monster(hero, this, WI, WB, Monsters.size());
@@ -104,11 +108,11 @@ public class World {
 						this.WB.add(wall);
 
 					} else if (line.charAt(x) == '2') {
-						 moreBomb = new BombIncrease(hero, myworld);
-						 moreBomb.set(x, y);
-						 Powerups.add(moreBomb);
-						 wall = new Walls(x, y, this);
-						 this.WB.add(wall);
+						moreBomb = new BombIncrease(hero, myworld);
+						moreBomb.set(x, y);
+						Powerups.add(moreBomb);
+						wall = new Walls(x, y, this);
+						this.WB.add(wall);
 
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");

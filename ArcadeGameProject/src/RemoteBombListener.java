@@ -15,19 +15,22 @@ public class RemoteBombListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
-		if (e.getKeyCode() == KeyEvent.VK_A) {
-			if (myReal.CanReplace()) {
+		if (myRemote.getPowerup() == true) {
+			if (e.getKeyCode() == KeyEvent.VK_A) {
+				if (myReal.CanReplace()) {
+					System.out.println("f");
+					myReal.drop();
 
-				myReal.drop();
-
+				}
 			}
 		}
+		if (myRemote.getPowerup() == true) {
+			if (e.getKeyCode() == KeyEvent.VK_B) {
 
-		if (e.getKeyCode() == KeyEvent.VK_B) {
-
-			myReal.grow();
-			myReal.check();
-			myReal.checkHero();
+				myReal.grow();
+				myReal.check();
+				myReal.checkHero();
+			}
 		}
 	}
 

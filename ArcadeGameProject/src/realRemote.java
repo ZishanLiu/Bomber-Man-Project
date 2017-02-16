@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class realRemote  {
+public class realRemote {
 
 	private int x = -10;
 	private int y = -10;
@@ -19,7 +19,7 @@ public class realRemote  {
 	private Rectangle myBomb;
 	private boolean status;
 	private int range;
-	
+
 	private int count = 0;
 
 	public realRemote(Hero myHero, World game, int range) {
@@ -132,9 +132,6 @@ public class realRemote  {
 		this.status = true;
 		this.myBomb = new Rectangle((int) this.myBomb.getX() - range, (int) this.myBomb.getY() - range,
 				(range * 2) + side, (range * 2) + side);
-		
-		count++;
-		System.out.println(count);
 
 	}
 

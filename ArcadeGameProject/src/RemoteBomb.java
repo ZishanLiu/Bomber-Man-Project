@@ -12,6 +12,8 @@ public class RemoteBomb implements PowerUps {
 	private int grid = 50;
 	private int side = 25;
 
+	private boolean touch = false;
+
 	private realRemote realRemote;
 
 	private ArrayList<Walls> WB;
@@ -34,11 +36,11 @@ public class RemoteBomb implements PowerUps {
 	public boolean getPowerup() {
 		if (myHero.getBounds2D().intersects(this.getRect())) {
 			side = 0;
+			touch = true;
 			System.out.println("Remote");
-			return true;
+			
 		}
-
-		return false;
+		return touch;
 	}
 
 	public void setHero(Hero myHero) {

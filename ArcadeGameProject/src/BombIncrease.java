@@ -49,7 +49,7 @@ public class BombIncrease implements PowerUps {
 	}
 
 	public boolean getPowerup() {
-		System.out.println(myHero);
+//		System.out.println(myHero);
 		if (myHero.getBounds2D().intersects(this.getRect())) {
 			myComponent.newBomb();
 			side = 0;

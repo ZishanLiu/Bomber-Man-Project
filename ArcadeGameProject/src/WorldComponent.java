@@ -21,6 +21,7 @@ public class WorldComponent extends JComponent implements Runnable {
 	private RemoteBomb remoteBomb;
 	private realRemote realRemote;
 	private ArrayList<PowerUps> powerup;
+	private information info;
 
 	public void sethero(Hero myhero) {
 		this.myhero = myhero;
@@ -73,6 +74,11 @@ public class WorldComponent extends JComponent implements Runnable {
 		this.realRemote = myReal;
 	}
 
+	public void setInfo(information info) {
+
+		this.info = info;
+	}
+
 	public int getCount() {
 
 		return count;
@@ -119,14 +125,14 @@ public class WorldComponent extends JComponent implements Runnable {
 			Bombs.get(i).drawOn(g2);
 		}
 		myhero.drawOn(g2);
-		// rangeBomb.drawOn(g2);
-		// moreBomb.drawOn(g2);
-		// moreBomb.getPowerup();
-		// remoteBomb.drawOn(g2);
-		// remoteBomb.getPowerup();
-		//
+		rangeBomb.drawOn(g2);
+
+		remoteBomb.drawOn(g2);
+		remoteBomb.getPowerup();
+
 		realRemote.checkHero();
-		// realRemote.drawOn(g2);
+		realRemote.drawOn(g2);
+		info.drawOn(g2);
 
 		for (int i = 0; i < Monsters.size(); i++) {
 			Monsters.get(i).drawOn(g2);
@@ -212,14 +218,14 @@ public class WorldComponent extends JComponent implements Runnable {
 
 					}
 				}
-				explode: for (int i = 0; i < Bombs.size(); i++) {
+				ex: for (int i = 0; i < Bombs.size(); i++) {
 					if (Bombs.get(i).explode(count)) {
 						Bombs.get(i).grow();
 						System.out.println("growing started");
 						if (!Bombs.get(i).checkHero()) {
 							Bombs.get(i).check();
 						} else {
-							break explode;
+							break ex;
 						}
 					}
 					if (Bombs.get(i).explode(count - 5)) {
