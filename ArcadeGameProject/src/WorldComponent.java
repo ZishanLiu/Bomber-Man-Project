@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -147,7 +148,17 @@ public class WorldComponent extends JComponent implements Runnable {
 		for (int i = 0; i < WB.size(); i++) {
 			WB.get(i).drawOn(g2, 'b');
 		}
-
+		if (count%50 == 0){
+			info.time -= 1;
+			
+		}
+		if(info.time == 0) {
+			try {
+				myworld.retry();
+			} catch (IOException exception) {
+				throw new RuntimeException("Failed time kill");
+			}
+		}
 	}
 
 	@Override
@@ -253,10 +264,6 @@ public class WorldComponent extends JComponent implements Runnable {
 					System.exit(0);
 				}
 				count++;
-				info.time -= .025;
-				if(info.time == 0) {
-					
-				}
 				repaint();
 				Thread.sleep(20);
 
