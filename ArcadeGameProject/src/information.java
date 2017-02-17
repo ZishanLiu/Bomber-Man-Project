@@ -12,31 +12,32 @@ public class information {
 	private int height = 50;
 
 	private int lives;
-	private int time;
+	public double time;
 
 	private World game;
 
-	public information(int lives, int time, World game) {
-
+	public information(int lives, double time, World game) {
 		this.lives = lives;
 		this.game = game;
 		this.time = time;
-
 	}
 
 	public Rectangle getRect() {
-
 		return new Rectangle(RectX, RectY, width, height);
 	}
 
+	/*
+	 * This function is used to render the lives and time of the player and game.
+	 * 
+	 * @param g2 - The graphics object on which we draw
+	 */
 	public void drawOn(Graphics2D g2) {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.magenta);
 
 //		information = new Rectangle(RectX, RectY, width, height);
 		g.drawString("Life: " + lives, 700, 830);
+		g.drawString("Time: " + time, 500, 830);
 //		g.fill(information);
-
 	}
-
 }

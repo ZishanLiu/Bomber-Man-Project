@@ -48,6 +48,9 @@ public class World {
 
 	}
 
+	/*
+	 * Function that loads all objects involved in the game and given to main.
+	 */
 	public void load() throws IOException {
 
 		myWindow.removeKeyListener(this.change);
@@ -155,6 +158,12 @@ public class World {
 		inScanner.close();
 	}
 
+	/*
+	 * Function for changing levels and clears the screen of all objects so that
+	 * the new level can be loaded.
+	 * 
+	 * @param level - this is the level that is supposed to be loaded next
+	 */
 	public void ChangeLevel(String level) throws IOException {
 		Monsters.clear();
 		Bombs.clear();
@@ -168,6 +177,9 @@ public class World {
 
 	}
 
+	/*
+	 * Function that handles the death of the hero and its affects on the world.
+	 */
 	public void retry() throws IOException {
 		Lives -= 1;
 		Monsters.clear();
@@ -181,6 +193,9 @@ public class World {
 
 	}
 
+	/*
+	 * Function that handles the death of all Monsters and its affects on the world.
+	 */
 	public void win() throws IOException {
 		Monsters.clear();
 		Bombs.clear();
@@ -212,6 +227,9 @@ public class World {
 		}
 	}
 
+	/*
+	 * Function that checks to see if all monsters are dead.
+	 */
 	public void CheckWin() {
 		if (this.Monsters.size() == 0) {
 			try {

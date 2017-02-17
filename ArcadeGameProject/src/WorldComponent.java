@@ -253,6 +253,10 @@ public class WorldComponent extends JComponent implements Runnable {
 					System.exit(0);
 				}
 				count++;
+				info.time -= .025;
+				if(info.time == 0) {
+					
+				}
 				repaint();
 				Thread.sleep(20);
 

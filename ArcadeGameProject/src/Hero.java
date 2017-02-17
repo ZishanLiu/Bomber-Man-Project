@@ -38,38 +38,49 @@ public class Hero {
 		this.game = mygame;
 
 		rect = new Rectangle(this.RectX, this.RectY, side, side);
-
 	}
-
+	/*
+	 * This function draws our hero/bomberman onto our screen.
+	 * 
+	 * @param g2 - graphics object on which to draw
+	 * 
+	 */
 	public void drawOn(Graphics2D g2) {
-
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.blue);
 		rect = new Rectangle(RectX, RectY, side, side);
-
 		g.fill(rect);
-
 	}
-
+	
+	/*
+	 * Function that sets the location of the hero
+	 * 
+	 * @param x - coordinate placement
+	 * 		y - coordinate placement
+	 */
 	public void set(int x, int y) {
-
 		this.RectX = (x * grid) + grid / 2 + 10;
 		this.RectY = (y * grid) + grid / 2 + 10;
-
 	}
 
+	/*
+	 * Function resets the hero based on pixels and not the grid system used prior to getting stuck.
+	 * 
+	 * @param x - pixel coordinate placement
+	 * 		y - pixel coordinate placement
+	 */
 	public void stuck(int x, int y) {
-
 		this.RectX = x;
 		this.RectY = y;
-
 	}
 
 	public char whereToPlaceBomb() {
-
 		return bombPlacement;
 	}
 
+	/*
+	 * The following functions are for the movement of our hero/bomberman.
+	 */
 	public void moveRight() {
 		if (!game.isPaused) {
 			RectX = RectX + 5;
@@ -96,29 +107,35 @@ public class Hero {
 			RectY = RectY + 5;
 			bombPlacement = 'd';
 		}
-
 	}
 
+	/*
+	 * Function used to get 'x' position of hero
+	 */
 	public int getX() {
 		return RectX;
 	}
-
+	
+	/*
+	 * Function used to get 'y' position of hero
+	 */
 	public int getY() {
 		return RectY;
 	}
 
 	public void setBomb(ArrayList<Bombs> Bombs) {
 		this.Bombs = Bombs;
-
 	}
 
 	public Rectangle2D getBounds2D() {
 		return new Rectangle(RectX, RectY, side, side);
 	}
 
+	/*
+	 * Function used to detect collision with bombs, concrete walls, and breakable walls.
+	 */
 	public boolean checkContact() {
 		for (Bombs Bomb : Bombs) {
-
 			if (Bomb.getRectangle().intersects(this.getBounds2D())) {
 				return true;
 			}
@@ -132,10 +149,7 @@ public class Hero {
 			if (wallb.getRect().intersects(this.getBounds2D())) {
 				return true;
 			}
-
 		}
-
 		return false;
 	}
-
 }
