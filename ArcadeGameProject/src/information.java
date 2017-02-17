@@ -34,10 +34,7 @@ public class information {
 	public void drawOn(Graphics2D g2) {
 		Graphics2D g = (Graphics2D) g2;
 		g.setColor(Color.magenta);
-
-//		information = new Rectangle(RectX, RectY, width, height);
 		g.drawString("Life: " + lives, 700, 830);
 		g.drawString("Time: " + time, 500, 830);
-//		g.fill(information);
 	}
 }
