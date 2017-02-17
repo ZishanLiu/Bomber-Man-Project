@@ -12,6 +12,12 @@ public class LevelListener implements KeyListener {
 		this.Level = Level;
 	}
 
+	/*
+	 * Function that waits for the user to press 'U', 'D', or 'P' for Up level, Down level, and
+	 * pause game.
+	 * 
+	 * @param e - the keyEvent object that is passed through the function
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_U) {
