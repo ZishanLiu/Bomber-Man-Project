@@ -106,12 +106,6 @@ public class Monster {
 	 * Function that checks for contact with walls of both kinds.
 	 */
 	public boolean checkContact() {
-//		for (Bombs Bomb : Bombs) {
-//
-//			if (Bomb.getRectangle().intersects(this.getBounds2D())) {
-//				return true;
-//			}
-//		}
 		for (Walls walli : WI) {
 			if (walli.getRect().intersects(this.getBounds2D())) {
 				return true;
