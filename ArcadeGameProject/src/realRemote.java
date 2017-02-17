@@ -41,18 +41,14 @@ public class realRemote {
 	 * @param g2 - graphics object on which to draw
 	 */
 	public void drawOn(Graphics2D g2) {
-
 		Graphics2D g = (Graphics2D) g2;
 		if (this.status) {
 			g.setColor(new Color(204, 81, 0));
 		} else {
 			g.setColor(Color.black);
 		}
-
 		this.myBomb = new Rectangle(this.x, this.y, this.side, this.side);
-
 		g.fill(this.myBomb);
-
 		if (this.status) {
 			g.fill(new Rectangle(this.x - range, this.y - range, (range * 2) + side, (range * 2) + side));
 		}
@@ -106,7 +102,6 @@ public class realRemote {
 		} else {
 			return false;
 		}
-
 	}
 
 	public void move() {
@@ -134,10 +129,8 @@ public class realRemote {
 	 */
 	public boolean checkHero() {
 		if (this.status == true) {
-			System.out.println(this.status);
 			try {
 				if (this.myHero.getBounds2D().intersects(this.myBomb)) {
-					System.out.println("die");
 					this.game.retry();
 					return true;
 				}
