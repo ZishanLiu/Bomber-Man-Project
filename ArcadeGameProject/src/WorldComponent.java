@@ -41,49 +41,35 @@ public class WorldComponent extends JComponent implements Runnable {
 	}
 
 	public void setMonster(ArrayList<Monster> myMonster) {
-
 		this.Monsters = myMonster;
-
 	}
 
 	public void setLargerRangeBomb(LargerRangeBomb rangeBomb) {
-
 		this.rangeBomb = rangeBomb;
-
 	}
 
 	public void setBombIncrease(BombIncrease moreBomb) {
-
 		this.moreBomb = moreBomb;
-
 	}
 
 	public void setPowerUps(ArrayList<PowerUps> power) {
-
 		this.powerup = power;
-
 	}
 
 	public void setRemoteBomb(RemoteBomb remoteBomb) {
-
 		this.remoteBomb = remoteBomb;
-
 	}
 
 	public void setRealRemote(realRemote myReal) {
-
 		this.realRemote = myReal;
 	}
 
 	public void setInfo(information info) {
-
 		this.info = info;
 	}
 
 	public int getCount() {
-
 		return count;
-
 	}
 
 	public void newBomb() {
@@ -92,12 +78,10 @@ public class WorldComponent extends JComponent implements Runnable {
 	}
 
 	public void increaseRange() {
-
 		range = 200;
 		for (int i = 0; i < Bombs.size(); i++) {
 			this.Bombs.get(i).largerRange();
 		}
-
 	}
 
 	public void setworld(World myworld) {
@@ -105,21 +89,22 @@ public class WorldComponent extends JComponent implements Runnable {
 	}
 
 	public WorldComponent() {
-
 	}
 
+	/*
+	 * Function that draws everything in the world.
+	 * 
+	 * @param g - graphics object on which to draw
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-
 		g2.setColor(Color.green);
 		g2.fillRect(0, 0, 1100, 900);
 		for (int i = 0; i < Monsters.size(); i++) {
 			this.myworld.Monsters.get(i).checkHero();
-
 		}
-
 		myworld.CheckWin();
 		for (int i = 0; i < Bombs.size(); i++) {
 			Bombs.get(i).checkHero();
@@ -127,13 +112,10 @@ public class WorldComponent extends JComponent implements Runnable {
 		}
 		myhero.drawOn(g2);
 		rangeBomb.drawOn(g2);
-
 		remoteBomb.drawOn(g2);
 		remoteBomb.getPowerup();
-
 		realRemote.drawOn(g2);
 		info.drawOn(g2);
-
 		for (int i = 0; i < Monsters.size(); i++) {
 			Monsters.get(i).drawOn(g2);
 		}
@@ -141,7 +123,6 @@ public class WorldComponent extends JComponent implements Runnable {
 			this.powerup.get(i).drawOn(g2);
 			this.powerup.get(i).getPowerup();
 		}
-
 		for (int i = 0; i < WI.size(); i++) {
 			WI.get(i).drawOn(g2, ' ');
 		}
@@ -149,8 +130,7 @@ public class WorldComponent extends JComponent implements Runnable {
 			WB.get(i).drawOn(g2, 'b');
 		}
 		if (count%50 == 0){
-			info.time -= 1;
-			
+			info.time -= 1;	
 		}
 		if(info.time == 0) {
 			try {
@@ -161,6 +141,9 @@ public class WorldComponent extends JComponent implements Runnable {
 		}
 	}
 
+	/*
+	 * Function for a constantly running thread.
+	 */
 	@Override
 	public void run() {
 		System.out.println(myworld.isPaused);
@@ -172,36 +155,29 @@ public class WorldComponent extends JComponent implements Runnable {
 							int startX = Monsters.get(i).getX();
 							int startY = Monsters.get(i).getY();
 							if (!Monsters.get(i).checkContact()) {
-
 								Monsters.get(i).move(1, 0, 1);
-
 								if (Monsters.get(i).checkContact()) {
 									Monsters.get(i).stuck(startX, startY);
 									Monsters.get(i).move(1, 0, -1);
 								}
-
 							}
 						}
 						if (Monsters.get(i).getType() == 1) {
 							int startX = Monsters.get(i).getX();
 							int startY = Monsters.get(i).getY();
 							if (!Monsters.get(i).checkContact()) {
-
 								Monsters.get(i).move(0, 1, 1);
-
 								if (Monsters.get(i).checkContact()) {
 									Monsters.get(i).stuck(startX, startY);
 									Monsters.get(i).move(0, 1, -1);
 								}
 							}
-
 						}
 						if (Monsters.get(i).getType() == 2) {
 							int startX = Monsters.get(i).getX();
 							int startY = Monsters.get(i).getY();
 							int k = (int) (Math.round((Math.random())));
 							if (!Monsters.get(i).checkContact()) {
-
 								Monsters.get(i).move(k, 1 - k, 1);
 								if (Monsters.get(i).checkContact()) {
 									Monsters.get(i).stuck(startX, startY);
@@ -209,7 +185,6 @@ public class WorldComponent extends JComponent implements Runnable {
 								}
 							}
 							if (!Monsters.get(i).checkContact()) {
-
 								Monsters.get(i).move(k, 1 - k, 1);
 								if (Monsters.get(i).checkContact()) {
 									Monsters.get(i).stuck(startX, startY);
@@ -217,7 +192,6 @@ public class WorldComponent extends JComponent implements Runnable {
 								}
 							}
 							if (!Monsters.get(i).checkContact()) {
-
 								Monsters.get(i).move(k, 1 - k, 1);
 								if (Monsters.get(i).checkContact()) {
 									Monsters.get(i).stuck(startX, startY);
@@ -225,7 +199,6 @@ public class WorldComponent extends JComponent implements Runnable {
 								}
 							}
 						}
-
 					}
 				}
 				explode: for (int i = 0; i < Bombs.size(); i++) {
@@ -241,9 +214,7 @@ public class WorldComponent extends JComponent implements Runnable {
 					if (Bombs.get(i).explode(count - 5)) {
 						System.out.println("move started");
 						Bombs.get(i).move();
-
 					}
-
 					if (realRemote.canExplode()) {
 						if (realRemote.explodeLimit(this.count)) {
 							System.out.println("remote");
@@ -256,7 +227,6 @@ public class WorldComponent extends JComponent implements Runnable {
 						if (realRemote.explodeWait()) {
 							System.out.println("move started remote");
 							realRemote.move();
-
 						}
 					}
 				}
@@ -266,12 +236,10 @@ public class WorldComponent extends JComponent implements Runnable {
 				count++;
 				repaint();
 				Thread.sleep(20);
-
 			}
 		} catch (InterruptedException exception) {
 			// TODO Auto-generated catch-block stub.
 			throw new RuntimeException(exception.toString());
 		}
 	}
-
 }
