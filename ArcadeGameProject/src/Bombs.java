@@ -21,7 +21,6 @@ public class Bombs {
 	private int range;
 
 	public Bombs(Hero myHero, World game, int range) {
-
 		this.myBomb = new Rectangle(-10, -10, 10, 10);
 		this.color = Color.black;
 		this.myHero = myHero;
@@ -34,18 +33,14 @@ public class Bombs {
 	}
 
 	public void drawOn(Graphics2D g2) {
-
 		Graphics2D g = (Graphics2D) g2;
 		if (this.status) {
 			g.setColor(new Color(204, 81, 0));
 		} else {
 			g.setColor(Color.black);
 		}
-
 		this.myBomb = new Rectangle(this.x, this.y, this.side, this.side);
-
 		g.fill(this.myBomb);
-
 		if (this.status) {
 			g.fill(new Rectangle(this.x - range, this.y - range, (range * 2) + side, (range * 2) + side));
 		}
@@ -84,7 +79,6 @@ public class Bombs {
 			return true;
 		}
 		return false;
-
 	}
 //checks if that bomb is ready to be used 
 	public boolean CanReplace() {
@@ -93,7 +87,6 @@ public class Bombs {
 		} else {
 			return false;
 		}
-
 	}
 //gets rid of the bomb and sets its status to false
 	public void move() {
@@ -101,7 +94,6 @@ public class Bombs {
 		this.x = -10;
 		this.y = -10;
 		this.side = 10;
-
 	}
 
 	public Rectangle getRectangle() {
@@ -114,7 +106,6 @@ public class Bombs {
 			System.out.println(this.status);
 			try {
 				if (this.myHero.getBounds2D().intersects(this.myBomb)) {
-					System.out.println("die");
 					this.game.retry();
 					return true;
 				}
@@ -122,7 +113,6 @@ public class Bombs {
 				throw new RuntimeException("failed checking hero vs bomb");
 			}
 		}
-
 		return false;
 	}
 // grows the bomb so it can have a blast radius to kill
@@ -130,7 +120,6 @@ public class Bombs {
 		this.status = true;
 		this.myBomb = new Rectangle((int) this.myBomb.getX() - range, (int) this.myBomb.getY() - range,
 				(range * 2) + side, (range * 2) + side);
-
 	}
 // checks and kills monsters and breakable walls
 	public void check() {
@@ -142,7 +131,6 @@ public class Bombs {
 		}
 		for (int m = 0; m < this.Monsters.size(); m++) {
 			if (this.Monsters.get(m).getRect().intersects(this.myBomb)) {
-
 				this.Monsters.remove(m);
 				m--;
 			}
@@ -150,9 +138,6 @@ public class Bombs {
 	}
 // sets the blast to a biger range when called
 	public void largerRange() {
-
 		this.range = 80;
-
 	}
-
 }
