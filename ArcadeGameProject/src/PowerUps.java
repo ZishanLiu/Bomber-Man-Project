@@ -1,6 +1,9 @@
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+/*
+ * Interface used to give base functions for all powerups in our game.
+ */
 public interface PowerUps {
 	public boolean getPowerup();
 
