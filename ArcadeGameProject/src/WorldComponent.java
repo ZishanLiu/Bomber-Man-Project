@@ -146,7 +146,6 @@ public class WorldComponent extends JComponent implements Runnable {
 	 */
 	@Override
 	public void run() {
-		System.out.println(myworld.isPaused);
 		try {
 			while (true) {
 				for (int i = 0; i < Monsters.size(); i++) {
@@ -204,7 +203,6 @@ public class WorldComponent extends JComponent implements Runnable {
 				explode: for (int i = 0; i < Bombs.size(); i++) {
 					if (Bombs.get(i).explode(count)) {
 						Bombs.get(i).grow();
-						System.out.println("growing started");
 						if (!Bombs.get(i).checkHero()) {
 							Bombs.get(i).check();
 						} else {
@@ -212,20 +210,16 @@ public class WorldComponent extends JComponent implements Runnable {
 						}
 					}
 					if (Bombs.get(i).explode(count - 5)) {
-						System.out.println("move started");
 						Bombs.get(i).move();
 					}
 					if (realRemote.canExplode()) {
 						if (realRemote.explodeLimit(this.count)) {
-							System.out.println("remote");
 							realRemote.grow();
-							System.out.println("growing started remote");
 							if (!realRemote.checkHero()) {
 								realRemote.check();
 							}
 						}
 						if (realRemote.explodeWait()) {
-							System.out.println("move started remote");
 							realRemote.move();
 						}
 					}
@@ -238,7 +232,6 @@ public class WorldComponent extends JComponent implements Runnable {
 				Thread.sleep(20);
 			}
 		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
 			throw new RuntimeException(exception.toString());
 		}
 	}
