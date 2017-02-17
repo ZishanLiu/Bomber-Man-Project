@@ -232,7 +232,7 @@ public class WorldComponent extends JComponent implements Runnable {
 				Thread.sleep(20);
 			}
 		} catch (InterruptedException exception) {
-			throw new RuntimeException(exception.toString());
+			throw new RuntimeException("Thread component failed");
 		}
 	}
 }
