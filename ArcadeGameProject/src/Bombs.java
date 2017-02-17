@@ -50,7 +50,7 @@ public class Bombs {
 			g.fill(new Rectangle(this.x - range, this.y - range, (range * 2) + side, (range * 2) + side));
 		}
 	}
-
+// sets the location of a bomb to the heroa nd puts its direction to where the hero is facing
 	public void drop() {
 		if (!game.isPaused) {
 			int HeroCenterX = this.myHero.getX() + 10;
@@ -78,7 +78,7 @@ public class Bombs {
 		}
 
 	}
-
+//Checks if it is time to explode
 	public boolean explode(int current) {
 		if (this.end == current && !game.isPaused) {
 			return true;
@@ -86,7 +86,7 @@ public class Bombs {
 		return false;
 
 	}
-
+//checks if that bomb is ready to be used 
 	public boolean CanReplace() {
 		if (this.game.myworld.getCount() > this.end) {
 			return true;
@@ -95,7 +95,7 @@ public class Bombs {
 		}
 
 	}
-
+//gets rid of the bomb and sets its status to false
 	public void move() {
 		this.status = false;
 		this.x = -10;
@@ -108,7 +108,7 @@ public class Bombs {
 		this.myBomb = new Rectangle((int) this.myBomb.getX(), (int) this.myBomb.getY(), side, side);
 		return this.myBomb;
 	}
-
+//Kills hero if bomb is active(status is true)
 	public boolean checkHero() {
 		if (this.status == true) {
 			System.out.println(this.status);
@@ -125,14 +125,14 @@ public class Bombs {
 
 		return false;
 	}
-
+// grows the bomb so it can have a blast radius to kill
 	public void grow() {
 		this.status = true;
 		this.myBomb = new Rectangle((int) this.myBomb.getX() - range, (int) this.myBomb.getY() - range,
 				(range * 2) + side, (range * 2) + side);
 
 	}
-
+// checks and kills monsters and breakable walls
 	public void check() {
 		for (int w = 0; w < this.WB.size(); w++) {
 			if (this.WB.get(w).getRect().intersects(this.myBomb)) {
@@ -148,7 +148,7 @@ public class Bombs {
 			}
 		}
 	}
-
+// sets the blast to a biger range when called
 	public void largerRange() {
 
 		this.range = 80;
