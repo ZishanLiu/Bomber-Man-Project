@@ -120,9 +120,7 @@ public class Monster {
 	}
 
 	public Rectangle getRect() {
-
 		return new Rectangle(RectX, RectY, 20, 30);
-
 	}
 	
 	/*
@@ -143,7 +141,6 @@ public class Monster {
 	public boolean checkHero() {
 		try {
 			if (myhero.getBounds2D().intersects(this.getRect())) {
-				System.out.println("die");
 				myWorld.retry();
 				return true;
 			}
@@ -160,8 +157,8 @@ public class Monster {
 	public int getType() {
 		return this.type;
 	}
+	
 	public void setBomb(ArrayList<Bombs> Bombs) {
-		this.Bombs = Bombs;
-		
+		this.Bombs = Bombs;	
 	}
 }
