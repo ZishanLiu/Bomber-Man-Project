@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 public class BombIncrease implements PowerUps {
 	private Rectangle moreBomb;
 	private Hero myHero;
-
 	private int RectX = -10;
 	private int RectY = -10;
 	private int grid = 50;
@@ -15,7 +14,6 @@ public class BombIncrease implements PowerUps {
 	public BombIncrease(Hero myHero, WorldComponent myComponent) {
 		this.moreBomb = moreBomb;
 		this.myHero = myHero;
-		System.out.println("constructor" + myHero);
 		this.myComponent = myComponent;
 	}
 
@@ -54,11 +52,9 @@ public class BombIncrease implements PowerUps {
 	 * Function that checks for the hero to pickup or collide with the powerup.
 	 */
 	public boolean getPowerup() {
-//		System.out.println(myHero);
 		if (myHero.getBounds2D().intersects(this.getRect())) {
 			myComponent.newBomb();
 			side = 0;
-			System.out.println("More!");
 			return true;
 		}
 		return false;
