@@ -14,6 +14,11 @@ public class BombListener implements KeyListener {
 
 	}
 
+	/*
+	 * Function that waits for the user to press 'Z' to place a bomb.
+	 * 
+	 * @param e - the KeyEvent object that the function passes in
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 
