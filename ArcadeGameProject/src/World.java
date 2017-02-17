@@ -220,7 +220,7 @@ public class World {
 		System.out.println("Congradulations! You have " + Lives + "left!");
 
 	}
-
+// sees if there is a next possible level and returns it
 	public String next() {
 		if (this.level == "Level1") {
 			return "Level2";
@@ -230,7 +230,7 @@ public class World {
 		}
 
 	}
-
+// when called togels the pause of the game
 	public void pause() {
 		if (this.isPaused == false) {
 			this.isPaused = true;
@@ -252,7 +252,7 @@ public class World {
 		}
 
 	}
-
+// plays music when called
 	public void play() {
 		File inputFile = new File("8bit_Dungeon_Boss.wav");
 		AudioInputStream gameMusic;
@@ -262,8 +262,7 @@ public class World {
 			gamemusic.open(gameMusic);
 			gamemusic.start();
 		} catch (UnsupportedAudioFileException | LineUnavailableException | IOException exception) {
-			// TODO Auto-generated catch-block stub.
-			exception.printStackTrace();
+			throw new RuntimeException("Music failed");
 		}
 	}
 }
