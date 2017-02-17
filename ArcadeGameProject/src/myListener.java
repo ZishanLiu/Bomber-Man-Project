@@ -7,14 +7,12 @@ public class myListener implements KeyListener {
 	private World game;
 	int startX;
 	int startY;
-	// private Monster myMonster;
 
 	public myListener(Hero myHero, World game) {
 		this.myHero = myHero;
 		this.game = game;
 		startX = myHero.getX();
 		startY = myHero.getY();
-		// this.myMonster = myMonster;
 	}
 
 	/*
@@ -45,20 +43,13 @@ public class myListener implements KeyListener {
 		} else {
 			myHero.stuck(startX, startY);
 		}
-		if (game.rangeBomb.getPowerup()) {
-			System.out.println("get");
-		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub.
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub.
-
 	}
-
 }
