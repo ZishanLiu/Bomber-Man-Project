@@ -9,9 +9,7 @@ public class BombListener implements KeyListener {
 	private Hero myHero;
 
 	public BombListener(ArrayList<Bombs> Bombs) {
-
 		this.Bombs = Bombs;
-
 	}
 
 	/*
@@ -21,7 +19,6 @@ public class BombListener implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-
 		if (e.getKeyCode() == KeyEvent.VK_Z) {
 			for (int i = 0; i < Bombs.size(); i++) {
 				if (Bombs.get(i).CanReplace()) {
@@ -29,21 +26,14 @@ public class BombListener implements KeyListener {
 					break;
 				}
 			}
-
 		}
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub.
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub.
-
 	}
-
 }
