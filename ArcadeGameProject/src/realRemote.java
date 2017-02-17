@@ -35,6 +35,11 @@ public class realRemote {
 		this.status = false;
 	}
 
+	/*
+	 * Function that draws the bomb for the power up of detanator.
+	 * 
+	 * @param g2 - graphics object on which to draw
+	 */
 	public void drawOn(Graphics2D g2) {
 
 		Graphics2D g = (Graphics2D) g2;
@@ -53,6 +58,9 @@ public class realRemote {
 		}
 	}
 
+	/*
+	 * Function for where to drop the bomb for the detanator power up.
+	 */
 	public void drop() {
 		if (!game.isPaused) {
 			int HeroCenterX = this.myHero.getX() + 10;
@@ -74,19 +82,15 @@ public class realRemote {
 				this.x = HeroCenterX + 30;
 				this.y = HeroCenterY;
 			}
-
 		}
-
 	}
 
 	public void explode() {
 		this.status = true;
-
 	}
 
 	public boolean canExplode() {
 		return this.status;
-
 	}
 
 	public boolean explodeLimit(int current) {
@@ -94,7 +98,6 @@ public class realRemote {
 			return true;
 		}
 		return false;
-
 	}
 
 	public boolean CanReplace() {
@@ -111,7 +114,6 @@ public class realRemote {
 		this.x = -10;
 		this.y = -10;
 		this.side = 10;
-
 	}
 
 	public Rectangle getRectangle() {
@@ -127,6 +129,9 @@ public class realRemote {
 		return this.game.myworld.getCount();
 	}
 
+	/*
+	 * Function that checks to see if the hero is hit by this bomb.
+	 */
 	public boolean checkHero() {
 		if (this.status == true) {
 			System.out.println(this.status);
@@ -140,16 +145,20 @@ public class realRemote {
 				throw new RuntimeException("failed checking hero vs bomb");
 			}
 		}
-
 		return false;
 	}
 
+	/*
+	 * Function that increases the bomb to the size for its blast radius.
+	 */
 	public void grow() {
 		this.myBomb = new Rectangle((int) this.myBomb.getX() - range, (int) this.myBomb.getY() - range,
 				(range * 2) + side, (range * 2) + side);
-
 	}
 
+	/*
+	 * Checks to see if bomb explodes and breaks a wall.
+	 */
 	public void check() {
 		for (int w = 0; w < this.WB.size(); w++) {
 			if (this.WB.get(w).getRect().intersects(this.myBomb)) {
@@ -159,24 +168,26 @@ public class realRemote {
 		}
 		for (int m = 0; m < this.Monsters.size(); m++) {
 			if (this.Monsters.get(m).getRect().intersects(this.myBomb)) {
-
 				this.Monsters.remove(m);
 				m--;
 			}
 		}
 	}
-
+	
+	/*
+	 * Sets the range of the larger radius of bombs.
+	 */
 	public void largerRange() {
-
 		this.range = 80;
-
 	}
 
+	/*
+	 * Function that tells the bomb to wait an amount of time before exploding.
+	 */
 	public boolean explodeWait() {
 		if (this.end + 2 == this.game.myworld.getCount()) {
 			return true;
 		}
 		return false;
 	}
-
 }
