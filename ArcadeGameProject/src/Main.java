@@ -12,15 +12,11 @@ import java.io.IOException;
  *
  */
 public class Main {
-
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException {
-
 		World game = new World("Level1");
 		game.load();
-
 	}
-
 }
