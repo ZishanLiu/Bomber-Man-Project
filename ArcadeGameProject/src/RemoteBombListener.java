@@ -9,18 +9,14 @@ public class RemoteBombListener implements KeyListener {
 	public RemoteBombListener(RemoteBomb remotebomb, realRemote realRemote) {
 		this.myReal = realRemote;
 		this.myRemote = remotebomb;
-		// TODO Auto-generated constructor stub.
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
 		if (myRemote.getPowerup() == true) {
 			if (e.getKeyCode() == KeyEvent.VK_A) {
 				if (myReal.CanReplace()) {
-					System.out.println("f");
 					myReal.drop();
-
 				}
 			}
 		}
@@ -34,14 +30,9 @@ public class RemoteBombListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub.
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub.
-
 	}
-
 }
