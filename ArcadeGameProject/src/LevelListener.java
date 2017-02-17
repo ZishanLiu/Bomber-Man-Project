@@ -53,19 +53,13 @@ public class LevelListener implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_P) {
 			game.pause();
 		}
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub.
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub.
-
 	}
-
 }
