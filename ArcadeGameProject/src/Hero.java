@@ -25,18 +25,14 @@ public class Hero {
 		rect.width = this.side;
 		int x = -10;
 		int y = -10;
-
 		this.RectX = (x * grid) + grid / 2;
 		this.RectY = (y * grid) + grid / 2;
-
 		this.color = Color.black;
-
 		this.WI = WI;
 		this.WB = WB;
 		this.Bombs = Bombs;
 		this.bombPlacement = 'u';
 		this.game = mygame;
-
 		rect = new Rectangle(this.RectX, this.RectY, side, side);
 	}
 	/*
