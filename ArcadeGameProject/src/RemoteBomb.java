@@ -38,7 +38,6 @@ public class RemoteBomb implements PowerUps {
 		if (myHero.getBounds2D().intersects(this.getRect())) {
 			side = 0;
 			touch = true;
-			System.out.println("Remote");
 		}
 		return touch;
 	}
