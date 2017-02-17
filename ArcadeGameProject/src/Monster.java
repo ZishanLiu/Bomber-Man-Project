@@ -21,6 +21,7 @@ public class Monster {
 
 	private ArrayList<Walls> WI;
 	private ArrayList<Walls> WB;
+	private ArrayList<Bombs> Bombs;
 
 	public Monster(Hero myhero, World myWorld, ArrayList<Walls> WI, ArrayList<Walls> WB, int type) {
 		this.myhero = myhero;
@@ -105,6 +106,12 @@ public class Monster {
 	 * Function that checks for contact with walls of both kinds.
 	 */
 	public boolean checkContact() {
+//		for (Bombs Bomb : Bombs) {
+//
+//			if (Bomb.getRectangle().intersects(this.getBounds2D())) {
+//				return true;
+//			}
+//		}
 		for (Walls walli : WI) {
 			if (walli.getRect().intersects(this.getBounds2D())) {
 				return true;
@@ -158,5 +165,9 @@ public class Monster {
 
 	public int getType() {
 		return this.type;
+	}
+	public void setBomb(ArrayList<Bombs> Bombs) {
+		this.Bombs = Bombs;
+		
 	}
 }

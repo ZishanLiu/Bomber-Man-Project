@@ -7,8 +7,8 @@ public class RemoteBomb implements PowerUps {
 	private Rectangle remoteBomb;
 	private Hero myHero;
 
-	private int RectX = 650;
-	private int RectY = 287;
+	private int RectX = -10;
+	private int RectY = -10;
 	private int grid = 50;
 	private int side = 25;
 

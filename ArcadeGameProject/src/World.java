@@ -90,7 +90,7 @@ public class World {
 
 					} else if (line.charAt(x) == 'e') {
 
-						Monster myMonster = new Monster(hero, this, WI, WB, Monsters.size());
+						Monster myMonster = new Monster(hero, this, WI, WB, Monsters.size()%3);
 						myMonster.set(x, y);
 						Monsters.add(myMonster);
 
@@ -136,6 +136,8 @@ public class World {
 		}
 		for (int m = 0; m < Monsters.size(); m++) {
 			Monsters.get(m).setHero(hero);
+			Monsters.get(m).setBomb(Bombs);;
+			
 		}
 		for (int m = 0; m < Powerups.size(); m++) {
 			Powerups.get(m).setHero(hero);

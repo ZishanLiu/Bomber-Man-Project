@@ -57,31 +57,39 @@ public class realRemote {
 		if (!game.isPaused) {
 			int HeroCenterX = this.myHero.getX() + 10;
 			int HeroCenterY = this.myHero.getY() + 10;
-			if (this.CanReplace()) {
-				if (this.myHero.whereToPlaceBomb() == 'u') {
-					this.x = HeroCenterX;
-					this.y = HeroCenterY - 30;
-				}
-				if (this.myHero.whereToPlaceBomb() == 'd') {
-					this.x = HeroCenterX;
-					this.y = HeroCenterY + 30;
-				}
-				if (this.myHero.whereToPlaceBomb() == 'l') {
-					this.x = HeroCenterX - 30;
-					this.y = HeroCenterY;
-				}
-				if (this.myHero.whereToPlaceBomb() == 'r') {
-					this.x = HeroCenterX + 30;
-					this.y = HeroCenterY;
-				}
-				this.start = this.game.myworld.getCount();
-				this.end = this.start + 100;
+			char c = this.myHero.whereToPlaceBomb();
+			if (c == 'u') {
+				this.x = HeroCenterX;
+				this.y = HeroCenterY - 30;
 			}
+			if (c == 'd') {
+				this.x = HeroCenterX;
+				this.y = HeroCenterY + 30;
+			}
+			if (c == 'l') {
+				this.x = HeroCenterX - 30;
+				this.y = HeroCenterY;
+			}
+			if (c == 'r') {
+				this.x = HeroCenterX + 30;
+				this.y = HeroCenterY;
+			}
+
 		}
 
 	}
 
-	public boolean explode(int current) {
+	public void explode() {
+		this.status = true;
+
+	}
+
+	public boolean canExplode() {
+		return this.status;
+
+	}
+
+	public boolean explodeLimit(int current) {
 		if (this.end == current && !game.isPaused) {
 			return true;
 		}
@@ -111,6 +119,14 @@ public class realRemote {
 		return this.myBomb;
 	}
 
+	public void setEnd(int end) {
+		this.end = end;
+	}
+
+	public int getCount() {
+		return this.game.myworld.getCount();
+	}
+
 	public boolean checkHero() {
 		if (this.status == true) {
 			System.out.println(this.status);
@@ -129,7 +145,6 @@ public class realRemote {
 	}
 
 	public void grow() {
-		this.status = true;
 		this.myBomb = new Rectangle((int) this.myBomb.getX() - range, (int) this.myBomb.getY() - range,
 				(range * 2) + side, (range * 2) + side);
 
@@ -155,6 +170,13 @@ public class realRemote {
 
 		this.range = 80;
 
+	}
+
+	public boolean explodeWait() {
+		if (this.end + 2 == this.game.myworld.getCount()) {
+			return true;
+		}
+		return false;
 	}
 
 }

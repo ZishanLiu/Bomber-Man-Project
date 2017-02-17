@@ -130,7 +130,6 @@ public class WorldComponent extends JComponent implements Runnable {
 		remoteBomb.drawOn(g2);
 		remoteBomb.getPowerup();
 
-		realRemote.checkHero();
 		realRemote.drawOn(g2);
 		info.drawOn(g2);
 
@@ -218,14 +217,14 @@ public class WorldComponent extends JComponent implements Runnable {
 
 					}
 				}
-				ex: for (int i = 0; i < Bombs.size(); i++) {
+				explode: for (int i = 0; i < Bombs.size(); i++) {
 					if (Bombs.get(i).explode(count)) {
 						Bombs.get(i).grow();
 						System.out.println("growing started");
 						if (!Bombs.get(i).checkHero()) {
 							Bombs.get(i).check();
 						} else {
-							break ex;
+							break explode;
 						}
 					}
 					if (Bombs.get(i).explode(count - 5)) {
@@ -233,21 +232,22 @@ public class WorldComponent extends JComponent implements Runnable {
 						Bombs.get(i).move();
 
 					}
-//					ex: for (int i = 0; i < Bombs.size(); i++) {
-//						if (Bombs.get(i).explode(count)) {
-//							Bombs.get(i).grow();
-//							System.out.println("growing started");
-//							if (!Bombs.get(i).checkHero()) {
-//								Bombs.get(i).check();
-//							} else {
-//								break ex;
-//							}
-//						}
-//						if (Bombs.get(i).explode(count - 5)) {
-//							System.out.println("move started");
-//							Bombs.get(i).move();
-//
-//						}
+
+					if (realRemote.canExplode()) {
+						if (realRemote.explodeLimit(this.count)) {
+							System.out.println("remote");
+							realRemote.grow();
+							System.out.println("growing started remote");
+							if (!realRemote.checkHero()) {
+								realRemote.check();
+							}
+						}
+						if (realRemote.explodeWait()) {
+							System.out.println("move started remote");
+							realRemote.move();
+
+						}
+					}
 				}
 				if (myworld.Lives == 0) {
 					System.exit(0);

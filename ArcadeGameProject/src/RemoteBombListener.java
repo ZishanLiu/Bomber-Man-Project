@@ -26,10 +26,8 @@ public class RemoteBombListener implements KeyListener {
 		}
 		if (myRemote.getPowerup() == true) {
 			if (e.getKeyCode() == KeyEvent.VK_B) {
-
-				myReal.grow();
-				myReal.check();
-				myReal.checkHero();
+				this.myReal.explode();
+				myReal.setEnd(this.myReal.getCount() + 10);
 			}
 		}
 	}

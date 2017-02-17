@@ -7,8 +7,8 @@ public class LargerRangeBomb implements PowerUps{
 	private Rectangle RangeBomb;
 	private Hero myHero;
 
-	private int RectX = 240;
-	private int RectY = 287;
+	private int RectX = -10;
+	private int RectY = -10;
 	private int grid = 50;
 	private int side = 25;
 	private WorldComponent myComponent;
