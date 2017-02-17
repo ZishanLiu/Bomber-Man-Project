@@ -199,7 +199,7 @@ public class World {
 		WB.clear();
 		this.time = 200;
 		this.load();
-		System.out.println("You died! You have " + Lives + " left! Press any key to restart");
+		System.out.println("You died! You have " + Lives + " left!");
 
 	}
 
@@ -220,7 +220,8 @@ public class World {
 		System.out.println("Congradulations! You have " + Lives + "left!");
 
 	}
-// sees if there is a next possible level and returns it
+
+	// sees if there is a next possible level and returns it
 	public String next() {
 		if (this.level == "Level1") {
 			return "Level2";
@@ -230,7 +231,8 @@ public class World {
 		}
 
 	}
-// when called togels the pause of the game
+
+	// when called togels the pause of the game
 	public void pause() {
 		if (this.isPaused == false) {
 			this.isPaused = true;
@@ -252,7 +254,8 @@ public class World {
 		}
 
 	}
-// plays music when called
+
+	// plays music when called
 	public void play() {
 		File inputFile = new File("8bit_Dungeon_Boss.wav");
 		AudioInputStream gameMusic;
