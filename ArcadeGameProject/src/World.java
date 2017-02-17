@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -35,6 +40,7 @@ public class World {
 	private myListener mykey;
 	private BombListener myBombs;
 	private information info;
+	private Clip gamemusic;
 
 	public World(String level) {
 		this.Lives = 3;
@@ -52,6 +58,8 @@ public class World {
 	 * Function that loads all objects involved in the game and given to main.
 	 */
 	public void load() throws IOException {
+
+		play();
 
 		myWindow.removeKeyListener(this.change);
 		myWindow.removeKeyListener(mykey);
@@ -93,7 +101,7 @@ public class World {
 
 					} else if (line.charAt(x) == 'e') {
 
-						Monster myMonster = new Monster(hero, this, WI, WB, Monsters.size()%3);
+						Monster myMonster = new Monster(hero, this, WI, WB, Monsters.size() % 3);
 						myMonster.set(x, y);
 						Monsters.add(myMonster);
 
@@ -126,7 +134,6 @@ public class World {
 						wall = new Walls(x, y, this);
 						this.WB.add(wall);
 
-
 					} else {
 						throw new RuntimeException("Invalid Character in World Text File");
 
@@ -139,8 +146,9 @@ public class World {
 		}
 		for (int m = 0; m < Monsters.size(); m++) {
 			Monsters.get(m).setHero(hero);
-			Monsters.get(m).setBomb(Bombs);;
-			
+			Monsters.get(m).setBomb(Bombs);
+			;
+
 		}
 		for (int m = 0; m < Powerups.size(); m++) {
 			Powerups.get(m).setHero(hero);
@@ -166,6 +174,7 @@ public class World {
 	 */
 	public void ChangeLevel(String level) throws IOException {
 		Monsters.clear();
+		gamemusic.stop();
 		Bombs.clear();
 		Powerups.clear();
 		WI.clear();
@@ -182,6 +191,7 @@ public class World {
 	 */
 	public void retry() throws IOException {
 		Lives -= 1;
+		gamemusic.stop();
 		Monsters.clear();
 		Bombs.clear();
 		Powerups.clear();
@@ -194,10 +204,12 @@ public class World {
 	}
 
 	/*
-	 * Function that handles the death of all Monsters and its affects on the world.
+	 * Function that handles the death of all Monsters and its affects on the
+	 * world.
 	 */
 	public void win() throws IOException {
 		Monsters.clear();
+		gamemusic.stop();
 		Bombs.clear();
 		Powerups.clear();
 		WI.clear();
@@ -239,5 +251,19 @@ public class World {
 			}
 		}
 
+	}
+
+	public void play() {
+		File inputFile = new File("8bit_Dungeon_Boss.wav");
+		AudioInputStream gameMusic;
+		try {
+			gameMusic = AudioSystem.getAudioInputStream(inputFile);
+			gamemusic = AudioSystem.getClip();
+			gamemusic.open(gameMusic);
+			gamemusic.start();
+		} catch (UnsupportedAudioFileException | LineUnavailableException | IOException exception) {
+			// TODO Auto-generated catch-block stub.
+			exception.printStackTrace();
+		}
 	}
 }
