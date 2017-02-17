@@ -17,7 +17,6 @@ public class LargerRangeBomb implements PowerUps{
 		this.RangeBomb = RangeBomb;
 		this.myHero = myHero;
 		this.myComponent = myComponent;
-
 	}
 
 	/*
@@ -54,7 +53,6 @@ public class LargerRangeBomb implements PowerUps{
 		if (myHero.getBounds2D().intersects(this.getRect())) {
 			myComponent.increaseRange();
 			side = 0;
-			System.out.println("big");
 			return true;
 		}
 		return false;
