@@ -147,8 +147,6 @@ public class World {
 		for (int m = 0; m < Monsters.size(); m++) {
 			Monsters.get(m).setHero(hero);
 			Monsters.get(m).setBomb(Bombs);
-			;
-
 		}
 		for (int m = 0; m < Powerups.size(); m++) {
 			Powerups.get(m).setHero(hero);
@@ -183,7 +181,6 @@ public class World {
 		this.time = 200;
 		this.load();
 		System.out.println(level + " has loaded!");
-
 	}
 
 	/*
@@ -200,7 +197,6 @@ public class World {
 		this.time = 200;
 		this.load();
 		System.out.println("You died! You have " + Lives + " left!");
-
 	}
 
 	/*
